@@ -53,10 +53,10 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 
 ### Wireframes
 
-![Wireframe 1]("./images/Wireframe1.png")
+![Wireframe 1](./images/Wireframe1.png)
 
-![Wireframe 2]("./images/Wireframe2.png")
+![Wireframe 2](./images/Wireframe2.png)
 
-![Wireframe 3]("./images/Wireframe3.png")
+![Wireframe 3](./images/Wireframe3.png)
 
-![ERD]("./images/erd.png")
+![ERD](./images/erd.png)
