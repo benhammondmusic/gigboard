@@ -53,10 +53,10 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 
 ### Wireframes
 
-![Wireframe 1](https://media.git.generalassemb.ly/user/32102/files/ed82dc80-83f3-11eb-9ccf-324f1f653936)
+![Wireframe 1]("./images/Wireframe1.png")
 
-![Wireframe 2](https://media.git.generalassemb.ly/user/32102/files/f2e02700-83f3-11eb-916d-28255e49c280)
+![Wireframe 2]("./images/Wireframe2.png")
 
-![Wireframe 3](https://media.git.generalassemb.ly/user/32102/files/f4a9ea80-83f3-11eb-885c-14a6f448d47d)
+![Wireframe 3]("./images/Wireframe3.png")
 
-<img width="755" alt="Screen Shot 2021-03-13 at 2 13 42 PM" src="https://media.git.generalassemb.ly/user/32102/files/f7a4db00-83f3-11eb-89b5-d391660de638">
+![ERD]("./images/erd.png")
