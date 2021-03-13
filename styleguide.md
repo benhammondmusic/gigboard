@@ -22,4 +22,4 @@
 - French Bistro
     - 816C61
 
-![ColorScheme.png]('../images/ColorScheme.png')
+![ColorScheme.png](../images/ColorScheme.png)
