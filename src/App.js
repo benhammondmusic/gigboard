@@ -6,7 +6,7 @@ import './App.css';
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 
-// DEVELOPMENT API: localhost:3001
+// DEVELOPMENT API: localhost:5000 for heroku local web or 3001 for nodemon
 // (make sure it's running with nodemon, and that you have a .env file that includes
 // NODE_ENV='development'
 //
