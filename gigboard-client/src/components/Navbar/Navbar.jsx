@@ -12,6 +12,10 @@ const Navbar = (  ) => {
                 <Link to="/gigs">
                     Gig List
                 </Link>
+                <span>    </span>
+                <Link to="/login">
+                    Login
+                </Link>
             </section>
         </nav>
     )
