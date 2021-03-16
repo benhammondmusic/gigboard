@@ -6,15 +6,14 @@ import './App.css';
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 
-// DEVELOPMENT API: localhost:5000 for heroku local web or 3001 for nodemon
-// (make sure it's running with nodemon, and that you have a .env file that includes
-// NODE_ENV='development'
-//
+// DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use ben's deployed backend on heroku
 let API_URL;
 if (process.env.NODE_ENV === 'development') {
+  console.log('dev on 5000');
   API_URL = 'http://localhost:5000';
 } else if (process.env.NODE_ENV === 'production') {
+  console.log('prod on bens backend heroku');
   API_URL = 'https://ben-gigboard.herokuapp.com';
 }
 
