@@ -10,7 +10,7 @@ const Login = () => {
         <>
         <Form>
             <Form.Group controlId="formBasicEmail">
-                <Form.Label class="form-title">Email address</Form.Label>
+                <Form.Label className="form-title">Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
                 <Form.Text className="text">
                 We'll never share your email with anyone else.
@@ -18,7 +18,7 @@ const Login = () => {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label class='form-title'>Password</Form.Label>
+                <Form.Label className='form-title'>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             
