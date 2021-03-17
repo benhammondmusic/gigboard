@@ -1,6 +1,6 @@
 // import React from 'react'
 import axios from "axios";
-import "./App.css";
+import "./App.scss";
 // import {Button} from 'react-bootstrap/Button'
 
 import Routes from "./config/routes";
