@@ -26,6 +26,6 @@
 ![ColorScheme.png](./images/ColorScheme.png)
 
 ### Language
-- gig: any work opportunity. do not use "job"
-- gig seeker: any user who is looking for work. do not use "worker" or "employee"
-- gig poster: any user who has a gig posted and contracts gig seekers.
+- Gig: Any work opportunity. Do not use "job"
+- Gig Seeker: Any user who is looking for work. do not use "worker" or "employee"
+- Gig Poster: Any user who has a gig posted and contracts gig seekers.
