@@ -1,10 +1,10 @@
 // import React from 'react'
-import axios from 'axios';
-import './App.css';
+import axios from "axios";
+import "./App.scss";
 // import {Button} from 'react-bootstrap/Button'
 
-import Routes from './config/routes';
-import Navbar from './components/Navbar/Navbar';
+import Routes from "./config/routes";
+import Navbar from "./components/Navbar/Navbar";
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use ben's deployed backend on heroku
