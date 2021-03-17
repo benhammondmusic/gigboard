@@ -63,4 +63,4 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 
 ### Gig-Style
 
-If you're interested in contributing to this project - please check out our [style guide]('./styleguide.md')
+If you're interested in contributing to this project - please check out our [style guide]('https://github.com/benhammondmusic/gigboard/blob/develop/styleguide.md')
