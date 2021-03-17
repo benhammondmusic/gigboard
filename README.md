@@ -60,3 +60,7 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 ![Wireframe 3](./images/Wireframe3.png)
 
 ![ERD](./images/erd.png)
+
+### Gig-Style
+
+If you're interested in contributing to this project - please check out our [style guide]('./styleguide.md')
