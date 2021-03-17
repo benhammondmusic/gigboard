@@ -1,5 +1,3 @@
-import React from 'react';
+const GigPosting = () => <>Gig Posting</>;
 
-// const GigPosting = (props) => ();
-
-export default GigPosting
+export default GigPosting;
