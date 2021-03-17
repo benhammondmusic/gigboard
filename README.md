@@ -51,6 +51,11 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 - Heroku (deploy)
 - Bootstrap & Sass
 
+### Repos
+
+- [Frontend](https://github.com/benhammondmusic/gigboard) - current repo
+- [Backend API](https://github.com/benhammondmusic/gigboard-backend/)
+
 ### Wireframes
 
 ![Wireframe 1](./images/Wireframe1.png)
