@@ -1,3 +1,2 @@
-const GigPreview = ({ gig }) => <li>Gig Preview: {gig}</li>;
-
+const GigPreview = ({ gig }) => <>Gig Preview: {gig}</>;
 export default GigPreview;
