@@ -5,13 +5,22 @@ import './App.scss';
 
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
+import { useState } from 'react';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
 
-// ! Get proper API_URL directly from .env or Heroku config vars (you'll have to set your own)
-
 function App() {
+  const [currentUsername, setCurrentUsername] = useState('benhammondmusic');
+  const [currentUserEmail, setCurrentUserEmail] = useState('hello@benhammond.tech');
+
+  const logOut = () => {
+    console.log('Logging Out', currentUsername);
+    setCurrentUsername('');
+    setCurrentUserEmail('');
+  };
+
+  // Gets proper API_URL directly from .env or Heroku config vars (you'll have to set both yourself)
   axios
     .get(`${process.env.REACT_APP_API_URL}/helloworld`)
     .then(function (response) {
@@ -29,7 +38,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar logOut={logOut} currentUsername={currentUsername} />
       <main>
         <Routes />
       </main>
