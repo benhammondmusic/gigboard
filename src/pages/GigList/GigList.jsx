@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import GigPosting from '../../components/GigPosting/GigPosting';
-import GigPreview from '../../components/GigPreview/GigPreview';
+import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
 const GigList = () => {
@@ -13,7 +12,7 @@ const GigList = () => {
       <SearchBar />
       <ul>
         {gigs.map((gig, idx) => {
-          return <GigPreview key={idx} gig={gig} />;
+          return <GigPost key={idx} gig={gig} />;
         })}
       </ul>
     </>
