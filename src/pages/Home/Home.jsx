@@ -1,7 +1,8 @@
 import './Home.css'
 
 const Home = () => {
-    return <div class='containter'>
+    return <div>
+      <div id='homeContainer'></div>
     </div>
   }
   
