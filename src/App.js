@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   API_URL = 'http://localhost:5000';
 } else if (process.env.NODE_ENV === 'production') {
   console.log('prod on bens backend heroku');
-  API_URL = 'https://ben-gigboard.herokuapp.com';
+  API_URL = 'https://jc-gig-frontend.herokuapp.com/';
 }
 
 function App() {
