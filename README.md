@@ -2,13 +2,13 @@
 
 ## README
 
-Gig board is a job posting app specific for gigs.
+Gig board is an app specific for short-term-gigs.
 
 The gig poster is going to be able to log-in, view gigs posted by others, and view gigs posted by themselves.
 
 The gigs will have specific categories or “tags” that will show you what type of work the gig involves (whether it’s bartending, playing music, mechanic work, etc…)
 
-The job poster is able to specify how many positions they have available for that specific gig
+The gig poster is able to specify how many positions they have available for that specific gig
 
 _[Future Goals]_
 
@@ -20,11 +20,11 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 
 ### UX/Stories
 
-- 1 log-in (job poster)
-  - Eventual 2 log-in (job poster / job seeker)
-- As a job poster
+- 1 log-in (gig poster)
+  - Eventual 2 log-in (gig poster / gig seeker)
+- As a gig poster
   - Log-In
-  - Post a job
+  - Post a gig
     - Title
     - Description
       - Start Date & End Date
@@ -34,8 +34,8 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
     - Tip (yes/no)
     - Tag
       - Categories it fits in to (Service, Entertainment, Sports, Health/Wellness, General, Automotive)
-  - Delete a job
-  - Edit a job
+  - Delete a gig
+  - Edit a gig
   - Number of positions available for that gig
   - Add location
     - Map API, Weather API
