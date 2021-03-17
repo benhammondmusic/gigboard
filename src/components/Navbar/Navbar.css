@@ -3,9 +3,10 @@ margin-left: 10%;
 padding: 0;
 color: black;
 font-weight: 600;
-
+font-family: 'Hind Madurai';
+font-size: 18px
 }
 
 section {
-    background-color: #e7dfc6;
+    background-color: rgba(231, 223, 198, .3);
 }

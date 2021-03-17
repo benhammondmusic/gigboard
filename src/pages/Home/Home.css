@@ -1,6 +1,11 @@
-div {
+div #homeContainer{
     height: 100vh;
     background-image: url(../../images/Gigboard-Title.png);
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+body {
+    background-image: url(../../images/josephine-bredehoft-KsAo8ouBn8A-unsplash.jpg);
+    background-size: 100%;
 }
