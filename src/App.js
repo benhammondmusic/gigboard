@@ -11,22 +11,13 @@ import Navbar from './components/Navbar/Navbar';
 
 // ! Get proper API_URL directly from .env or Heroku config vars (you'll have to set your own)
 
-/* let API_URL;
-if (process.env.NODE_ENV === 'development') {
-  console.log('dev on 5000');
-  API_URL = 'http://localhost:5000';
-} else if (process.env.NODE_ENV === 'production') {
-  console.log('prod on kayes backend heroku');
-  API_URL = 'https://kaye-gigboard.herokuapp.com';
-} */
-
 function App() {
   axios
-    .get(`${REACT_APP_API_URL}/helloworld`)
+    .get(`${process.env.REACT_APP_API_URL}/helloworld`)
     .then(function (response) {
       // handle success
       console.log(response);
-      console.log(REACT_APP_API_URL);
+      console.log(process.env.REACT_APP_API_URL);
     })
     .catch(function (error) {
       // handle error
