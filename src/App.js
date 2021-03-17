@@ -33,33 +33,13 @@ function App() {
       // always executed
     });
 
-  /* 
-<APP> SCAFFOLDING
-<App>
-    <Nav />
-    <Routes />  // resolves to <Home /> <GigList} /> <Login /> or <Register /> based on URL
-
-</App>
-*/
-
-  /* 
-<HOME> SCAFFOLDING
-<Home>
-
-
-
-</ Home>
-
-
-*/
-
   return (
-    <App>
+    <>
       <Navbar />
       <main>
         <Routes />
       </main>
-    </App>
+    </>
   );
 }
 

@@ -1,5 +1,3 @@
-import React from 'react';
+const GigPreview = () => <>Gig Preview</>;
 
-// const GigPreview = (props) => ();
-
-export default GigPreview
+export default GigPreview;
