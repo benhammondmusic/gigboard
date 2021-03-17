@@ -1,5 +1,8 @@
+import './Home.css'
+
 const Home = () => {
-    return <div>Home</div>
+    return <div class='containter'>
+    </div>
   }
   
   export default Home;
