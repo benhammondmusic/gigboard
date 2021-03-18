@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import GigPreview from '../GigPreview/GigPreview';
 import GigFull from '../GigFull/GigFull';
+import './GigPost.css';
 
 const GigPost = ({ gig }) => {
   const [previewMode, setPreviewMode] = useState('false');
