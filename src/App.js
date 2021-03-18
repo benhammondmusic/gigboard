@@ -2,17 +2,16 @@
 import axios from 'axios';
 import './App.scss';
 // import {Button} from 'react-bootstrap/Button'
-import Auth from './Models/Auth'
+import Auth from './Models/Auth';
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
 
 function App() {
-
   const [password, setPassword] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
   console.log({ currentUserEmail });
@@ -52,7 +51,7 @@ function App() {
   };
 
   const logOut = () => {
-    localStorage.clear()
+    localStorage.clear();
     setCurrentUserEmail(localStorage.getItem('uid'));
     history.push('/');
   };
@@ -61,7 +60,7 @@ function App() {
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} password={password} setPassword={setPassword}/>
+        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} password={password} setPassword={setPassword} />
       </main>
     </>
   );
