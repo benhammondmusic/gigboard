@@ -1,0 +1,10 @@
+.reg-container {
+    display: flex;
+    margin: 10% 0 0 20%;
+    font-family: 'fira sans';
+    background-color: #E7DFC6;
+    width: 400px;
+    padding: 8% 4% 20% 4%;
+    box-shadow: 2px 2px 2px 2px black;
+}
+ 
