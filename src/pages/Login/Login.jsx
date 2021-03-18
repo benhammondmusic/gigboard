@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import {Link} from 'react-router-dom'
 
 import Auth from '../../Models/Auth';
 
@@ -55,6 +56,22 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+
+      <div id='tape'>
+</div>
+<div id='tape2'>
+</div>
+
+
+<div className='reg-container'>
+    <h3>New to Gig Board?</h3>
+      <Link to="/register" className="link">
+                <button id='reg-btn'>
+                  Register Here
+                  </button>
+              </Link>
+
+    </div>    
     </>
   );
 };
