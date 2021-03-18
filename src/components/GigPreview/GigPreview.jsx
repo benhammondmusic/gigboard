@@ -1,4 +1,7 @@
 import './GigPreview.css';
 
-const GigPreview = ({ gig }) => <>Gig Preview: Gig-{gig.id}</>;
+const GigPreview = ({ gig }) => 
+    <div className='reg-container'>
+    <>Gig Preview: Gig-{gig.id}</>;
+    </div>
 export default GigPreview;
