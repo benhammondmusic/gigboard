@@ -40,27 +40,26 @@ const Register = () => {
     
     return (
         <>
-        <div>Register</div>
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label className='form-title'>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" onChange={ (e) => setEmail(e.target.value) }/>
-                <Form.Text className="text-muted">
+                <Form.Text className="text">
                 We'll never share your email with anyone else.
                 </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
+                <Form.Label className='form-title'>Username</Form.Label>
                 <Form.Control type="username" placeholder="Username" onChange={ (e) => setUsername( e.target.value ) }/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className='form-title'>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" onChange={ (e) => setPasword( e.target.value ) }/>
             </Form.Group>
             
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" id="login-btn">
                 Submit
             </Button>
         </Form>
