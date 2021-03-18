@@ -15,6 +15,11 @@ const Navbar = ({ currentUser, logOut }) => {
           <Link to="/gigs" className="link">
             Gig List
           </Link>
+
+        {currentUsername ? (
+
+          <Link to='/newgig' className="link">Add Gig</Link>
+        ): (<span></span>)}
         </span>
 
         <span>
@@ -29,10 +34,6 @@ const Navbar = ({ currentUser, logOut }) => {
             <span>
               <Link to="/login" className="link">
                 Login
-              </Link>
-
-              <Link to="/register" className="link">
-                Register
               </Link>
             </span>
           )}
