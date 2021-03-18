@@ -6,69 +6,64 @@ import './App.scss';
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import Auth from './Models/Auth'
+import { useHistory } from 'react-router-dom';
+import Auth from './Models/Auth';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('');
-  
-  const [currentUser, setCurrentUser] = useState(localStorage.getItem('uid'))
-  console.log({currentUser})
+  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
+  console.log({ currentUserEmail });
 
-  const history = useHistory()
+  const history = useHistory();
 
   const handleRegister = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const user = await Auth.register({ email, username, password });
-      console.log(user, 'user created')
-      const token = user
+      const user = await Auth.register({ email, password });
+      console.log(user, 'user created');
+      const token = user;
 
-      localStorage.setItem( 'uid', token );
-      setCurrentUser(token);
+      localStorage.setItem('uid', token);
+      setCurrentUserEmail(token);
 
-      history.push('/gigs')
-
+      history.push('/gigs');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
+      const user = await Auth.login({ email, password });
+      const token = user.data.signedJwt;
 
-        const user = await Auth.login({email, password})
-        const token = user.data.signedJwt
+      localStorage.setItem('uid', token);
 
-        localStorage.setItem( 'uid', token );
+      setCurrentUserEmail(token);
 
-        setCurrentUser(token);
-
-        history.push('/gigs');
-        
+      history.push('/gigs');
     } catch (error) {
-       console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const logOut = () => {
-    localStorage.clear()
-    setCurrentUser(localStorage.getItem('uid'))
-    history.push('/login')
+    localStorage.clear();
+    setCurrentUserEmail(localStorage.getItem('uid'));
+    history.push('/login');
   };
 
   return (
     <>
-      <Navbar logOut={logOut} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+      <Navbar logOut={logOut} setCurrentUserEmail={setCurrentUserEmail} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogin={handleLogin} setEmail={setEmail} setPassword={setPassword} handleRegister={handleRegister} setUsername={setUsername}/>
+        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} setEmail={setEmail} setPassword={setPassword} handleRegister={handleRegister} />
       </main>
     </>
   );

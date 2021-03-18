@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ currentUser, logOut }) => {
-
-  console.log(currentUser)
+const Navbar = ({ currentUserEmail, logOut }) => {
   return (
     <nav>
       <section className="d-flex px-3 justify-content-between">
@@ -16,16 +14,19 @@ const Navbar = ({ currentUser, logOut }) => {
             Gig List
           </Link>
 
-        {currentUsername ? (
-
-          <Link to='/newgig' className="link">Add Gig</Link>
-        ): (<span></span>)}
+          {currentUserEmail ? (
+            <Link to="/newgig" className="link">
+              Add Gig
+            </Link>
+          ) : (
+            <span></span>
+          )}
         </span>
 
         <span>
-          {currentUser ? (
+          {currentUserEmail ? (
             <span>
-              {currentUser}
+              {currentUserEmail}
               <button className="btn btn-outline-dark" onClick={logOut}>
                 Log Out
               </button>
