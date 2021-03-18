@@ -17,11 +17,6 @@ const Register = (props) => {
           <Form.Text className="text">We'll never share your email with anyone else.</Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label className="form-title">Username</Form.Label>
-          <Form.Control type="username" placeholder="Username" onChange={(e) => props.setUsername(e.target.value)} />
-        </Form.Group>
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="form-title">Password</Form.Label>
           <Form.Control type="password" placeholder="Password" onChange={(e) => props.setPasword(e.target.value)} />
