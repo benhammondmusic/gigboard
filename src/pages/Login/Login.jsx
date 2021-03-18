@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
 import {Link} from 'react-router-dom'
 
-import Auth from '../../Models/Auth';
+// import Auth from '../../Models/Auth';
 
 
 

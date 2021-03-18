@@ -15,7 +15,7 @@ function App() {
   const [currentUserEmail, setCurrentUserEmail] = useState('hello@benhammond.tech');
 
   const logOut = () => {
-    console.log('Logging Out', currentUsername);
+    console.log('Logging Out', currentUsername, currentUserEmail);
     setCurrentUsername('');
     setCurrentUserEmail('');
   };
