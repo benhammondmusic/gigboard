@@ -20,22 +20,6 @@ function App() {
     setCurrentUserEmail('');
   };
 
-  // Gets proper API_URL directly from .env or Heroku config vars (you'll have to set both yourself)
-  // axios
-  //   .get(`${process.env.REACT_APP_API_URL}/helloworld`)
-  //   .then(function (response) {
-  //     // handle success
-  //     console.log(response);
-  //     console.log(process.env.REACT_APP_API_URL);
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     console.log(error);
-  //   })
-  //   .then(function () {
-  //     // always executed
-  //   });
-
   return (
     <>
       <Navbar logOut={logOut} currentUsername={currentUsername} />
