@@ -4,13 +4,12 @@ import './Login.css';
 import {Link} from 'react-router-dom'
 
 const Login = (props) => {
-
   return (
     <>
       <Form onSubmit={props.handleLogin} >
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" onChange={(e) => props.setEmail(e.target.value)}/>
+          <Form.Control type="email" placeholder="Enter email" onChange={(e) => props.setCurrentUserEmail(e.target.value)}/>
           <Form.Text className="text">We'll never share your email with anyone else.</Form.Text>
         </Form.Group>
 
@@ -37,7 +36,7 @@ const Login = (props) => {
                   Register Here
                   </button>
               </Link>
-
+      
     </div>    
     </>
   );

@@ -2,20 +2,18 @@
 import axios from 'axios';
 import './App.scss';
 // import {Button} from 'react-bootstrap/Button'
-
+import Auth from './Models/Auth'
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Auth from './Models/Auth';
+import { useHistory } from 'react-router-dom'
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
+  const [password, setPassword] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
   console.log({ currentUserEmail });
 
@@ -24,9 +22,9 @@ function App() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const user = await Auth.register({ email, password });
+      const user = await Auth.register({ currentUserEmail, password });
       console.log(user, 'user created');
-      const token = user;
+      const token = user.data.signedJwt;
 
       localStorage.setItem('uid', token);
       setCurrentUserEmail(token);
@@ -40,7 +38,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await Auth.login({ email, password });
+      const user = await Auth.login({ currentUserEmail, password });
       const token = user.data.signedJwt;
 
       localStorage.setItem('uid', token);
@@ -54,16 +52,16 @@ function App() {
   };
 
   const logOut = () => {
-    localStorage.clear();
+    localStorage.clear()
     setCurrentUserEmail(localStorage.getItem('uid'));
-    history.push('/login');
+    history.push('/');
   };
 
   return (
     <>
-      <Navbar logOut={logOut} setCurrentUserEmail={setCurrentUserEmail} currentUserEmail={currentUserEmail} />
+      <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} setEmail={setEmail} setPassword={setPassword} handleRegister={handleRegister} />
+        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} password={password} setPassword={setPassword}/>
       </main>
     </>
   );
