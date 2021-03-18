@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ currentUsername, logOut }) => {
+const Navbar = ({ currentUser, logOut }) => {
+
+  console.log(currentUser)
   return (
     <nav>
       <section className="d-flex px-3 justify-content-between">
@@ -16,9 +18,9 @@ const Navbar = ({ currentUsername, logOut }) => {
         </span>
 
         <span>
-          {currentUsername ? (
+          {currentUser ? (
             <span>
-              {currentUsername}
+              {currentUser}
               <button className="btn btn-outline-dark" onClick={logOut}>
                 Log Out
               </button>
