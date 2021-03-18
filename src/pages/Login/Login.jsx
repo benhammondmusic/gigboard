@@ -64,7 +64,7 @@ const Login = () => {
 
 
 <div className='reg-container'>
-    <h3>New to Gig Board?</h3>
+    <h3>New to Gigboard?</h3>
       <Link to="/register" className="link">
                 <button id='reg-btn'>
                   Register Here
