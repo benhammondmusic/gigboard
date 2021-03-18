@@ -19,7 +19,7 @@ const Register = (props) => {
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="form-title">Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={(e) => props.setPasword(e.target.value)} />
+          <Form.Control type="password" placeholder="Password" onChange={(e) => props.setPassword(e.target.value)} />
         </Form.Group>
 
         <Button variant="primary" type="submit" id="login-btn">
