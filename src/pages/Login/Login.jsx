@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
 
-import Auth from '../../Models/Auth';
+// import Auth from '../../Models/Auth';
 
 const Login = () => {
   return (
