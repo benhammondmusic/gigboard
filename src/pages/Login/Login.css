@@ -19,3 +19,20 @@ Form{
 #login-btn {
     background-color: #2274A5;
 }
+
+.reg-container {
+    display: flex;
+    margin: 10% 0 0 20%;
+    font-family: 'fira sans';
+    background-color: #E7DFC6;
+    width: 400px;
+    padding: 8% 4% 20% 4%;
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+#reg-btn {
+    background-color: #131B23;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+}
