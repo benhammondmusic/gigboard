@@ -60,7 +60,7 @@ const GigAdder = ({ currentUserEmail }) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Control as="select" type="urgency" onChange={() => setUrgency(this.state.value)}>
+          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
