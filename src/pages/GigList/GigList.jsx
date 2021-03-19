@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import './GigList.css'
 
 // guide at: https://www.emgoto.com/react-search-bar/
 
@@ -37,13 +38,16 @@ const GigList = () => {
       <h2>GigList</h2>
 
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ul>
+      
+        <ul>
         {filteredGigs.map((gig, idx) => {
           return <GigPost key={idx} gig={gig} />;
         })}
       </ul>
+      
     </>
   );
 };
 
 export default GigList;
+

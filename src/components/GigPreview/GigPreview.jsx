@@ -1,4 +1,7 @@
 import './GigPreview.css';
 
-const GigPreview = ({ gig }) => <>Gig Preview: Gig-{gig.id}</>;
+const GigPreview = ({ gig }) => 
+    
+    <>Gig Preview: Gig-{gig.id}</>;
+   
 export default GigPreview;
