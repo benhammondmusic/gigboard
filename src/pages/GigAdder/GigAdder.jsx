@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Auth from '../../Models/Auth';
@@ -103,9 +103,11 @@ const GigAdder = ({ currentUserEmail }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkStartDate(date)} />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={event =>  window.location.href='/gigs'}>
           Post Gig
         </Button>
+
+        <Link to="/gigs" className="btn btn-secondary">Cancel</Link>
       </Form>
     </>
   );
