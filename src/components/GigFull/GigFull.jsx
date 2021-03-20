@@ -21,13 +21,13 @@ const GigFull = ({ gig }) => (
       })}
 
       {/* Button to edit the post --need to make it functional & only accesible to the user who made it  */}
-      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline align-right">
-        <button type="submit" class="btn btn-outline-dark">Edit</button>
+      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" className="d-inline align-right">
+        <button type="submit" className="btn btn-outline-dark">Edit</button>
       </form>
       
       {/* Button to delete the post --need to make it functional & only accesible to the user who made it  */}
-      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline align-right">
-        <button type="submit" class="btn btn-outline-danger">Delete</button>
+      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" className="d-inline align-right">
+        <button type="submit" className="btn btn-outline-danger">Delete</button>
       </form>
 
     </ul>
