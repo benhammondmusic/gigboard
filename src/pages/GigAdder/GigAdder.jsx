@@ -1,7 +1,7 @@
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Multiselect} from 'multiselect-react-dropdown';
+import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 // import { Link } from 'react-router-dom';
@@ -9,23 +9,20 @@ import axios from 'axios';
 
 import Auth from '../../Models/Auth';
 
-import './GigAdder.css'
-
+import './GigAdder.css';
 
 const GigAdder = ({ currentUserEmail }) => {
-
   const tagOptions = [
-    {id: 'entertainment', Industry: 'Entertainment'},
-    {id:'hospitality', Industry: 'Hospitality'},
-    {id: 'food and beverage', Industry: "Food & Beverage"},
-    {id: 'automotive', Industry: 'Automotive'},
-    {id: 'medical', Industry: "Medical"},
-    {id: 'construction', Industry: "Construction"},
-    {id: 'general labor', Industry: "General Labor"},
-    {id: 'administration', Industry: "Administration"},
-    {id: 'customer service', Industry: 'Customer Service'}
-  ]
-
+    { id: 'entertainment', Industry: 'Entertainment' },
+    { id: 'hospitality', Industry: 'Hospitality' },
+    { id: 'food and beverage', Industry: 'Food & Beverage' },
+    { id: 'automotive', Industry: 'Automotive' },
+    { id: 'medical', Industry: 'Medical' },
+    { id: 'construction', Industry: 'Construction' },
+    { id: 'general labor', Industry: 'General Labor' },
+    { id: 'administration', Industry: 'Administration' },
+    { id: 'customer service', Industry: 'Customer Service' },
+  ];
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -37,13 +34,16 @@ const GigAdder = ({ currentUserEmail }) => {
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
 
-
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // BUNDLE GIG POST FORM DATA TOGETHER FROM STATE
-    const gigPostFormData = { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate };
+    // ! REMOVED TAGS FOR NOW AS THEY WERE BREAKING IT
+    // ! tags,
+    // !
+
+    const gigPostFormData = { title, description, tip, location, urgency, expirationDate, workStartDate, workEndDate };
 
     try {
       console.log('posting a gig:', gigPostFormData);
@@ -80,7 +80,7 @@ const GigAdder = ({ currentUserEmail }) => {
           <Form.Control type="location" placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId='urgencySelect'>
+        <Form.Group controlId="urgencySelect">
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
@@ -88,19 +88,19 @@ const GigAdder = ({ currentUserEmail }) => {
           </Form.Control>
         </Form.Group>
 
-        <Form.Group controlId='tags'>
-        <Form.Label className="form-title">What category/ies does this Gig fit?</Form.Label>
-            <Multiselect options={tags} displayValue='Industry' onChange={(e) => setTags(e.target.value)}/>
+        <Form.Group controlId="tags">
+          <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
+          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId='workStartDate'>
-        <Form.Label className="form-title">When does this Gig start?</Form.Label>
-            <DatePicker selected={workStartDate} onChange={date => setWorkStartDate(date)} />
+        <Form.Group controlId="workStartDate">
+          <Form.Label className="form-title">When does this Gig start?</Form.Label>
+          <DatePicker selected={workStartDate} onChange={(date) => setWorkStartDate(date)} />
         </Form.Group>
 
-        <Form.Group controlId='workEndDate'>
-        <Form.Label className="form-title">When does this Gig end?</Form.Label>
-            <DatePicker selected={workEndDate} onChange={date => setWorkStartDate(date)} />
+        <Form.Group controlId="workEndDate">
+          <Form.Label className="form-title">When does this Gig end?</Form.Label>
+          <DatePicker selected={workEndDate} onChange={(date) => setWorkStartDate(date)} />
         </Form.Group>
 
         <Button variant="primary" type="submit">
@@ -112,4 +112,3 @@ const GigAdder = ({ currentUserEmail }) => {
 };
 
 export default GigAdder;
-
