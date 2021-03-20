@@ -5,9 +5,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom'
+import Gig from '../../Models/Gig'
 
 
-const GigEdit = (props) => {
+
+const GigEdit = ({gig}) => {
 
   const tagOptions = [
     { id: 'entertainment', Industry: 'Entertainment' },
@@ -21,8 +23,10 @@ const GigEdit = (props) => {
     { id: 'customer service', Industry: 'Customer Service' },
   ];
 
+
+
   const [currentGig, setCurrentGig] = useState({});
-  const { gigId } = useParams();
+  const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tip, setTip] = useState('false');
@@ -33,8 +37,23 @@ const GigEdit = (props) => {
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
 
+  console.log('here is the gig ID:', id)
+  console.log('here is the Gig:', gig)
+
+  const getGigData = async () => {
+    try {
+      const res = await Gig.show( id )
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getGigData()
+  
   return (
     <h2>GigEditor</h2>
+    
     
 
 

@@ -34,7 +34,7 @@ const Routes = (props) => (
       )}
     />
     <Route exact path="/newgig" component={GigAdder} />
-    <Route exact path="/gigs/editgig" component={GigEditor} />
+    <Route exact path="/gigs/editgig/:id" component={GigEditor} />
   </Switch>
 );
 

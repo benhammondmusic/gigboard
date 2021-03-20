@@ -2,13 +2,13 @@
 import GigEdit from '../../components/GigEdit/GigEdit';
 
 
-const GigEditor = () => {
+const GigEditor = (gig) => {
 
 return (
     <>
       <h2>Edit Gig</h2>
 
-      <GigEdit />
+      <GigEdit gig={gig}/>
     </>
   );
 };

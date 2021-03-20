@@ -23,7 +23,7 @@ const GigFull = ({ gig }) => (
       })}
       <div className="button-container">
       {/* Button to go to edit the gig page --need to make it functional & only accesible to the user who made it  */}
-        <Link to={`gigs/editgig/${gig._id}`}><button className="btn btn-outline-dark">Edit</button></Link>
+        <Link to={`gigs/editgig/${gig._id}`} gig={gig}><button className="btn btn-outline-dark" >Edit</button></Link>
       
       {/* Button to delete the post --need to make it functional & only accesible to the user who made it  */}
         <button type="submit" className="btn btn-outline-danger" onClick={DeletePost}>Delete</button>
