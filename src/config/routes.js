@@ -1,19 +1,11 @@
 import { Switch, Route } from "react-router-dom";
 
-<<<<<<< HEAD
 import Home from '../pages/Home/Home';
 import GigList from '../pages/GigList/GigList';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import GigAdder from '../pages/GigAdder/GigAdder';
 import GigEditor from '../pages/GigEditor/GigEditor'
-=======
-import Home from "../pages/Home/Home";
-import GigList from "../pages/GigList/GigList";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import GigAdder from "../pages/GigAdder/GigAdder";
->>>>>>> develop
 
 const Routes = (props) => (
   <Switch>
