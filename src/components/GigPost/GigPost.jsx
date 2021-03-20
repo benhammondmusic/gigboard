@@ -3,8 +3,6 @@ import { useState } from 'react';
 import GigPreview from '../GigPreview/GigPreview';
 import GigFull from '../GigFull/GigFull';
 import './GigPost.css';
-import GigDelete from '../GigDelete/GigDelete'
-
 
 const GigPost = ({ gig }) => {
   const [previewMode, setPreviewMode] = useState('false');
@@ -23,7 +21,6 @@ const GigPost = ({ gig }) => {
         <li onClick={togglePreview}>
           <div className='reg-container'>
             <GigPreview gig={gig} />
-            <GigDelete/>
            </div> 
         </li>
       ) : (
