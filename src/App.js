@@ -29,8 +29,8 @@ function App() {
       // const token = res.data.signedJwt;
 
       // localStorage.setItem("uid", token);
-      console.log(JSON.parse(res).config.data, "logging res.config email");
-      // setCurrentUserEmail(res.config.data);
+      // console.log(JSON.parse(res.config.data).email, "logging res.config email");
+      setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       history.push("/gigs");
     } catch (error) {
