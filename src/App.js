@@ -61,7 +61,7 @@ function App() {
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} />
+        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail}/>
       </main>
     </>
   );
