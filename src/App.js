@@ -12,7 +12,8 @@ import { useHistory } from 'react-router-dom';
 // PRODUCTION API: use a deployed backend on heroku
 
 function App() {
-  const [password, setPassword] = useState('');
+  const [formPassword, setFormPassword] = useState('');
+  const [formEmail, setFormEmail] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
   console.log({ currentUserEmail });
 
@@ -21,7 +22,7 @@ function App() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const user = await Auth.register({ currentUserEmail, password });
+      const user = await Auth.register({ formEmail, formPassword });
       console.log(user, 'user created');
       const token = user.data.signedJwt;
 
@@ -37,7 +38,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await Auth.login({ currentUserEmail, password });
+      const user = await Auth.login({ formEmail, formPassword });
       const token = user.data.signedJwt;
 
       localStorage.setItem('uid', token);
@@ -60,7 +61,7 @@ function App() {
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} password={password} setPassword={setPassword} />
+        <Routes currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} />
       </main>
     </>
   );
