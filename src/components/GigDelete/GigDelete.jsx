@@ -6,7 +6,10 @@ const GigDelete = ({ gig }) => {
     try {
       console.log('GigDelete()', gig);
       const response = await axios.delete(`http://localhost:5000/api/gigs/${gig._id}`);
-      console.log(response);
+      console.log('GIG DELETED! Full response object:', response);
+
+      // redirect ? is there a better method?
+      window.location.href = '/gigs';
     } catch (error) {
       console.log(error, 'ERROR IN <GigDelete>.deletePost', gig);
     }
