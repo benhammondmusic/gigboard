@@ -21,7 +21,7 @@ const GigFull = ({ gig }) => (
       })}
       <div className="button-container">
       {/* Button to edit the post --need to make it functional & only accesible to the user who made it  */}
-      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" className="edit-button">
+      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" to="{`/gigs/editgig/${gig.GigId}`}" className="edit-button">
         <button type="submit" className="btn btn-outline-dark">Edit</button>
       </form>
       
