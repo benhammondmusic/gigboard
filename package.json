@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "browser-router": "^0.2.0",
+    "method-override": "^3.0.0",
     "multiselect-react-dropdown": "^1.6.11",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
