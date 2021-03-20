@@ -10,7 +10,6 @@ const Login = (props) => {
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" onChange={(e) => props.setCurrentUserEmail(e.target.value)}/>
-          <Form.Text className="text">We'll never share your email with anyone else.</Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
