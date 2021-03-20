@@ -1,10 +1,11 @@
 import { Switch, Route } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import GigList from "../pages/GigList/GigList";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import GigAdder from "../pages/GigAdder/GigAdder";
+import Home from '../pages/Home/Home';
+import GigList from '../pages/GigList/GigList';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
+import GigAdder from '../pages/GigAdder/GigAdder';
+import GigEditor from '../pages/GigEditor/GigEditor'
 
 const Routes = (props) => (
   <Switch>
@@ -33,6 +34,7 @@ const Routes = (props) => (
       )}
     />
     <Route exact path="/newgig" component={GigAdder} />
+    <Route exact path="/gigs/editgig/:id" component={GigEditor} />
   </Switch>
 );
 
