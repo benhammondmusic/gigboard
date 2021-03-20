@@ -1,4 +1,6 @@
 import './GigFull.css';
+import DeletePost from '../GigDelete/GigDelete';
+import {Link} from 'react-router-dom'
 
 const GigFull = ({ gig }) => (
   <>
@@ -20,15 +22,18 @@ const GigFull = ({ gig }) => (
         );
       })}
       <div className="button-container">
+<<<<<<< HEAD
       {/* Button to edit the post --need to make it functional & only accesible to the user who made it  */}
       <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" to="{`/gigs/editgig/${gig.GigId}`}" className="edit-button">
         <button type="submit" className="btn btn-outline-dark">Edit</button>
       </form>
+=======
+      {/* Button to go to edit the gig page --need to make it functional & only accesible to the user who made it  */}
+        <Link to={`gigs/editgig/${gig._id}`}><button className="btn btn-outline-dark">Edit</button></Link>
+>>>>>>> develop
       
       {/* Button to delete the post --need to make it functional & only accesible to the user who made it  */}
-      <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" className="delete-button">
-        <button type="submit" className="btn btn-outline-danger">Delete</button>
-      </form>
+        <button type="submit" className="btn btn-outline-danger" onClick={DeletePost}>Delete</button>
       </div>
 
     </ul>
