@@ -42,13 +42,12 @@ function App() {
     e.preventDefault();
     try {
       console.log(formEmail, "formEmail inside handleLogin");
-      const user = await Auth.login({ email: formEmail, password: formPassword });
-      console.log(user, "user after Auth.login() inside handleLogin");
-      const token = user.data.signedJwt;
+      const res = await Auth.login({ email: formEmail, password: formPassword });
+      // console.log(res, "user after Auth.login() inside handleLogin");
+      // const token = user.data.signedJwt;
+      // localStorage.setItem("uid", token);
 
-      localStorage.setItem("uid", token);
-
-      setCurrentUserEmail(token);
+      setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       history.push("/gigs");
     } catch (error) {
