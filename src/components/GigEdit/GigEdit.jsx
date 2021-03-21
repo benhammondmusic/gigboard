@@ -168,6 +168,7 @@ const GigEdit = ({gig, props, gigId}) => {
         </Button>
       </Form>
     </>
+  );
 };
 
 export default GigEdit
