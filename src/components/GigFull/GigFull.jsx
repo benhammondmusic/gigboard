@@ -2,13 +2,13 @@ import './GigFull.css';
 import GigDelete from '../GigDelete/GigDelete';
 import { Link } from 'react-router-dom';
 
-const GigFull = ({ gig }) => (
+const GigFull = (props) => (
   <>
     <h4>
-      {gig.title}: {gig.description}...
+      {props.gig.title}: {props.gig.description}...
     </h4>
     <ul>
-      {Object.entries(gig).map((detail) => {
+      {Object.entries(props.gig).map((detail) => {
         return (
           <li key={detail}>
             {detail ? (
@@ -23,12 +23,12 @@ const GigFull = ({ gig }) => (
       })}
       <div className="button-container">
         {/* Button to go to edit the gig page --need to make it functional & only accessible to the user who made it  */}
-        <Link to={`gigs/editgig/${gig._id}`} gig={gig}>
+        <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
           <button className="btn btn-outline-dark">Edit</button>
         </Link>
 
         {/* Button to delete the post --need to make it functional & only accessible to the user who made it  */}
-        <GigDelete gig={gig} />
+        <GigDelete history={props.history} gig={props.gig} />
       </div>
     </ul>
   </>
