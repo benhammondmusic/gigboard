@@ -11,7 +11,7 @@ import Auth from '../../Models/Auth';
 
 import './GigAdder.css';
 
-const GigAdder = ({ currentUserEmail }) => {
+const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const tagOptions = [
     { id: 'entertainment', Industry: 'Entertainment' },
     { id: 'hospitality', Industry: 'Hospitality' },
@@ -38,19 +38,19 @@ const GigAdder = ({ currentUserEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // BUNDLE GIG POST FORM DATA TOGETHER FROM STATE
-    // ! REMOVED TAGS FOR NOW AS THEY WERE BREAKING IT
-    // ! tags,
-    // !
+    // Add current logged in user (gig poster) to the gig posts' Form Data User field
+    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, expirationDate, workStartDate, workEndDate };
 
-    const gigPostFormData = { title, description, tip, location, urgency, expirationDate, workStartDate, workEndDate };
-
+    // POST the gig to backend -> create in database
     try {
       console.log('posting a gig:', gigPostFormData);
-      axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, gigPostFormData);
+      const createGigResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, gigPostFormData);
+      console.log(createGigResponse, 'response when creating gig in GigAdder');
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
+
+    // add this post reference object ID to the current logged in User's [Posts] array
   };
 
   return (
@@ -103,11 +103,13 @@ const GigAdder = ({ currentUserEmail }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={event =>  window.location.href='/gigs'}>
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
 
-        <Link to="/gigs" className="btn btn-secondary">Cancel</Link>
+        <Link to="/gigs" className="btn btn-secondary">
+          Cancel
+        </Link>
       </Form>
     </>
   );

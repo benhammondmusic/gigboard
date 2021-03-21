@@ -4,11 +4,11 @@ import GigPreview from '../GigPreview/GigPreview';
 import GigFull from '../GigFull/GigFull';
 import './GigPost.css';
 
-const GigPost = ({ gig }) => {
+const GigPost = ({ gig, currentUserId }) => {
   const [previewMode, setPreviewMode] = useState('false');
 
   const togglePreview = () => {
-    setPreviewMode(!previewMode); // set to opposite of current previewmode state
+    setPreviewMode(!previewMode); // set to opposite of current previewMode state
   };
 
   useEffect(() => {
@@ -19,14 +19,14 @@ const GigPost = ({ gig }) => {
     <>
       {previewMode ? (
         <li onClick={togglePreview}>
-          <div className='reg-container'>
+          <div className="reg-container">
             <GigPreview gig={gig} />
-           </div> 
+          </div>
         </li>
       ) : (
         <li onClick={togglePreview}>
-          <div className='reg-container'>
-            <GigFull gig={gig} />
+          <div className="reg-container">
+            <GigFull gig={gig} currentUserId={currentUserId} />
           </div>
         </li>
       )}

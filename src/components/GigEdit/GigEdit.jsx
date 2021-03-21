@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import Gig from '../../Models/Gig';
 import StateManager from 'react-select';
 
-const GigEdit = (props) => {
+const GigEdit = ({ props, gigId }) => {
   const tagOptions = [
     { id: 'entertainment', Industry: 'Entertainment' },
     { id: 'hospitality', Industry: 'Hospitality' },
@@ -20,7 +20,7 @@ const GigEdit = (props) => {
     { id: 'customer service', Industry: 'Customer Service' },
   ];
 
-  // const [currentGig, setCurrentGig] = useState({});
+  const [currentGig, setCurrentGig] = useState({});
   const { id } = useParams();
   const [title, setTitle] = useState('loading...');
   const [description, setDescription] = useState('loading...');
@@ -32,7 +32,6 @@ const GigEdit = (props) => {
   const [workStartDate, setWorkStartDate] = useState('loading...');
   const [workEndDate, setWorkEndDate] = useState('loading...');
 
-  // on page load, fetch info about this specific gig
   useEffect(() => {
     getGigData();
   }, []);
@@ -48,17 +47,17 @@ const GigEdit = (props) => {
       // set state from retrieved response object
       setTitle(res.data.gig.title);
       setDescription(res.data.gig.description);
-      // setTip(res.data.gig.tip);   // was being weird with detecting state, since it's boolean not string
+      setTip(res.data.gig.tip);
       setLocation(res.data.gig.location);
-      // setUrgency(res.data.gig.urgency);
-      // setTags(res.data.gig.tags);
-      // setExpirationDate(res.data.gig.expirationDate);
-      // setWorkStartDate(res.data.gig.workStartDate);
-      // setWorkEndDate(res.data.gig.workEndDate);
+      setUrgency(res.data.gig.urgency);
+      setTags(res.data.gig.tags);
+      setExpirationDate(res.data.gig.expirationDate);
+      setWorkStartDate(res.data.gig.workStartDate);
+      setWorkEndDate(res.data.gig.workEndDate);
 
       //Don't forget to refactor current gig to access state instead of res
       // create a current Gig to put into setCurrentGig
-      /*       const currentGig = {
+      const currentGig = {
         title: res.data.gig.title,
         description: res.data.gig.description,
         tip: res.data.gig.tip,
@@ -68,10 +67,11 @@ const GigEdit = (props) => {
         expirationDate: res.data.gig.expirationDate,
         workStartDate: res.data.gig.workStartDate,
         workEndDate: res.data.gig.workEndDate,
-      }; */
+      };
 
-      console.log('here is the currentGig', currentGig)
+      console.log('here is the currentGig', currentGig);
       // setting currentGig state
+<<<<<<< HEAD
 <<<<<<< HEAD
       setCurrentGig(currentGig)
 
@@ -90,12 +90,22 @@ const GigEdit = (props) => {
 =======
   };
 >>>>>>> 52f1bcd4f394a213d09be7ae84683c7dcba5019a
+=======
+      setCurrentGig(currentGig);
+
+      console.log('here is the response from getGigData: ', res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
+<<<<<<< HEAD
 <<<<<<< HEAD
       const res = await Gig.update( id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate} )
 
@@ -135,23 +145,26 @@ const GigEdit = (props) => {
       //   workStartDate: res.data.gig.workStartDate,
       //   workEndDate: res.data.gig.workEndDate,
       // };
+=======
+      const res = await Gig.update(id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate });
+
+      console.log('here is the response from update: ', res);
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
 
       if (res.data.status === 200) {
-        console.log('SUCCESS UPDATING GIG');
-        // redirect back to ALL gigs, since we don't have / don't need a single gig view
-        props.gig.history.push(`/gigs`);
+        props.history.push(`/gigs/${gigId}`);
       }
     } catch (error) {
-      console.log(error, 'ERROR UPDATING GIG');
+      console.log(error);
     }
   };
 
   return (
     <>
       <h2>GigEditor</h2>
-
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="input1">
+<<<<<<< HEAD
 <<<<<<< HEAD
           <Form.Label className="form-title">What's the Gig?</Form.Label>
           <Form.Control placeholder={title} onChange={(e) => setTitle(e.target.value)}/>
@@ -163,18 +176,26 @@ const GigEdit = (props) => {
         <Form.Group controlId="input2">
 <<<<<<< HEAD
           <Form.Control as="textarea" rows={3} placeholder={description} onChange={(e) => setDescription(e.target.value)}/>
+=======
+          <Form.Label className="form-title">Gig Title:</Form.Label>
+          <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="input2">
+          <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} checked={tip ? true : ''} />
         </Form.Group>
 
         <Form.Group controlId="input3">
-          <Form.Label className="form-title">Where's the Gig?</Form.Label>
-          <Form.Control type="location" placeholder={location} onChange={(e) => setLocation(e.target.value)}/>
+          <Form.Label className="form-title">Gig Location:</Form.Label>
+          <Form.Control type="location" value={location} onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="urgencySelect">
+<<<<<<< HEAD
 =======
           <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
         </Form.Group>
@@ -187,28 +208,29 @@ const GigEdit = (props) => {
         </Form.Group>
         {/* <Form.Group controlId="urgencySelect">
 >>>>>>> 52f1bcd4f394a213d09be7ae84683c7dcba5019a
+=======
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
           </Form.Control>
+<<<<<<< HEAD
         </Form.Group> */}
         {/* <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
 <<<<<<< HEAD
           <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)}/>
+=======
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
         </Form.Group>
 
-        <Form.Group controlId="workStartDate">
-          <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)}/>
+        <Form.Group controlId="tags">
+          <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
+          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="workEndDate">
-          <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)}/>
-        </Form.Group>
-
+<<<<<<< HEAD
         // thought about tryingg to use this link.... need to figure out the best option
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
@@ -216,17 +238,25 @@ const GigEdit = (props) => {
           <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
         </Form.Group> */}
         {/* <Form.Group controlId="workStartDate">
+=======
+        {/*        <Form.Group controlId="workStartDate">
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker selected={workStartDate} value={workStartDate} onChange={(date) => setWorkStartDate(date)} />
+          <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)} />
         </Form.Group> */}
-        {/* <Form.Group controlId="workEndDate">
+        {/* 
+        <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker selected={workEndDate} value={workEndDate} onChange={(date) => setWorkEndDate(date)} />
+          <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group> */}
-        {/* thought about trying to use this link.... need to figure out the best option */}
+
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
+<<<<<<< HEAD
         <Button variant="primary" type="submit">
 >>>>>>> 52f1bcd4f394a213d09be7ae84683c7dcba5019a
+=======
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
+>>>>>>> 710ca680ec19b6d45dd7ccab1c03da46c0a1e911
           Save Changes
         </Button>
       </Form>
