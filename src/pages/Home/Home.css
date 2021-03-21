@@ -1,32 +1,38 @@
-div #homeContainer{
-    height: 100vh;
-    background-image: url(../../images/Gigboard-Title.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+div #homeContainer {
+  /* height: 100vh; */
+  /* background-image: url(../../images/Gigboard-Title.png); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+
+  background: url(../../images/Gigboard-Title.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
-    background-image: url(../../images/josephine-bredehoft-KsAo8ouBn8A-unsplash.jpg);
-    background-size: 100%;
+  background-image: url(../../images/josephine-bredehoft-KsAo8ouBn8A-unsplash.jpg);
+  background-size: 100%;
 }
 
 #gigboard {
-    font-family: 'Fira Sans';
-    font-weight: 800;
-    font-size: 130px;
-    position: relative;
-    padding: 20% 0 0 20%
+  font-family: 'Fira Sans';
+  font-weight: 800;
+  font-size: 7rem;
+  position: relative;
+  padding: 300px 0 0 20%;
+  transform: rotate(-30deg);
 }
 
 #tagline {
-    font-family: 'gudea';
-    font-weight: 400;
-    font-size: 30px;
-    position: relative;
-    padding: 10% 0 0 50%;
+  font-family: 'gudea';
+  font-weight: 400;
+  font-size: 30px;
+  position: relative;
+  padding: 10% 0 0 50%;
 }
 
 #tagline1 {
-    padding-left: 15%;
+  padding-left: 15%;
 }
