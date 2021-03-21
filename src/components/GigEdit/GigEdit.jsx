@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import Gig from '../../Models/Gig';
 import StateManager from 'react-select';
 
-const GigEdit = ({ gig, props, gigId }) => {
+const GigEdit = ({ props, gigId }) => {
   const tagOptions = [
     { id: 'entertainment', Industry: 'Entertainment' },
     { id: 'hospitality', Industry: 'Hospitality' },
@@ -88,20 +88,6 @@ const GigEdit = ({ gig, props, gigId }) => {
 
       console.log('here is the response from update: ', res);
 
-      //   const updatedGig = {
-      //   title: res.data.gig.title,
-      //   description: res.data.gig.description,
-      //   tip: res.data.gig.tip,
-      //   location: res.data.gig.location,
-      //   urgency: res.data.gig.urgency,
-      //   tags: res.data.gig.tags,
-      //   expirationDate: res.data.gig.expirationDate,
-      //   workStartDate: res.data.gig.workStartDate,
-      //   workEndDate: res.data.gig.workEndDate
-      // }
-
-      // console.log('this is the updated gig: ', updatedGig)
-
       if (res.data.status === 200) {
         props.history.push(`/gigs/${gigId}`);
       }
@@ -115,43 +101,44 @@ const GigEdit = ({ gig, props, gigId }) => {
       <h2>GigEditor</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="input1">
-          <Form.Label className="form-title">What's the Gig?</Form.Label>
-          <Form.Control placeholder={title} onChange={(e) => setTitle(e.target.value)} />
+          <Form.Label className="form-title">Gig Title:</Form.Label>
+          <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="input2">
-          <Form.Control as="textarea" rows={3} placeholder={description} onChange={(e) => setDescription(e.target.value)} />
+          <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} />
         </Form.Group>
 
         <Form.Group controlId="input3">
-          <Form.Label className="form-title">Where's the Gig?</Form.Label>
-          <Form.Control type="location" placeholder={location} onChange={(e) => setLocation(e.target.value)} />
+          <Form.Label className="form-title">Gig Location:</Form.Label>
+          <Form.Control type="location" value={location} onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="urgencySelect">
-          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
+          <Form.Control as="select" type="urgency" value={urgency} onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
-        {/* <Form.Group controlId="tags">
+
+        <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
           <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="workStartDate">
+        {/*        <Form.Group controlId="workStartDate">
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
           <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)} />
-        </Form.Group>
-
+        </Form.Group> */}
+        {/* 
         <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
           <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)} />
-        </Form.Group>
+        </Form.Group> */}
 
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
