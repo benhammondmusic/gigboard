@@ -11,7 +11,7 @@ import Auth from '../../Models/Auth';
 
 import './GigAdder.css';
 
-const GigAdder = ({ currentUserEmail }) => {
+const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const tagOptions = [
     { id: 'entertainment', Industry: 'Entertainment' },
     { id: 'hospitality', Industry: 'Hospitality' },
@@ -103,11 +103,13 @@ const GigAdder = ({ currentUserEmail }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={event =>  window.location.href='/gigs'}>
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
 
-        <Link to="/gigs" className="btn btn-secondary">Cancel</Link>
+        <Link to="/gigs" className="btn btn-secondary">
+          Cancel
+        </Link>
       </Form>
     </>
   );
