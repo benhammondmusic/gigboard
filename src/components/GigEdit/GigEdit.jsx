@@ -40,17 +40,45 @@ const GigEdit = ({gig}) => {
   console.log('here is the gig ID:', id)
   console.log('here is the Gig:', gig)
 
+  useEffect( () => {
+    getGigData()
+  }, [])
+
   const getGigData = async () => {
     try {
       const res = await Gig.show( id )
+
+      const currentGig = {
+        title: setTitle(res.data.gig.title),
+        description: setDescription(res.data.gig.description),
+        tip: setTip(res.data.gig.tip),
+        location: setLocation(res.data.gig.location),
+        urgency: setUrgency(res.data.gig.urgency),
+        tags: setTags(res.data.gig.tags),
+        expirationDate: setExpirationDate(res.data.gig.expirationDate),
+        workStartDate: setWorkStartDate(res.data.gig.workStartDate),
+        workEndDate: setWorkEndDate(res.data.gig.workEndDate)
+      }
+      
+      console.log(currentGig)
+
       console.log(res)
     } catch (error) {
       console.log(error)
     }
   }
 
-  getGigData()
-  
+  const handleSubmit = async ( e ) => {
+    try {
+
+
+
+      // const res = await Gig.update( id, )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <h2>GigEditor</h2>
     
