@@ -17,7 +17,7 @@ const filterGigs = (gigs, query) => {
   });
 };
 
-const GigList = () => {
+const GigList = ({ currentUserId }) => {
   // read user's query from address bar
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
@@ -50,7 +50,7 @@ const GigList = () => {
 
       <ul>
         {filteredGigs.map((gig, idx) => {
-          return <GigPost key={idx} gig={gig} />;
+          return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
         })}
       </ul>
     </>
