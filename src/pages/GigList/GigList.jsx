@@ -36,7 +36,6 @@ const GigList = () => {
       console.log('RESPONSE FROM GET  API/GIGS/', res);
       const fetchedGigs = res.data.foundGigs;
       console.log('fetched gigs to map over', fetchedGigs);
-      console.log(typeof [...fetchedGigs]);
       setGigs(fetchedGigs);
       console.log(gigs);
     };
