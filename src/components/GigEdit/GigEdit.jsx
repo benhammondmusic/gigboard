@@ -74,17 +74,18 @@ const GigEdit = ({gig, props, gigId}) => {
         workEndDate: res.data.gig.workEndDate
       }
 
+      console.log('here is the currentGig', currentGig)
       // setting currentGig state
       setCurrentGig(currentGig)
 
-      console.log('here is the response: ', res)
+      console.log('here is the response from getGigData: ', res)
 
     } catch (error) {
       console.log(error)
     }
   }
 
-  console.log('here is the currentGig', currentGig)
+ 
 
   const handleSubmit = async ( e ) => {
     e.preventDefault();
@@ -93,17 +94,21 @@ const GigEdit = ({gig, props, gigId}) => {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
       const res = await Gig.update( id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate} )
 
-      const updatedGig = {
-      title: res.data.gig.title,
-      description: res.data.gig.description,
-      tip: res.data.gig.tip,
-      location: res.data.gig.location,
-      urgency: res.data.gig.urgency,
-      tags: res.data.gig.tags,
-      expirationDate: res.data.gig.expirationDate,
-      workStartDate: res.data.gig.workStartDate,
-      workEndDate: res.data.gig.workEndDate
-    }
+      console.log('here is the response from update: ', res)
+
+    //   const updatedGig = {
+    //   title: res.data.gig.title,
+    //   description: res.data.gig.description,
+    //   tip: res.data.gig.tip,
+    //   location: res.data.gig.location,
+    //   urgency: res.data.gig.urgency,
+    //   tags: res.data.gig.tags,
+    //   expirationDate: res.data.gig.expirationDate,
+    //   workStartDate: res.data.gig.workStartDate,
+    //   workEndDate: res.data.gig.workEndDate
+    // }
+
+    // console.log('this is the updated gig: ', updatedGig)
 
       if ( res.data.status === 200 ) {
         props.history.push(`/gigs/${gigId}`)
@@ -122,24 +127,24 @@ const GigEdit = ({gig, props, gigId}) => {
 
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
-          <Form.Control type="title" placeholder={title} onSubmit={(e) => setTitle(e.target.value)}/>
+          <Form.Control placeholder={title} onChange={(e) => setTitle(e.target.value)}/>
         </Form.Group>
 
         <Form.Group controlId="input2">
-          <Form.Control as="textarea" rows={3} placeholder={description} onSubmit={(e) => setDescription(e.target.value)}/>
+          <Form.Control as="textarea" rows={3} placeholder={description} onChange={(e) => setDescription(e.target.value)}/>
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onSubmit={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
         </Form.Group>
 
         <Form.Group controlId="input3">
           <Form.Label className="form-title">Where's the Gig?</Form.Label>
-          <Form.Control type="location" placeholder={location} onSubmit={(e) => setLocation(e.target.value)}/>
+          <Form.Control type="location" placeholder={location} onChange={(e) => setLocation(e.target.value)}/>
         </Form.Group>
 
         <Form.Group controlId="urgencySelect">
-          <Form.Control as="select" type="urgency" onSubmit={(e) => setUrgency(e.target.value)}>
+          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
@@ -148,22 +153,22 @@ const GigEdit = ({gig, props, gigId}) => {
 
         <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
-          <Multiselect options={tags} displayValue="Industry" onSubmit={(e) => setTags(e.target.value)}/>
+          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)}/>
         </Form.Group>
 
         <Form.Group controlId="workStartDate">
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker selected={workStartDate} placeholder={workStartDate} onSubmit={(date) => setWorkStartDate(date)}/>
+          <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)}/>
         </Form.Group>
 
         <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker selected={workEndDate} placeholder={workEndDate} onSubmit={(date) => setWorkEndDate(date)}/>
+          <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)}/>
         </Form.Group>
 
         // thought about tryingg to use this link.... need to figure out the best option
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
-        <Button variant="primary" type="submit" onClick={event =>  window.location.href=`/gigs`}>
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
           Save Changes
         </Button>
       </Form>

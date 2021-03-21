@@ -10,7 +10,7 @@ class Gig {
     }
 
     static update = ( gigId, gigFormData ) => {
-        return axios.put(`http://localhost:5000/api/gigs/${gigId}/update`, gigFormData)
+        return axios.put(`http://localhost:5000/api/gigs/${gigId}`, gigFormData)
     } 
 }
 
