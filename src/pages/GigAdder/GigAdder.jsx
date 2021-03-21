@@ -100,7 +100,7 @@ const GigAdder = ({ currentUserEmail }) => {
 
         <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker selected={workEndDate} onChange={(date) => setWorkStartDate(date)} />
+          <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={event =>  window.location.href='/gigs'}>

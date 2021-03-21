@@ -9,6 +9,9 @@ class Gig {
         return axios.get(`http://localhost:5000/api/gigs/${gigId}`)
     }
 
+    static update = ( gigId, gigFormData ) => {
+        return axios.put(`http://localhost:5000/api/gigs/${gigId}/update`, gigFormData)
+    } 
 }
 
 export default Gig;
