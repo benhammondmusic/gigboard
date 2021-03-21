@@ -8,7 +8,7 @@ const GigPost = ({ gig, currentUserId }) => {
   const [previewMode, setPreviewMode] = useState('false');
 
   const togglePreview = () => {
-    setPreviewMode(!previewMode); // set to opposite of current previewmode state
+    setPreviewMode(!previewMode); // set to opposite of current previewMode state
   };
 
   useEffect(() => {
