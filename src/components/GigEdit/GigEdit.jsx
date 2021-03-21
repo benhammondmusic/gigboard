@@ -45,13 +45,11 @@ const GigEdit = (props) => {
       // set response from server to res
       const res = await Gig.show(id);
 
-      console.log('getGigData() setting title from', title, ' to ', res.data.gig.title);
-
       // set state from retrieved response object
       setTitle(res.data.gig.title);
-      // setDescription(res.data.gig.description);
-      // setTip(res.data.gig.tip);
-      // setLocation(res.data.gig.location);
+      setDescription(res.data.gig.description);
+      // setTip(res.data.gig.tip);   // was being weird with detecting state, since it's boolean not string
+      setLocation(res.data.gig.location);
       // setUrgency(res.data.gig.urgency);
       // setTags(res.data.gig.tags);
       // setExpirationDate(res.data.gig.expirationDate);
@@ -86,8 +84,10 @@ const GigEdit = (props) => {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
 
       // each pc of state should be up to date already if/when user makes any changes to the form fields
+
       // const res = await Gig.update(id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate });
-      const res = await Gig.update(id, { title });
+
+      const res = await Gig.update(id, { title, description, location });
       console.log('UPDATING GIG IN <GigEdit>/handleSubmit', res);
 
       // const updatedGig = {
@@ -121,16 +121,16 @@ const GigEdit = (props) => {
           <Form.Label className="form-title">Edit Your Gig:</Form.Label>
           <Form.Control type="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
-        {/* <Form.Group controlId="input2">
+        <Form.Group controlId="input2">
           <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
-        </Form.Group> */}
+        </Form.Group>
         {/* <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
-        </Form.Group> */}
-        {/* <Form.Group controlId="input3">
-          <Form.Label className="form-title">Where's the Gig?</Form.Label>
+          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} /> 
+        </Form.Group>*/}
+        <Form.Group controlId="input3">
+          <Form.Label className="form-title">Gig Location</Form.Label>
           <Form.Control type="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-        </Form.Group> */}
+        </Form.Group>
         {/* <Form.Group controlId="urgencySelect">
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>

@@ -14,6 +14,7 @@ const GigFull = (props) => (
             {detail ? (
               <span className="detail">
                 {detail[0]}: <strong>{detail[1]}</strong>
+                <strong>{detail[1] === true ? 'YES' : ''}</strong>
               </span>
             ) : (
               ''
