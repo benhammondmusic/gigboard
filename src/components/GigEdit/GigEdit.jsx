@@ -109,7 +109,7 @@ const GigEdit = ({ props, gigId }) => {
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} />
+          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} checked={tip ? true : ''} />
         </Form.Group>
 
         <Form.Group controlId="input3">
@@ -118,7 +118,7 @@ const GigEdit = ({ props, gigId }) => {
         </Form.Group>
 
         <Form.Group controlId="urgencySelect">
-          <Form.Control as="select" type="urgency" value={urgency} onChange={(e) => setUrgency(e.target.value)}>
+          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
