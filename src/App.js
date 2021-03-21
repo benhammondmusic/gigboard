@@ -1,21 +1,21 @@
 // import React from 'react'
 
-import "./App.scss";
+import './App.scss';
 // import {Button} from 'react-bootstrap/Button'
-import Auth from "./Models/Auth";
-import Routes from "./config/routes";
-import Navbar from "./components/Navbar/Navbar";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import Auth from './Models/Auth';
+import Routes from './config/routes';
+import Navbar from './components/Navbar/Navbar';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
 
 function App() {
-  const [formPassword, setFormPassword] = useState("");
-  const [formEmail, setFormEmail] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem("uid"));
-  console.log({ currentUserEmail });
+  const [formPassword, setFormPassword] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
+  const [currentUserId, setCurrentUserId] = useState(localStorage.getItem('dbUserId'));
 
   const history = useHistory();
 
@@ -23,16 +23,15 @@ function App() {
     e.preventDefault();
     console.log(e);
     try {
-      console.log(formEmail, "formEmail inside handleReg");
+      console.log(formEmail, 'formEmail inside handleReg');
       const res = await Auth.register({ email: formEmail, password: formPassword });
-      console.log(res, "res created");
+      console.log(res.data.currentUserId, 'mongoID of current registered and logged in user');
       // const token = res.data.signedJwt;
 
-      // localStorage.setItem("uid", token);
-      // console.log(JSON.parse(res.config.data).email, "logging res.config email");
+      setCurrentUserId(res.data.currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
-      history.push("/gigs");
+      history.push('/gigs');
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +40,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log(formEmail, "formEmail inside handleLogin");
+      console.log(formEmail, 'formEmail inside handleLogin');
       const res = await Auth.login({ email: formEmail, password: formPassword });
       // console.log(res, "user after Auth.login() inside handleLogin");
       // const token = user.data.signedJwt;
@@ -49,7 +48,7 @@ function App() {
 
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
-      history.push("/gigs");
+      history.push('/gigs');
     } catch (error) {
       console.log(error);
     }
@@ -57,23 +56,15 @@ function App() {
 
   const logOut = () => {
     localStorage.clear();
-    setCurrentUserEmail(localStorage.getItem("uid"));
-    history.push("/");
+    setCurrentUserEmail(localStorage.getItem('uid'));
+    history.push('/');
   };
 
   return (
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes
-          currentUserEmail={currentUserEmail}
-          setCurrentUserEmail={setCurrentUserEmail}
-          handleLogin={handleLogin}
-          handleRegister={handleRegister}
-          formPassword={formPassword}
-          setFormPassword={setFormPassword}
-          setFormEmail={setFormEmail}
-        />
+        <Routes currentUserId={currentUserId} setCurrentUserId={setCurrentUserId} currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail} />
       </main>
     </>
   );
