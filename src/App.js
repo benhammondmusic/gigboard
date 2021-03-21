@@ -15,7 +15,7 @@ function App() {
   const [formPassword, setFormPassword] = useState('');
   const [formEmail, setFormEmail] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem('uid'));
-  const [currentUserId, setCurrentUserId] = useState(localStorage.getItem('dbUserId'));
+  const [currentUserId, setCurrentUserId] = useState(localStorage.getItem('currentUserId'));
 
   const history = useHistory();
 
@@ -45,7 +45,7 @@ function App() {
       // console.log(res, "user after Auth.login() inside handleLogin");
       // const token = user.data.signedJwt;
       // localStorage.setItem("uid", token);
-
+      setCurrentUserId(res.data.currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       history.push('/gigs');

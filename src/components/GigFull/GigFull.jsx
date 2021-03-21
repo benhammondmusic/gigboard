@@ -33,7 +33,7 @@ const GigFull = (props) => (
 
         <GigDelete history={props.history} gig={props.gig} />
       </div>
-      <i>Logged In User Id (delete this line): </i>
+      <i>Logged In User Id (delete this line): {props.currentUserId}</i>
     </ul>
   </>
 );
