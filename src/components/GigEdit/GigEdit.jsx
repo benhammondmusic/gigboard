@@ -146,7 +146,7 @@ const GigEdit = ({ history, gigId }) => {
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
           <DatePicker selected={workEndDate} placeholder={workEndDate} onSubmit={(date) => setWorkEndDate(date)} />
         </Form.Group>
-        // thought about trying to use this link.... need to figure out the best option
+        {/* thought about trying to use this link.... need to figure out the best option */}
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
           Save Changes
