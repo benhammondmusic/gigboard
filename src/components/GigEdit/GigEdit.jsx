@@ -130,15 +130,27 @@ const GigEdit = ({ props, gigId }) => {
           <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
         </Form.Group>
 
-        {/*        <Form.Group controlId="workStartDate">
+        <Form.Group controlId="workStartDate">
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)} />
-        </Form.Group> */}
-        {/* 
+          <DatePicker
+            // selected={workStartDate} // causing errors
+            onChange={(date) => {
+              console.log(date, 'event is new date');
+              setWorkStartDate(date);
+            }}
+          />
+        </Form.Group>
+
         <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)} />
-        </Form.Group> */}
+          <DatePicker
+            // selected={workEndDate} // causing errors
+            onChange={(date) => {
+              console.log(date);
+              setWorkEndDate(date);
+            }}
+          />
+        </Form.Group>
 
         {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
