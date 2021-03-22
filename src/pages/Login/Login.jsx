@@ -4,6 +4,21 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 
 const Login = (props) => {
+
+
+  const history = useHistory();
+
+  const responseGoogle = (response) => {
+    console.log(response, "this is the response from login in with google")
+    props.setCurrentUserId(response.tokenId)
+    props.setCurrentUserEmail(response.profileObj.email)
+    history.push('/gigs')
+  }
+
+  const handleGoogleRegisterAndLogin = (e) => {
+    console.log('There has been an error with the Google call')
+  }
+
   return (
     <>
       <h1>Login A Gig Poster</h1>
