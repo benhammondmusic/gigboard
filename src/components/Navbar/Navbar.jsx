@@ -28,7 +28,8 @@ const Navbar = ({ currentUserEmail, logOut }) => {
           <img src={userIcon} alt="user icon" height={16} width={16} />
           {currentUserEmail ? (
             <span>
-              <span className="loggedInUserLetter">{currentUserEmail[0]}</span>
+              {/* SPLIT EMAIL STRING UP BY COMMON EMAIL DELIMITERS AND GET ONLY FIRST STRING, HOPEFULLY A NAME OR WORD USER WILL RECOGNIZE */}
+              <span className="loggedInUserLetter">{currentUserEmail.split(/[._@+-]+/)[0]}</span>
               <button className="logoutBtn" onClick={logOut}>
                 Log Out
               </button>
