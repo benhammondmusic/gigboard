@@ -103,6 +103,9 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
+        {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
+        {/* onClick={(event) => (window.location.href = '/gigs')} */}
+
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>

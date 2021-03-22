@@ -7,6 +7,7 @@ import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
@@ -25,7 +26,7 @@ function App() {
     try {
       console.log(formEmail, 'formEmail inside handleReg');
       const res = await Auth.register({ email: formEmail, password: formPassword });
-      console.log(res.data.currentUserId, 'mongoID of current registered and logged in user');
+      console.log(res.data.currentUserId, 'mongoID of registered user');
       // const token = res.data.signedJwt;
 
       setCurrentUserId(res.data.currentUserId);
@@ -38,14 +39,20 @@ function App() {
   };
 
   const handleLogin = async (e) => {
+    console.log('LOGGING IN');
     e.preventDefault();
     try {
-      console.log(formEmail, 'formEmail inside handleLogin');
+      // console.log(formEmail, 'formEmail inside handleLogin');
       const res = await Auth.login({ email: formEmail, password: formPassword });
-      // console.log(res, "user after Auth.login() inside handleLogin");
+
+      console.log(res, 'res in handleLogin');
+
       // const token = user.data.signedJwt;
       // localStorage.setItem("uid", token);
+
       setCurrentUserId(res.data.currentUserId);
+
+      console.log('set current user id to:', currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       history.push('/gigs');
@@ -54,9 +61,18 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem('currentUserId', currentUserId);
+  }, [currentUserId]);
+
+  useEffect(() => {
+    localStorage.setItem('uid', currentUserEmail);
+  }, [currentUserEmail]);
+
   const logOut = () => {
     localStorage.clear();
     setCurrentUserEmail(localStorage.getItem('uid'));
+    setCurrentUserId(localStorage.getItem('currentUserId'));
     history.push('/');
   };
 

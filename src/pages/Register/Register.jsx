@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Register = (props) => {
   return (
     <>
+      <h1>Register A New Gig Poster</h1>
       <Form onSubmit={props.handleRegister}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
@@ -21,7 +22,7 @@ const Register = (props) => {
         </Form.Group>
 
         <Button variant="primary" type="submit" id="login-btn">
-          Submit
+          Register
         </Button>
       </Form>
     </>
