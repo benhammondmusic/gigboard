@@ -65,14 +65,8 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formUser">
-          <Form.Label className="form-title">
-            <h3>{currentUserEmail}</h3>
-          </Form.Label>
-        </Form.Group>
-
+    <div className="GigAdder">
+      <Form onSubmit={handleSubmit} className="post-it">
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
           <Form.Control type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
@@ -132,7 +126,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           Cancel
         </Link>
       </Form>
-    </>
+    </div>
   );
 };
 
