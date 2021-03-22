@@ -106,7 +106,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
         {/* onClick={(event) => (window.location.href = '/gigs')} */}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
 

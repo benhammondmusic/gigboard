@@ -26,7 +26,7 @@ function App() {
     try {
       console.log(formEmail, 'formEmail inside handleReg');
       const res = await Auth.register({ email: formEmail, password: formPassword });
-      console.log(res.data.currentUserId, 'mongoID of current registered and logged in user');
+      console.log(res.data.currentUserId, 'mongoID of registered user');
       // const token = res.data.signedJwt;
 
       setCurrentUserId(res.data.currentUserId);
@@ -39,15 +39,17 @@ function App() {
   };
 
   const handleLogin = async (e) => {
+    console.log('LOGGING IN');
     e.preventDefault();
     try {
-      console.log(formEmail, 'formEmail inside handleLogin');
+      // console.log(formEmail, 'formEmail inside handleLogin');
       const res = await Auth.login({ email: formEmail, password: formPassword });
-      // console.log(res, "user after Auth.login() inside handleLogin");
+
+      console.log(res, 'res in handleLogin');
+
       // const token = user.data.signedJwt;
       // localStorage.setItem("uid", token);
 
-      // THESE NEED TO BE SIDE EFFECTS
       setCurrentUserId(res.data.currentUserId);
 
       console.log('set current user id to:', currentUserId);
@@ -70,6 +72,7 @@ function App() {
   const logOut = () => {
     localStorage.clear();
     setCurrentUserEmail(localStorage.getItem('uid'));
+    setCurrentUserId(localStorage.getItem('currentUserId'));
     history.push('/');
   };
 
