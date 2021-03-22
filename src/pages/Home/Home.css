@@ -21,7 +21,7 @@ body {
   font-weight: 800;
   font-size: 7rem;
   position: relative;
-  padding: 300px 0 0 20%;
+  padding: 150px 0 0 20%;
   transform: rotate(-30deg);
 }
 
@@ -30,7 +30,7 @@ body {
   font-weight: 400;
   font-size: 30px;
   position: relative;
-  padding: 10% 0 0 50%;
+  padding: 10% 0 250px 50%;
 }
 
 #tagline1 {
