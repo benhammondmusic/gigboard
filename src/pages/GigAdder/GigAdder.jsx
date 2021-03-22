@@ -42,8 +42,15 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // extract tag strings from their objects
+    const tagStringArray = [];
+    for (let tag of tags) {
+      tagStringArray.push(tag.id);
+      console.log(tagStringArray);
+    }
+
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {

@@ -9,12 +9,24 @@ const GigFull = (props) => (
       {/* <li >User: {props.gig.User}</li> */}
       <em>{props.gig.description}</em>
       {props.gig.location ? <li>location: {props.gig.location}</li> : ''}
-      {props.gig.tags.length ? <li>tags: {props.gig.tags}</li> : ''}
+
       <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
       {props.gig.urgency ? <li>urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>workStartDate: {props.gig.workStartDate}</li> : ''}
       {props.gig.workEndDate ? <li>workEndDate: {props.gig.workEndDate}</li> : ''}
       {props.gig.expirationDate ? <li>expirationDate: {props.gig.expirationDate}</li> : ''}
+      {props.gig.tags.length ? (
+        <li>
+          {props.gig.tags.map((tag) => (
+            <span key={tag} className="tag">
+              {' #'}
+              {tag}
+            </span>
+          ))}
+        </li>
+      ) : (
+        ''
+      )}
 
       <div className="button-container">
         {/* Button to go to edit the gig page --need to make it functional & only accessible to the user who made it  */}
