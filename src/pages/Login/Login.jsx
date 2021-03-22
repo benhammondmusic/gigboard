@@ -50,6 +50,12 @@ const Login = (props) => {
         <Link to="/register" className="link">
           <button id="reg-btn">Register</button>
         </Link>
+        <GoogleLogin 
+        clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" 
+        buttonText="Login" 
+        onSuccess={responseGoogle} 
+        onFailure={handleGoogleRegisterAndLogin}
+        />
       </div>
     </>
   );
