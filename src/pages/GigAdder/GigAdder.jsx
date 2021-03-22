@@ -1,5 +1,5 @@
 import { Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
@@ -29,17 +29,21 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
-  const [tags, setTags] = useState(tagOptions);
+  const [tags, setTags] = useState([]);
   const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
+
+  useEffect(() => {
+    console.log(tags, 'tags in state');
+  }, [tags]);
 
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
@@ -90,7 +94,14 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
-          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
+          <Multiselect
+            options={tagOptions}
+            displayValue="Industry"
+            onSelect={(e) => {
+              console.log(e, 'select event is actually array of selected tags');
+              setTags(e);
+            }}
+          />
         </Form.Group>
 
         <Form.Group controlId="workStartDate">
