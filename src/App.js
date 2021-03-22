@@ -7,6 +7,7 @@ import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
 // PRODUCTION API: use a deployed backend on heroku
@@ -45,7 +46,11 @@ function App() {
       // console.log(res, "user after Auth.login() inside handleLogin");
       // const token = user.data.signedJwt;
       // localStorage.setItem("uid", token);
+
+      // THESE NEED TO BE SIDE EFFECTS
       setCurrentUserId(res.data.currentUserId);
+
+      console.log('set current user id to:', currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       history.push('/gigs');
@@ -53,6 +58,14 @@ function App() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('currentUserId', currentUserId);
+  }, [currentUserId]);
+
+  useEffect(() => {
+    localStorage.setItem('uid', currentUserEmail);
+  }, [currentUserEmail]);
 
   const logOut = () => {
     localStorage.clear();
