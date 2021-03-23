@@ -13,8 +13,8 @@ const Login = (props) => {
 
   const responseGoogle = (response) => {
     console.log(response, "this is the response from login in with google")
-    // console.log(response.tokenObj.id_token.slice(0,10), "slicing 10")
-    props.setCurrentUserId(response.tokenObj.id_token.slice(0, 12))
+    // console.log(response.googleId, "googleId")
+    props.setCurrentUserId(response.googleId);
     props.setCurrentUserEmail(response.profileObj.email)
     history.push('/gigs')
   }
