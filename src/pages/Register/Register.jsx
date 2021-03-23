@@ -4,13 +4,15 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './Register.css'
+
 // import Auth from '../../Models/Auth'
 
 const Register = (props) => {
   return (
     <>
       <h1>Register A New Gig Poster</h1>
-      <Form onSubmit={props.handleRegister}>
+      <Form onSubmit={props.handleRegister} className="registerForm">
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
           <Form.Control required type="email" placeholder="Enter email" onChange={(e) => props.setFormEmail(e.target.value)} />
