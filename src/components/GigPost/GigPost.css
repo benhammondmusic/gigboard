@@ -1,9 +1,16 @@
-.reg-container {
-    display: flex;
-    margin: 10% 0 0 20%;
-    font-family: 'fira sans';
-    background-color: #E7DFC6;
-    width: 400px;
-    padding: 8% 4% 20% 4%;
-    box-shadow: 2px 2px 2px 2px black;
+.post-container {
+  display: flex;
+  margin: 10% 0 0 20%;
+  font-family: 'fira sans';
+  background-color: #e7dfc6;
+  box-shadow: 2px 2px 2px 2px black;
+}
+.full-container {
+  width: 400px;
+  padding: 8% 4% 20% 4%;
+}
+.preview-container {
+  /* width: 400px; */
+  width: 200px;
+  padding: 1rem;
 }
