@@ -12,14 +12,19 @@ const Login = (props) => {
   const history = useHistory();
 
   const responseGoogle = async (response) => {
-    console.log(response, "this is the response from login in with google")
-    // console.log(response.googleId, "googleId")
 
-    // const res = await Auth.googleRegister({ email: response.profileObj.email })
-    // console.log(res, 'new googleRegistered user')
-    props.setCurrentUserId(response.googleId.slice(0, 12));
-    props.setCurrentUserEmail(response.profileObj.email)
-    history.push('/gigs')
+    try {
+      console.log(response, "this is the response from login in with google")
+      
+      const res = await Auth.googleRegister({ email: response.profileObj.email })
+      console.log(res, 'new googleRegistered user')
+      props.setCurrentUserId(res.data.currentUserId);
+      props.setCurrentUserEmail(response.profileObj.email)
+      history.push('/gigs')
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleGoogleRegisterAndLogin = (e) => {
