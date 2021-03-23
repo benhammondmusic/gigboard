@@ -29,7 +29,7 @@ const Login = (props) => {
   return (
     <>
       <h1>Login A Gig Poster</h1>
-      <Form onSubmit={props.handleLogin}>
+      <Form onSubmit={props.handleLogin} className='LoginForm'>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
           <Form.Control required type="email" placeholder="Enter email" onChange={(e) => props.setFormEmail(e.target.value)} />
