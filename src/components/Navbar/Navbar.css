@@ -1,12 +1,27 @@
 .link {
-margin-left: 10%;
-padding: 0;
-color: black;
-font-weight: 600;
-font-family: 'Hind Madurai';
-font-size: 18px
+  margin-left: 10%;
+  padding: 0;
+  color: black;
+  font-weight: 600;
+  font-family: 'Hind Madurai';
+  font-size: 18px;
 }
 
 section {
-    background-color: rgba(231, 223, 198, .3);
+  background-color: rgba(231, 223, 198, 0.3);
+}
+.loggedInUserBar {
+  font-weight: 700;
+  /* background-color: #e7dfc6; */
+}
+
+.loggedInUserLetter {
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
 }

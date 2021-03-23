@@ -1,5 +1,5 @@
 import { Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
@@ -29,17 +29,28 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
-  const [tags, setTags] = useState(tagOptions);
+  const [tags, setTags] = useState([]);
   const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
+
+  useEffect(() => {
+    console.log(tags, 'tags in state');
+  }, [tags]);
 
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // extract tag strings from their objects
+    const tagStringArray = [];
+    for (let tag of tags) {
+      tagStringArray.push(tag.id);
+      console.log(tagStringArray);
+    }
+
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
@@ -54,14 +65,8 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formUser">
-          <Form.Label className="form-title">
-            <h3>{currentUserEmail}</h3>
-          </Form.Label>
-        </Form.Group>
-
+    <div className="GigAdder">
+      <Form onSubmit={handleSubmit} className="post-it">
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
           <Form.Control type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
@@ -90,7 +95,14 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
-          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
+          <Multiselect
+            options={tagOptions}
+            displayValue="Industry"
+            onSelect={(e) => {
+              console.log(e, 'select event is actually array of selected tags');
+              setTags(e);
+            }}
+          />
         </Form.Group>
 
         <Form.Group controlId="workStartDate">
@@ -103,6 +115,9 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
+        {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
+        {/* onClick={(event) => (window.location.href = '/gigs')} */}
+
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
@@ -111,7 +126,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           Cancel
         </Link>
       </Form>
-    </>
+    </div>
   );
 };
 

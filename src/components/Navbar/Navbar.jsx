@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import userIcon from '../../images/user-icon.png';
 
 const Navbar = ({ currentUserEmail, logOut }) => {
   return (
@@ -23,11 +24,13 @@ const Navbar = ({ currentUserEmail, logOut }) => {
           )}
         </span>
 
-        <span>
+        <span className="loggedInUserBar">
+          <img src={userIcon} alt="user icon" height={16} width={16} />
           {currentUserEmail ? (
             <span>
-              {currentUserEmail}
-              <button className="btn btn-outline-dark" onClick={logOut}>
+              {/* SPLIT EMAIL STRING UP BY COMMON EMAIL DELIMITERS AND GET ONLY FIRST STRING, HOPEFULLY A NAME OR WORD USER WILL RECOGNIZE */}
+              <span className="loggedInUserLetter">{currentUserEmail.split(/[._@+-]+/)[0]}</span>
+              <button className="logoutBtn" onClick={logOut}>
                 Log Out
               </button>
             </span>
