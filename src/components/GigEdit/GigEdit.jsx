@@ -158,9 +158,6 @@ const GigEdit = ({gig, props, gigId}) => {
 
         <Form.Group controlId="workStartDate">
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
-<<<<<<< HEAD
-          <DatePicker selected={workStartDate} placeholder={workStartDate} onChange={(date) => setWorkStartDate(date)}/>
-=======
           <DatePicker
             // selected={workStartDate} // causing errors
             onChange={(date) => {
@@ -168,14 +165,10 @@ const GigEdit = ({gig, props, gigId}) => {
               setWorkStartDate(date);
             }}
           />
->>>>>>> 2fa9b9da36ae1ed931d65ef09651992650ead0d2
         </Form.Group>
 
         <Form.Group controlId="workEndDate">
           <Form.Label className="form-title">When does this Gig end?</Form.Label>
-<<<<<<< HEAD
-          <DatePicker selected={workEndDate} placeholder={workEndDate} onChange={(date) => setWorkEndDate(date)}/>
-=======
           <DatePicker
             // selected={workEndDate} // causing errors
             onChange={(date) => {
@@ -183,7 +176,6 @@ const GigEdit = ({gig, props, gigId}) => {
               setWorkEndDate(date);
             }}
           />
->>>>>>> 2fa9b9da36ae1ed931d65ef09651992650ead0d2
         </Form.Group>
 
         // thought about tryingg to use this link.... need to figure out the best option
