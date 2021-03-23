@@ -43,7 +43,7 @@ const GigList = ({ currentUserId }) => {
   }, []);
 
   return (
-    <>
+    <div className="GigList">
       <h2>GigList</h2>
 
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -53,7 +53,7 @@ const GigList = ({ currentUserId }) => {
           return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
         })}
       </ul>
-    </>
+    </div>
   );
 };
 
