@@ -4,17 +4,20 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login'
 import { useHistory } from 'react-router-dom'
-
+import Auth from '../../Models/Auth'
 
 const Login = (props) => {
 
 
   const history = useHistory();
 
-  const responseGoogle = (response) => {
+  const responseGoogle = async (response) => {
     console.log(response, "this is the response from login in with google")
     // console.log(response.googleId, "googleId")
-    props.setCurrentUserId(response.googleId);
+
+    // const res = await Auth.googleRegister({ email: response.profileObj.email })
+    // console.log(res, 'new googleRegistered user')
+    props.setCurrentUserId(response.googleId.slice(0, 12));
     props.setCurrentUserEmail(response.profileObj.email)
     history.push('/gigs')
   }

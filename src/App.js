@@ -15,7 +15,7 @@ import { useEffect } from "react";
 function App() {
   const [formPassword, setFormPassword] = useState("");
   const [formEmail, setFormEmail] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem("uid"));
+  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem("currentUserEmail"));
   const [currentUserId, setCurrentUserId] = useState(localStorage.getItem("currentUserId"));
 
   const history = useHistory();
@@ -66,12 +66,12 @@ function App() {
   }, [currentUserId]);
 
   useEffect(() => {
-    localStorage.setItem("uid", currentUserEmail);
+    localStorage.setItem("currentUserEmail", currentUserEmail);
   }, [currentUserEmail]);
 
   const logOut = () => {
     localStorage.clear();
-    setCurrentUserEmail(localStorage.getItem("uid"));
+    setCurrentUserEmail(localStorage.getItem("currentUserEmail"));
     setCurrentUserId(localStorage.getItem("currentUserId"));
     history.push("/");
   };
