@@ -28,9 +28,12 @@ const Login = (props) => {
   };
 
   return (
-    <>
+    <div className="LoginForm">
       <h1>Login A Gig Poster</h1>
-      <Form onSubmit={props.handleLogin} className="LoginForm">
+      <h4>Use Your Google Account</h4>
+      <GoogleLogin clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={handleGoogleRegisterAndLogin} />
+      <h4>Or Create An Account With Email</h4>
+      <Form onSubmit={props.handleLogin}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
           <Form.Control required type="email" placeholder="Enter email" onChange={(e) => props.setFormEmail(e.target.value)} />
@@ -50,14 +53,13 @@ const Login = (props) => {
       <div id="tape2"></div>
 
       <div className="login-container">
-        <h3>New to Gigboard?</h3>
+        <h4>New to Gigboard?</h4>
         {/* <h4>Register to Post a Gig</h4> */}
         <Link to="/register" className="link">
           <button id="reg-btn">Register</button>
         </Link>
-        <GoogleLogin clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={handleGoogleRegisterAndLogin} />
       </div>
-    </>
+    </div>
   );
 };
 
