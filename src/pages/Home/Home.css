@@ -1,5 +1,5 @@
 div #homeContainer {
-  /* height: 100vh; */
+  height: 100vh;
   /* background-image: url(../../images/Gigboard-Title.png); */
   /* background-size: cover; */
   /* background-repeat: no-repeat; */
@@ -9,6 +9,10 @@ div #homeContainer {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
@@ -19,11 +23,16 @@ body {
 #gigboard {
   font-family: 'Fira Sans';
   font-weight: 800;
-  font-size: 7rem;
-  position: relative;
-  padding: 150px 0 0 20%;
+  font-size: 6rem;
+  /* position: relative; */
+  /* padding: 150px 0 0 20%; */
   transform: rotate(-30deg);
 }
+
+/* .floating-text {
+  align-self: center;
+  justify-self: center;
+} */
 
 #tagline {
   font-family: 'gudea';
