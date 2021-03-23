@@ -1,38 +1,48 @@
-.form-title{
-    font-size: 20px;
-    font-family: 'Gudea';
-    font-weight: 600;
+.form-title {
+  font-size: 20px;
+  font-family: "Gudea";
+  font-weight: 600;
 }
 
-Form{
-    margin: 10% 0 0 25%;
-    width: 40%
+Form {
+  margin: 10% 0 0 25%;
+  width: 40%;
 }
 
-.text{
-    font-family: 'Hind Madurai';
-    font-size: 14px;
-    color: #131B23;
-    background-color: rgba(129, 108, 97, .4);
+.text {
+  font-family: "Hind Madurai";
+  font-size: 14px;
+  color: #131b23;
+  background-color: rgba(129, 108, 97, 0.4);
 }
 
 #login-btn {
-    background-color: #2274A5;
+  background-color: #2274a5;
 }
 
 .reg-container {
-    display: flex;
-    margin: 10% 0 0 20%;
-    font-family: 'fira sans';
-    background-color: #E7DFC6;
-    width: 400px;
-    padding: 8% 4% 20% 4%;
-    box-shadow: 2px 2px 2px 2px black;
+  display: flex;
+  margin: 10% 0 0 20%;
+  font-family: "fira sans";
+  background-color: #e7dfc6;
+  width: 400px;
+  padding: 8% 4% 20% 4%;
+  box-shadow: 2px 2px 2px 2px black;
 }
 
 #reg-btn {
-    background-color: #131B23;
-    color: white;
-    border-radius: 5px;
-    border: 2px solid black;
+  background-color: #131b23;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.LoginForm {
+  margin: 10% 0 0 20%;
+  font-family: "fira sans";
+  background-color: #e7dfc6;
+  padding: 8% 4% 20% 4%;
+  box-shadow: 2px 2px 2px 2px black;
+  height: auto;
+  width: 450px;
 }
