@@ -8,9 +8,13 @@
 .full-container {
   width: 400px;
   padding: 8% 4% 20% 4%;
+  z-index: 100;
 }
 .preview-container {
   /* width: 400px; */
   width: 200px;
+  height: 100px;
   padding: 1rem;
+  margin: 3rem;
+  z-index: 90;
 }

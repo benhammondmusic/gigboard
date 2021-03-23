@@ -44,11 +44,9 @@ const GigList = ({ currentUserId }) => {
 
   return (
     <div className="GigList">
-      <h2>GigList</h2>
-
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-      <ul>
+      <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
           return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
         })}
