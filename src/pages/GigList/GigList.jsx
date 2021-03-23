@@ -11,9 +11,10 @@ const filterGigs = (gigs, query) => {
     return gigs;
   }
 
+  // search every text based field (incl tags) of every gig
   return gigs.filter((gig) => {
-    const gigDescription = gig.description.toLowerCase();
-    return gigDescription.includes(query);
+    const info = gig.title + gig.description + JSON.stringify(gig.tags) + gig.location;
+    return info.toLowerCase().includes(query);
   });
 };
 
@@ -43,17 +44,15 @@ const GigList = ({ currentUserId }) => {
   }, []);
 
   return (
-    <>
-      <h2>GigList</h2>
-
+    <div className="GigList">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-      <ul>
+      <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
           return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

@@ -29,7 +29,8 @@ const Navbar = ({ currentUserEmail, logOut }) => {
           {currentUserEmail ? (
             <span>
               {/* SPLIT EMAIL STRING UP BY COMMON EMAIL DELIMITERS AND GET ONLY FIRST STRING, HOPEFULLY A NAME OR WORD USER WILL RECOGNIZE */}
-              <span className="loggedInUserLetter">{currentUserEmail.split(/[._@+-]+/)[0]}</span>
+              {/*  && currentUserEmail.split(/[._@+-0123456789]+/)[0] */}
+              <span className="loggedInUserLetter">{currentUserEmail && currentUserEmail.split(/[._@+-0123456789]+/)[0]}</span>
               <button className="logoutBtn" onClick={logOut}>
                 Log Out
               </button>

@@ -19,13 +19,13 @@ const GigPost = ({ gig, currentUserId }) => {
     <>
       {previewMode ? (
         <li onClick={togglePreview}>
-          <div className="reg-container">
+          <div className="preview-container post-container">
             <GigPreview gig={gig} />
           </div>
         </li>
       ) : (
         <li onClick={togglePreview}>
-          <div className="reg-container">
+          <div className="full-container post-container">
             <GigFull gig={gig} currentUserId={currentUserId} />
           </div>
         </li>

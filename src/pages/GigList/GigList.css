@@ -1,0 +1,13 @@
+.GigList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 100%;
+}
+
+.gigs-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
