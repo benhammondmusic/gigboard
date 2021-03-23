@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useParams } from 'react-router-dom';
 import Gig from '../../Models/Gig';
 import StateManager from 'react-select';
+import './GigEdit.css'
 
 const GigEdit = ({ props, gigId }) => {
   const tagOptions = [
@@ -99,7 +100,7 @@ const GigEdit = ({ props, gigId }) => {
   return (
     <>
       <h2>GigEditor</h2>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} id='EditGig'>
         <Form.Group controlId="input1">
           <Form.Label className="form-title">Gig Title:</Form.Label>
           <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} />
