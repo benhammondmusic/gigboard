@@ -11,11 +11,9 @@ const filterGigs = (gigs, query) => {
     return gigs;
   }
 
+  // search every text based field (incl tags) of every gig
   return gigs.filter((gig) => {
-    // const gigDescription = gig.description.toLowerCase();
     const info = gig.title + gig.description + JSON.stringify(gig.tags) + gig.location;
-
-    // console.log(info.toLowerCase());
     return info.toLowerCase().includes(query);
   });
 };
