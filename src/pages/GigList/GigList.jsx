@@ -34,7 +34,8 @@ const GigList = ({ currentUserId }) => {
   // get all gigs from backend/db on PAGE LOAD
   useEffect(() => {
     const fetchGigs = async () => {
-      const res = await Gig.all();
+      const checkJwt = localStorage.getItem('jwt')
+      const res = await Gig.all(checkJwt);
       console.log('RESPONSE FROM GET  API/GIGS/', res);
       const fetchedGigs = res.data.foundGigs;
       console.log('fetched gigs to map over', fetchedGigs);

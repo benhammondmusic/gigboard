@@ -8,18 +8,20 @@ class Gig {
     });
   };
 
-  static add = async (gigPostFormData, token) => {
+  static add = (gigPostFormData, token) => {
     console.log(gigPostFormData, "gig post form data");
     console.log(token, "token");
-    const postResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, {
-      gigPostFormData,
-      headers: {
-        authorization: `Bearer ${token}`,
+    return axios.post(
+      `${process.env.REACT_APP_API_URL}/api/gigs`,
+      {
+        gigPostFormData,
       },
-    });
-
-    await console.log(postResponse, "post response");
-    return postResponse;
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
   };
 
   static show = (gigId) => {
