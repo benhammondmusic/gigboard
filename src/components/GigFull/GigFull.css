@@ -1,0 +1,8 @@
+.button-container {
+  white-space: nowrap;
+}
+
+.button-container * {
+  display: inline;
+  margin: 20px 2px 2px 2px;
+}

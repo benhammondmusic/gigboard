@@ -1,0 +1,23 @@
+.post-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10% 0 0 20%;
+  font-family: 'fira sans';
+  background-color: #e7dfc6;
+  box-shadow: 2px 2px 2px 2px black;
+}
+.full-container {
+  width: 400px;
+  padding: 8% 4% 20% 4%;
+  /* z-index: 100; */
+  transform: rotate(-12deg);
+}
+.preview-container {
+  /* width: 400px; */
+  width: 200px;
+  height: 100px;
+  padding: 1rem;
+  margin: 3rem;
+  /* z-index: 90; */
+  transform: rotate(3deg);
+}

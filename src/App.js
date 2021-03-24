@@ -1,43 +1,97 @@
 // import React from 'react'
-import axios from 'axios';
-import './App.css';
-// import {Button} from 'react-bootstrap/Button'
 
-import Routes from './config/routes';
-import Navbar from './components/Navbar/Navbar';
+import "./App.scss";
+// import {Button} from 'react-bootstrap/Button'
+import Auth from "./Models/Auth";
+import Routes from "./config/routes";
+import Navbar from "./components/Navbar/Navbar";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 // DEVELOPMENT API: localhost:5000 for heroku local web
-// PRODUCTION API: use ben's deployed backend on heroku
-let API_URL;
-if (process.env.NODE_ENV === 'development') {
-  console.log('dev on 5000');
-  API_URL = 'http://localhost:5000';
-} else if (process.env.NODE_ENV === 'production') {
-  console.log('prod on bens backend heroku');
-  API_URL = 'https://ben-gigboard.herokuapp.com';
-}
+// PRODUCTION API: use a deployed backend on heroku
 
 function App() {
-  axios
-    .get(`${API_URL}/helloworld`)
-    .then(function (response) {
-      // handle success
-      console.log(response);
-      console.log(API_URL);
-    })
-    .catch(function (error) {
-      // handle error
+  const [formPassword, setFormPassword] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem("currentUserEmail") || "");
+  const [currentUserId, setCurrentUserId] = useState(localStorage.getItem("currentUserId") || "");
+  // const [currentJwt, setCurrentJwt] = useState(localStorage.getItem("jwt") || "");
+
+  const history = useHistory();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    console.log(e);
+    try {
+      console.log(formEmail, "formEmail inside handleReg");
+      const res = await Auth.register({ email: formEmail, password: formPassword });
+      console.log(res.data.currentUserId, "mongoID of registered user");
+      // const token = res.data.signedJwt;
+
+      setCurrentUserId(res.data.currentUserId);
+      setCurrentUserEmail(JSON.parse(res.config.data).email);
+
+      history.push("/gigs");
+    } catch (error) {
       console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+    }
+  };
+
+  const handleLogin = async (e) => {
+    console.log("LOGGING IN");
+    e.preventDefault();
+    try {
+      // console.log(formEmail, 'formEmail inside handleLogin');
+      const res = await Auth.login({ email: formEmail, password: formPassword });
+
+      console.log(res, "res in handleLogin");
+
+      setCurrentUserId(res.data.currentUserId);
+
+      console.log("set current user id to:", currentUserId);
+      setCurrentUserEmail(JSON.parse(res.config.data).email);
+
+      localStorage.setItem("jwt", res.data.token);
+
+      history.push("/gigs");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("currentUserId", currentUserId);
+  }, [currentUserId]);
+
+  useEffect(() => {
+    localStorage.setItem("currentUserEmail", currentUserEmail);
+  }, [currentUserEmail]);
+
+  const logOut = () => {
+    localStorage.clear();
+    setCurrentUserEmail();
+    setCurrentUserId();
+    history.push("/");
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes />
+        <Routes
+          currentUserId={currentUserId}
+          setCurrentUserId={setCurrentUserId}
+          currentUserEmail={currentUserEmail}
+          setCurrentUserEmail={setCurrentUserEmail}
+          handleLogin={handleLogin}
+          handleRegister={handleRegister}
+          formPassword={formPassword}
+          setFormPassword={setFormPassword}
+          setFormEmail={setFormEmail}
+          setCurrentUserId={setCurrentUserId}
+        />
       </main>
     </>
   );
