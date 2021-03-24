@@ -1,11 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 class Gig {
+  // COMMENTED OUT FOR NOW TO GET DEPLOYED CORS ISSUES FIGURED OUT
+  // static all = (token) => {
+  //   return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`, {
+  //     headers: {
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // };
+
   static all = (token) => {
-    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+    console.log('ALL GIGS');
+    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`);
   };
 
   static show = (gigId) => {
@@ -21,7 +27,7 @@ class Gig {
     try {
       return axios.delete(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`);
     } catch (error) {
-      console.log(error, "ERROR DELETING GIG");
+      console.log(error, 'ERROR DELETING GIG');
     }
   };
 }
