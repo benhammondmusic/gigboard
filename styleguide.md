@@ -21,6 +21,10 @@
   - #131B23
 - French Bistro
   - #816C61
+- Urgent = High 
+  - #B0413E
+- Urgen = Moderate
+  - #208AAE
 
 ![ColorScheme.png](./images/ColorScheme.png)
 

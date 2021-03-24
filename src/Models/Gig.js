@@ -1,23 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 class Gig {
-  static all = () => {
-    return axios.get('http://localhost:5000/api/gigs');
+  static all = (token) => {
+    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   static show = (gigId) => {
-    return axios.get(`http://localhost:5000/api/gigs/${gigId}`);
+    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`);
   };
 
   static update = (gigId, gigFormData) => {
     // you can send GET, POST, PUT, and DELETE all to the same route and get 4 different functionalities
-    return axios.put(`http://localhost:5000/api/gigs/${gigId}`, gigFormData);
+    return axios.put(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`, gigFormData);
   };
 
   static destroy = (gigId) => {
     try {
-      return axios.delete(`http://localhost:5000/api/gigs/${gigId}`);
+      return axios.delete(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`);
     } catch (error) {
-      console.log(error, 'ERROR DELETING GIG');
+      console.log(error, "ERROR DELETING GIG");
     }
   };
 }

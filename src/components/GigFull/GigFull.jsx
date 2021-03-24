@@ -60,7 +60,7 @@ const GigFull = (props) => (
         {console.log(props.gig.User, 'gig ')}
         {props.currentUserId === props.gig.User ? <GigDelete history={props.history} gig={props.gig} /> : ''}
         {props.currentUserId === props.gig.User ? <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
-          <button className="btn btn-outline-dark">Edit</button>
+          <button className="btn btn-dark">Edit</button>
         </Link> : ''} 
       </div>
     </ul>
