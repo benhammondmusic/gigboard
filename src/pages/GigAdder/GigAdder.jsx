@@ -26,6 +26,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [pay, setPay] = useState('');
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
@@ -50,7 +51,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     }
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
@@ -74,6 +75,11 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="input2">
           <Form.Control as="textarea" rows={3} placeholder="Describe your available gig" onChange={(e) => setDescription(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group controlId="input3">
+          <Form.Label className="form-title">What does the gig pay?</Form.Label>
+          <Form.Control type="textarea" placeholder="Pay goes here" onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
