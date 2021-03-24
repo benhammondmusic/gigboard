@@ -2,6 +2,20 @@ import './GigFull.css';
 import GigDelete from '../GigDelete/GigDelete';
 import { Link } from 'react-router-dom';
 
+
+const getDisplayDate = (uglyDate) => {
+  const options = {
+    weekday: "short",
+    year: "2-digit",
+    month: "short",
+    day: "2-digit"
+  }
+  
+console.log(Date.parse(uglyDate).toLocaleString('en-US', options))
+    // return uglyDate.toLocaleString('en-US', options)
+}
+
+
 const GigFull = (props) => (
   <>
     <h4>{props.gig.title}:</h4>
@@ -12,8 +26,8 @@ const GigFull = (props) => (
 
       <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
       {props.gig.urgency ? <li>urgency: {props.gig.urgency}</li> : ''}
-      {props.gig.workStartDate ? <li>workStartDate: {props.gig.workStartDate}</li> : ''}
-      {props.gig.workEndDate ? <li>workEndDate: {props.gig.workEndDate}</li> : ''}
+      {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
+      {props.gig.workEndDate ? <li>End Date: {props.gig.workEndDate}</li> : ''}
       {props.gig.expirationDate ? <li>expirationDate: {props.gig.expirationDate}</li> : ''}
       {props.gig.tags.length ? (
         <li>
