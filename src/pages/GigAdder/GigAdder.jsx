@@ -13,19 +13,20 @@ import './GigAdder.css';
 
 const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const tagOptions = [
-    { id: 'entertainment', Industry: 'Entertainment' },
-    { id: 'hospitality', Industry: 'Hospitality' },
-    { id: 'food and beverage', Industry: 'Food & Beverage' },
-    { id: 'automotive', Industry: 'Automotive' },
-    { id: 'medical', Industry: 'Medical' },
-    { id: 'construction', Industry: 'Construction' },
-    { id: 'general labor', Industry: 'General Labor' },
-    { id: 'administration', Industry: 'Administration' },
-    { id: 'customer service', Industry: 'Customer Service' },
+    { id: 'Entertainment', Industry: 'Entertainment' },
+    { id: 'Hospitality', Industry: 'Hospitality' },
+    { id: 'FoodAndBeverage', Industry: 'Food & Beverage' },
+    { id: 'Automotive', Industry: 'Automotive' },
+    { id: 'Medical', Industry: 'Medical' },
+    { id: 'Construction', Industry: 'Construction' },
+    { id: 'GeneralLabor', Industry: 'General Labor' },
+    { id: 'Administration', Industry: 'Administration' },
+    { id: 'CustomerService', Industry: 'Customer Service' },
   ];
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [pay, setPay] = useState('');
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
@@ -50,7 +51,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     }
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
@@ -80,6 +81,11 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <Form.Control as="textarea" rows={3} placeholder="Describe your available gig" onChange={(e) => setDescription(e.target.value)} />
         </Form.Group>
 
+        <Form.Group controlId="input3">
+          <Form.Label className="form-title">What does the gig pay?</Form.Label>
+          <Form.Control type="textarea" placeholder="Pay goes here" onChange={(e) => setPay(e.target.value)} />
+        </Form.Group>
+
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onClick={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
         </Form.Group>
@@ -90,6 +96,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
 
         <Form.Group controlId="urgencySelect">
+          <Form.Label className="form-title">Urgency?</Form.Label>
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
