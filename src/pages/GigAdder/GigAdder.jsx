@@ -56,9 +56,9 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     try {
 
       console.log('posting a gig:', gigPostFormData);
-      console.log(localStorage.getItem('jwt'), "this is the jwt in the gigadder page")
-      
-      const createGigResponse = await Gig.add(gigPostFormData, localStorage.getItem('jwt'));
+      const jwtAdd = localStorage.getItem('jwt')
+      console.log(jwtAdd, "this is the jwt in the gigadder page")
+      const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
       console.log(createGigResponse, 'response when creating gig in GigAdder');
 
     } catch (error) {

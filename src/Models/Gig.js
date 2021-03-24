@@ -1,19 +1,21 @@
 import axios from "axios";
 class Gig {
-  static all = (token) => {
-    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+  static all = () => {
+    return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`);
   };
-  static add = (gigPostFormData, token) => {
-    return axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, {
+
+  static add = async (gigPostFormData, token) => {
+    console.log(gigPostFormData, "gig post form data");
+    console.log(token, "token");
+    const postResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, {
+      gigPostFormData,
       headers: {
         authorization: `Bearer ${token}`,
       },
-      gigPostFormData,
     });
+
+    await console.log(postResponse, "post response");
+    return postResponse;
   };
 
   static show = (gigId) => {
