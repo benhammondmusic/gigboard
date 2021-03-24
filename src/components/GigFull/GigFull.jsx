@@ -66,4 +66,4 @@ const GigFull = (props) => (
     </ul>
   </>
 );
-export default GigFull
+export default GigFull;
