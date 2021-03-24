@@ -38,7 +38,7 @@ const GigFull = (props) => (
       <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
       {props.gig.urgency ? <li>urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
-      {props.gig.workEndDate ? <li>End Date: {props.gig.workEndDate}</li> : ''}
+      {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
       {props.gig.expirationDate ? <li>expirationDate: {props.gig.expirationDate}</li> : ''}
       {props.gig.tags.length ? (
         <li>
