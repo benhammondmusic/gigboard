@@ -6,11 +6,14 @@ div #homeContainer {
   /* background-repeat: no-repeat; */
 
   background: url(../../images/Gigboard-Title.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
+  /* -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover;
+  -o-background-size: cover; */
   background-size: cover;
-  padding-top: 200px;
+  /* background-size: stretch; */
+  position: fixed;
+  background-position: top;
+  padding-top: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,8 +27,9 @@ body {
 #gigboard {
   font-family: 'Fira Sans';
   font-weight: 800;
-  font-size: calc(3rem + 10vw);
+  font-size: calc(2rem + 9vw);
   width: 100%;
+
   /* position: relative; */
   /* padding: 150px 0 0 20%; */
   transform: rotate(-30deg);
