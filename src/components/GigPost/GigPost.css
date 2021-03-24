@@ -8,22 +8,22 @@
 }
 
 .urgent-high {
-    background-color: #B0413E;
-    color: white;
-    font-weight: bold;    
+  background-color: #b0413e;
+  color: white;
+  font-weight: bold;
 }
 
 .urgent-moderate {
-    background-color: #208AAE;
-    color: white;
-    font-weight: bold;    
+  background-color: #208aae;
+  color: white;
+  font-weight: bold;
 }
 
 .full-container {
   width: 400px;
   padding: 8% 4% 20% 4%;
   /* z-index: 100; */
-  transform: rotate(-12deg);
+  /* transform: rotate(-12deg); */
 }
 .preview-container {
   /* width: 400px; */
@@ -32,5 +32,5 @@
   padding: 1rem;
   margin: 3rem;
   /* z-index: 90; */
-  transform: rotate(3deg);
+  /* transform: rotate(3deg); */
 }
