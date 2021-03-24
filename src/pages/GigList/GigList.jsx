@@ -7,12 +7,14 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import './GigList.css';
 import Gig from '../../Models/Gig';
 
+// apply random angle for gig cards
 const getRandomTilt = () => {
   const tilt = Math.floor(Math.random() * 90) - 45;
   console.log(tilt, 'TILT');
   return tilt;
 };
 
+// for the search bar function
 const filterGigs = (gigs, query) => {
   if (!query) {
     return gigs;
