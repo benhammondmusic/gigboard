@@ -123,14 +123,8 @@ const GigEdit = ({gig, props, gigId}) => {
 
   return (
     <>
-<<<<<<< HEAD
-    <h2>GigEditor</h2>
-    <Form onSubmit={handleSubmit}>
-
-=======
       <h2>GigEditor</h2>
       <Form onSubmit={handleSubmit} id='EditGig'>
->>>>>>> 2e32dfef84fd8da6349d024fab59b18fb8b7d265
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
           <Form.Control placeholder={title} onChange={(e) => setTitle(e.target.value)}/>
