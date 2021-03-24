@@ -63,7 +63,6 @@ const GigFull = (props) => (
           <button className="btn btn-outline-dark">Edit</button>
         </Link> : ''} 
       </div>
-      <i>Logged In User Id (delete this line): {props.currentUserId}</i>
     </ul>
   </>
 );
