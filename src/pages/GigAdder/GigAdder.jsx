@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
+import Gig from '../../Models/Gig'
 
 import Auth from '../../Models/Auth';
 
@@ -54,9 +54,13 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
     // POST the gig to backend -> create in database
     try {
+
       console.log('posting a gig:', gigPostFormData);
-      const createGigResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, gigPostFormData);
+      console.log(localStorage.getItem('jwt'), "this is the jwt in the gigadder page")
+      
+      const createGigResponse = await Gig.add(gigPostFormData, localStorage.getItem('jwt'));
       console.log(createGigResponse, 'response when creating gig in GigAdder');
+
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -118,7 +122,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
         {/* onClick={(event) => (window.location.href = '/gigs')} */}
 
-        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
+        <Button variant="primary" type="submit" >
           Post Gig
         </Button>
 

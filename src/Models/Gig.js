@@ -7,6 +7,14 @@ class Gig {
       },
     });
   };
+  static add = (gigPostFormData, token) => {
+    return axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      gigPostFormData,
+    });
+  };
 
   static show = (gigId) => {
     return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`);
