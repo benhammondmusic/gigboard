@@ -2,19 +2,30 @@ import './GigFull.css';
 import GigDelete from '../GigDelete/GigDelete';
 import { Link } from 'react-router-dom';
 
-
 const getDisplayDate = (uglyDate) => {
-  const options = {
-    weekday: "short",
-    year: "2-digit",
-    month: "short",
-    day: "2-digit"
-  }
-  
-console.log(Date.parse(uglyDate).toLocaleString('en-US', options))
-    // return uglyDate.toLocaleString('en-US', options)
-}
+  const dateObj = new Date(uglyDate);
+  console.log(dateObj, 'DATE', typeof dateObj);
 
+  const options = {
+    // weekday: 'short',
+    year: '2-digit',
+    month: 'short',
+    day: '2-digit',
+  };
+
+  return dateObj.toLocaleString('en-US', options);
+
+  // console.log(localeDate.split(' '), 'LOCALE DATE');
+
+  // displayDateObj = {
+  //   weekday: localeDate[0],
+  //   month: localeDate[1],
+  //   day: localeDate[2],
+  //   year: localeDate[3],
+  // };
+
+  // return uglyDate.toLocaleString('en-US', options)
+};
 
 const GigFull = (props) => (
   <>
