@@ -15,10 +15,17 @@ import { useEffect } from "react";
 function App() {
   const [formPassword, setFormPassword] = useState("");
   const [formEmail, setFormEmail] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState(localStorage.getItem("currentUserEmail") || "");
-  const [currentUserId, setCurrentUserId] = useState(localStorage.getItem("currentUserId") || "");
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
+  const [currentUserId, setCurrentUserId] = useState("");
   // const [currentJwt, setCurrentJwt] = useState(localStorage.getItem("jwt") || "");
 
+  useEffect(() => {
+    setCurrentUserEmail(localStorage.getItem("currentUserEmail") || "");
+    setCurrentUserId(localStorage.getItem("currentUserId") || "");
+  }, []);
+
+  // localStorage.getItem("currentUserId") || ""
+  // localStorage.getItem("currentUserEmail") || ""
   const history = useHistory();
 
   const handleRegister = async (e) => {
@@ -61,18 +68,20 @@ function App() {
     }
   };
 
+  // When user info changes, the info will be set in local storage
+  // If user is logged out, nothing is in storage cd: 74-80.
   useEffect(() => {
-    localStorage.setItem("currentUserId", currentUserId);
+    if (currentUserId) localStorage.setItem("currentUserId", currentUserId);
   }, [currentUserId]);
 
   useEffect(() => {
-    localStorage.setItem("currentUserEmail", currentUserEmail);
+    if (currentUserEmail) localStorage.setItem("currentUserEmail", currentUserEmail);
   }, [currentUserEmail]);
 
   const logOut = () => {
-    localStorage.clear();
     setCurrentUserEmail();
     setCurrentUserId();
+    localStorage.clear();
     history.push("/");
   };
 

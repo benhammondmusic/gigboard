@@ -4,14 +4,8 @@ import GigPreview from '../GigPreview/GigPreview';
 import GigFull from '../GigFull/GigFull';
 import './GigPost.css';
 
-const GigPost = ({ gig, currentUserId }) => {
+const GigPost = ({ gig, currentUserId, tilt }) => {
   const [previewMode, setPreviewMode] = useState('false');
-
-  const urgencyColorPicker = (urgency, view) => {
-    console.log(urgency)
-    return `urgent-${urgency} post-container ${view}-container`
-    // if (urgency === "high") return "urgent-high post-container preview-container"
-  }
 
   const togglePreview = () => {
     setPreviewMode(!previewMode); // set to opposite of current previewMode state
@@ -25,13 +19,13 @@ const GigPost = ({ gig, currentUserId }) => {
     <>
       {previewMode ? (
         <li onClick={togglePreview}>
-          <div className={urgencyColorPicker(gig.urgency, "preview") }>
+          <div style={{ transform: `rotate(${tilt}deg` }} className={`urgent-${gig.urgency} post-container preview-container`}>
             <GigPreview gig={gig} />
           </div>
         </li>
       ) : (
         <li onClick={togglePreview}>
-          <div className={urgencyColorPicker(gig.urgency, "full") }>
+          <div style={{ transform: `rotate(${tilt / 5}deg` }} className={`urgent-${gig.urgency} post-container full-container`}>
             <GigFull gig={gig} currentUserId={currentUserId} />
           </div>
         </li>

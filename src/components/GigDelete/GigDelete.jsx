@@ -18,7 +18,7 @@ const GigDelete = ({ gig }) => {
   };
 
   return (
-    <button type="submit" className="btn btn-outline-danger" onClick={deletePost}>
+    <button type="submit" className="btn btn-light" onClick={deletePost}>
       Delete
     </button>
   );
