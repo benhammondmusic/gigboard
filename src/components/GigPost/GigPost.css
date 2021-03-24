@@ -6,6 +6,19 @@
   background-color: #e7dfc6;
   box-shadow: 2px 2px 2px 2px black;
 }
+
+.urgent-high {
+    background-color: #B0413E;
+    color: white;
+    font-weight: bold;    
+}
+
+.urgent-moderate {
+    background-color: #208AAE;
+    color: white;
+    font-weight: bold;    
+}
+
 .full-container {
   width: 400px;
   padding: 8% 4% 20% 4%;
