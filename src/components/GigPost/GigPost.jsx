@@ -7,6 +7,12 @@ import './GigPost.css';
 const GigPost = ({ gig, currentUserId }) => {
   const [previewMode, setPreviewMode] = useState('false');
 
+  const urgencyColorPicker = (urgency, view) => {
+    console.log(urgency)
+    return `urgent-${urgency} post-container ${view}-container`
+    // if (urgency === "high") return "urgent-high post-container preview-container"
+  }
+
   const togglePreview = () => {
     setPreviewMode(!previewMode); // set to opposite of current previewMode state
   };
@@ -19,13 +25,13 @@ const GigPost = ({ gig, currentUserId }) => {
     <>
       {previewMode ? (
         <li onClick={togglePreview}>
-          <div className="preview-container post-container">
+          <div className={urgencyColorPicker(gig.urgency, "preview") }>
             <GigPreview gig={gig} />
           </div>
         </li>
       ) : (
         <li onClick={togglePreview}>
-          <div className="full-container post-container">
+          <div className={urgencyColorPicker(gig.urgency, "full") }>
             <GigFull gig={gig} currentUserId={currentUserId} />
           </div>
         </li>
