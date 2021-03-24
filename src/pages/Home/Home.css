@@ -23,7 +23,7 @@ body {
 #gigboard {
   font-family: 'Fira Sans';
   font-weight: 800;
-  font-size: 6rem;
+  font-size: calc(3rem + 10vw);
   /* position: relative; */
   /* padding: 150px 0 0 20%; */
   transform: rotate(-30deg);
