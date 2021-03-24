@@ -12,15 +12,15 @@ import './GigEdit.css'
 const GigEdit = ({gig, props, gigId}) => {
 
   const tagOptions = [
-    { id: 'entertainment', Industry: 'Entertainment' },
-    { id: 'hospitality', Industry: 'Hospitality' },
-    { id: 'food and beverage', Industry: 'Food & Beverage' },
-    { id: 'automotive', Industry: 'Automotive' },
-    { id: 'medical', Industry: 'Medical' },
-    { id: 'construction', Industry: 'Construction' },
-    { id: 'general labor', Industry: 'General Labor' },
-    { id: 'administration', Industry: 'Administration' },
-    { id: 'customer service', Industry: 'Customer Service' },
+    { id: 'Entertainment', Industry: 'Entertainment' },
+    { id: 'Hospitality', Industry: 'Hospitality' },
+    { id: 'FoodAndBeverage', Industry: 'Food & Beverage' },
+    { id: 'Automotive', Industry: 'Automotive' },
+    { id: 'Medical', Industry: 'Medical' },
+    { id: 'Construction', Industry: 'Construction' },
+    { id: 'GeneralLabor', Industry: 'General Labor' },
+    { id: 'Administration', Industry: 'Administration' },
+    { id: 'CustomerService', Industry: 'Customer Service' },
   ];
 
 
@@ -28,6 +28,7 @@ const GigEdit = ({gig, props, gigId}) => {
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [pay, setPay] = useState('');
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
@@ -53,6 +54,7 @@ const GigEdit = ({gig, props, gigId}) => {
       // set state from retrieved response object
       setTitle(res.data.gig.title)
       setDescription(res.data.gig.description)
+      setPay(res.data.gig.pay)
       setTip(res.data.gig.tip)
       setLocation(res.data.gig.location)
       setUrgency(res.data.gig.urgency)
@@ -66,6 +68,7 @@ const GigEdit = ({gig, props, gigId}) => {
       const currentGig = {
         title: res.data.gig.title,
         description: res.data.gig.description,
+        pay: res.data.gig.pay,
         tip: res.data.gig.tip,
         location: res.data.gig.location,
         urgency: res.data.gig.urgency,
@@ -132,6 +135,11 @@ const GigEdit = ({gig, props, gigId}) => {
 
         <Form.Group controlId="input2">
           <Form.Control as="textarea" rows={3} placeholder={description} onChange={(e) => setDescription(e.target.value)}/>
+        </Form.Group>
+
+        <Form.Group controlId="input3">
+          <Form.Label className="form-title">What does the gig pay?</Form.Label>
+          <Form.Control type="textarea" placeholder={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">

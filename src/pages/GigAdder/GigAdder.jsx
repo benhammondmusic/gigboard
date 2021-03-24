@@ -13,15 +13,15 @@ import './GigAdder.css';
 
 const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const tagOptions = [
-    { id: 'entertainment', Industry: 'Entertainment' },
-    { id: 'hospitality', Industry: 'Hospitality' },
-    { id: 'food and beverage', Industry: 'Food & Beverage' },
-    { id: 'automotive', Industry: 'Automotive' },
-    { id: 'medical', Industry: 'Medical' },
-    { id: 'construction', Industry: 'Construction' },
-    { id: 'general labor', Industry: 'General Labor' },
-    { id: 'administration', Industry: 'Administration' },
-    { id: 'customer service', Industry: 'Customer Service' },
+    { id: 'Entertainment', Industry: 'Entertainment' },
+    { id: 'Hospitality', Industry: 'Hospitality' },
+    { id: 'FoodAndBeverage', Industry: 'Food & Beverage' },
+    { id: 'Automotive', Industry: 'Automotive' },
+    { id: 'Medical', Industry: 'Medical' },
+    { id: 'Construction', Industry: 'Construction' },
+    { id: 'GeneralLabor', Industry: 'General Labor' },
+    { id: 'Administration', Industry: 'Administration' },
+    { id: 'CustomerService', Industry: 'Customer Service' },
   ];
 
   const [title, setTitle] = useState('');
