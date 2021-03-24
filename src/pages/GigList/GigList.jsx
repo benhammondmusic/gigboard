@@ -5,7 +5,13 @@ import { useEffect, useState } from 'react';
 import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import './GigList.css';
-import Gig from '../../Models/Gig'
+import Gig from '../../Models/Gig';
+
+const getRandomTilt = () => {
+  const tilt = Math.floor(Math.random() * 90) - 45;
+  console.log(tilt, 'TILT');
+  return tilt;
+};
 
 const filterGigs = (gigs, query) => {
   if (!query) {
@@ -50,7 +56,7 @@ const GigList = ({ currentUserId }) => {
 
       <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
-          return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
+          return <GigPost key={idx} gig={gig} tilt={getRandomTilt()} currentUserId={currentUserId} />;
         })}
       </ul>
     </div>
