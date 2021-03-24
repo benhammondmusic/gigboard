@@ -20,9 +20,15 @@
 }
 
 .full-container {
+  position: absolute;
+  margin: 0px 0px 0px 0px;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
   width: 400px;
-  padding: 8% 4% 20% 4%;
-  /* z-index: 100; */
+  padding: 4rem;
+  /* padding: 8% 4% 20% 4%; */
+  z-index: 100;
   /* transform: rotate(-12deg); */
 }
 .preview-container {

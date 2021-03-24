@@ -17,7 +17,7 @@ const Login = (props) => {
       console.log(res, 'new googleRegistered user');
       props.setCurrentUserId(res.data.currentUserId);
       props.setCurrentUserEmail(response.profileObj.email);
-      localStorage.setItem('jwt', response.tokenId)
+      localStorage.setItem('jwt', response.tokenId);
       history.push('/gigs');
     } catch (error) {
       console.log(error);
@@ -30,11 +30,12 @@ const Login = (props) => {
 
   return (
     <div className="LoginForm">
-      <h1>Login - Gig Poster</h1>
-      <h4>Use Your Google Account</h4>
+      <h1>Login to Post a Gig</h1>
+      <hr></hr>
+      <h4>Using Google</h4>
       <GoogleLogin clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={handleGoogleRegisterAndLogin} />
-
-      <h4>Existing Account with Email</h4>
+      <hr></hr>
+      <h4>Using Email</h4>
       <Form onSubmit={props.handleLogin}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
@@ -50,6 +51,7 @@ const Login = (props) => {
           Log In
         </Button>
       </Form>
+      <hr></hr>
       <h4>New Account with Email</h4>
       {/* <h4>Register to Post a Gig</h4> */}
       <Link to="/register" className="link">

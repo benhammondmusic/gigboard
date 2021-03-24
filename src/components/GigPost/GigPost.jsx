@@ -25,7 +25,7 @@ const GigPost = ({ gig, currentUserId, tilt }) => {
         </li>
       ) : (
         <li onClick={togglePreview}>
-          <div className={`urgent-${gig.urgency} post-container full-container`}>
+          <div style={{ transform: `rotate(${tilt / 5}deg` }} className={`urgent-${gig.urgency} post-container full-container`}>
             <GigFull gig={gig} currentUserId={currentUserId} />
           </div>
         </li>
