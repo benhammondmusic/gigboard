@@ -10,6 +10,7 @@ class Gig {
   // };
 
   static all = (token) => {
+    console.log('ALL GIGS');
     return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`);
   };
 
