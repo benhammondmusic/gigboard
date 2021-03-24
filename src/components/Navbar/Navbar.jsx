@@ -2,7 +2,17 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import userIcon from '../../images/user-icon.png';
 
+// Returns a useable first name for NavBar. If email doesn't start with letters just uses full email
 const Navbar = ({ currentUserEmail, logOut }) => {
+  const extractName = (currentUserEmail) => {
+    if (!currentUserEmail) return 'anonymous';
+    const nameChunk = currentUserEmail.split(/[._@+-0123456789]+/)[0];
+    console.log('potential first name:', nameChunk);
+    const displayName = nameChunk.length ? nameChunk : currentUserEmail;
+    console.log('display first name:', displayName);
+    return displayName;
+  };
+
   return (
     <nav>
       <section className="d-flex px-3 justify-content-between">
@@ -30,7 +40,7 @@ const Navbar = ({ currentUserEmail, logOut }) => {
             <span>
               {/* SPLIT EMAIL STRING UP BY COMMON EMAIL DELIMITERS AND GET ONLY FIRST STRING, HOPEFULLY A NAME OR WORD USER WILL RECOGNIZE */}
               {/*  && currentUserEmail.split(/[._@+-0123456789]+/)[0] */}
-              <span className="loggedInUserLetter">{currentUserEmail && currentUserEmail.split(/[._@+-0123456789]+/)[0]}</span>
+              <span className="loggedInUserLetter">{extractName(currentUserEmail)}</span>
               <button className="logoutBtn" onClick={logOut}>
                 Log Out
               </button>

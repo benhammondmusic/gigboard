@@ -71,6 +71,8 @@ function App() {
 
   const logOut = () => {
     localStorage.clear();
+    setCurrentUserEmail();
+    setCurrentUserId();
     history.push('/');
   };
 
