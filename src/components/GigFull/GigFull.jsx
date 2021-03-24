@@ -33,13 +33,13 @@ const GigFull = (props) => (
     <ul>
       {/* <li >User: {props.gig.User}</li> */}
       <em>{props.gig.description}</em>
-      {props.gig.location ? <li>location: {props.gig.location}</li> : ''}
-
+      {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
+      {props.gig.pay ? <li>Pay: {props.gig.pay}</li> : ''}
       <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
-      {props.gig.urgency ? <li>urgency: {props.gig.urgency}</li> : ''}
+      {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
       {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
-      {props.gig.expirationDate ? <li>expirationDate: {props.gig.expirationDate}</li> : ''}
+      {props.gig.expirationDate ? <li>Expiration Date: {props.gig.expirationDate}</li> : ''}
       {props.gig.tags.length ? (
         <li>
           {props.gig.tags.map((tag) => (
