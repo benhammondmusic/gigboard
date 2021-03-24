@@ -79,7 +79,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the gig pay?</Form.Label>
-          <Form.Control type="textarea" placeholder="Pay goes here" onChange={(e) => setPay(e.target.value)} />
+          <Form.Control type="textarea" placeholder="Daily Pay" onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">

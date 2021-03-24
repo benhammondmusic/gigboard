@@ -34,7 +34,7 @@ const GigFull = (props) => (
       {/* <li >User: {props.gig.User}</li> */}
       <em>{props.gig.description}</em>
       {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
-      {props.gig.pay ? <li>Pay: {props.gig.pay}</li> : ''}
+      {props.gig.pay ? <li>Pay: ${props.gig.pay}/day</li> : ''}
       <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
