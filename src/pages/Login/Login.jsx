@@ -17,6 +17,7 @@ const Login = (props) => {
       console.log(res, 'new googleRegistered user');
       props.setCurrentUserId(res.data.currentUserId);
       props.setCurrentUserEmail(response.profileObj.email);
+      localStorage.setItem('jwt', response.tokenId)
       history.push('/gigs');
     } catch (error) {
       console.log(error);
