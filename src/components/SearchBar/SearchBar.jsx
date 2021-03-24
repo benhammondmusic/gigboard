@@ -9,12 +9,12 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
   };
 
   return (
-    <form action="/" method="get">
+    <form className="searchBar" action="/" method="get">
       <label htmlFor="header-search">
         <span className="visually-hidden">Search Gigs</span>
       </label>
       <input value={searchQuery} onInput={(e) => setSearchQuery(e.target.value)} type="text" id="header-search" placeholder="Search Gigs" name="s" />
-      <button type="submit">Search</button>
+      {/* <button type="submit">Search</button> */}
     </form>
   );
 };
