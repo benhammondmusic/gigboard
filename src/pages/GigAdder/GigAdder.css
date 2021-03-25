@@ -16,6 +16,15 @@
   box-shadow: 2px 2px 2px 2px black;
 }
 
-Link {
+.cncl-btn {
   margin: 1rem;
+}
+
+.pay-form-container {
+  display: flex;
+}
+
+.dollaSign {
+  font-size: 22px;
+  padding-top: 1%;
 }
