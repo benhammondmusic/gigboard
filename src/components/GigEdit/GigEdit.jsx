@@ -123,21 +123,21 @@ const GigEdit = ({ gig, props, gigId }) => {
         <hr></hr>
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
-          <Form.Control placeholder={title} onChange={(e) => setTitle(e.target.value)} />
+          <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="input2">
-          <Form.Control as="textarea" rows={3} placeholder={description} onChange={(e) => setDescription(e.target.value)} />
+          <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the gig pay?</Form.Label>
-          <Form.Control type="textarea" placeholder={pay} onChange={(e) => setPay(e.target.value)} />
+          <Form.Control type="textarea" value={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">Where's the Gig?</Form.Label>
-          <Form.Control type="location" placeholder={location} onChange={(e) => setLocation(e.target.value)} />
+          <Form.Control type="location" value={location} onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
