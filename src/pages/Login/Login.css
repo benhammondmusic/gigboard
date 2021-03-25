@@ -1,6 +1,6 @@
 .form-title {
   font-size: 20px;
-  font-family: 'Gudea';
+  font-family: "Gudea";
   font-weight: 600;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .text {
-  font-family: 'Hind Madurai';
+  font-family: "Hind Madurai";
   font-size: 14px;
   color: #131b23;
   background-color: rgba(129, 108, 97, 0.4);
@@ -23,7 +23,7 @@
 .login-container {
   display: flex;
   margin: 10% 0 0 20%;
-  font-family: 'fira sans';
+  font-family: "fira sans";
   background-color: #e7dfc6;
   width: 400px;
   padding: 8% 4% 20% 4%;
@@ -39,10 +39,10 @@
 
 .LoginForm {
   margin: 10% 0 0 20%;
-  font-family: 'fira sans';
+  font-family: "fira sans";
   background-color: #e7dfc6;
-  padding: 8% 4% 20% 4%;
+  padding: 4% 4% 0% 4%;
   box-shadow: 2px 2px 2px 2px black;
-  height: auto;
-  width: 450px;
+  height: 75vh;
+  width: 45%;
 }
