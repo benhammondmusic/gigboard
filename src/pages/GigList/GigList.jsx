@@ -1,6 +1,6 @@
 // guide to implementing SEARCH BAR at: https://www.emgoto.com/react-search-bar/
 
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
