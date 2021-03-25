@@ -4,13 +4,13 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import {Link, useParams, useHistory} from 'react-router-dom'
-import Gig from '../../Models/Gig'
+import { Link, useParams, useHistory } from 'react-router-dom';
+import Gig from '../../Models/Gig';
 
 import StateManager from 'react-select';
 import './GigEdit.css';
 
-const GigEdit = ({ gig, props, gigId }) => {
+const GigEdit = ({ gig, gigId }) => {
   const tagOptions = [
     { id: 'Entertainment', Industry: 'Entertainment' },
     { id: 'Hospitality', Industry: 'Hospitality' },
@@ -23,38 +23,39 @@ const GigEdit = ({ gig, props, gigId }) => {
     { id: 'CustomerService', Industry: 'Customer Service' },
   ];
 
-  const [currentGig, setCurrentGig] = useState({});
+  // const [currentGig, setCurrentGig] = useState({});
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [pay, setPay] = useState('');
+  const [pay, setPay] = useState(0);
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState(tagOptions);
-  const [expirationDate, setExpirationDate] = useState('');
-  const [workStartDate, setWorkStartDate] = useState('');
-  const [workEndDate, setWorkEndDate] = useState('');
+  const [expirationDate, setExpirationDate] = useState(new Date());
+  const [workStartDate, setWorkStartDate] = useState(new Date());
+  const [workEndDate, setWorkEndDate] = useState(new Date());
 
-  // console.log('here is the gig ID:', id)
-  // console.log('here is the Gig:', gig)
   const history = useHistory();
 
+  // fetch all gigs on page load
   useEffect(() => {
     getGigData();
   }, []);
 
-  console.log('here is the currentGig', currentGig);
+  // update the contents of currentGig object anytime any piece of of the gig changes
+  /*   useEffect(() => {
+    console.log('updating currentGig whenever gig data changes', currentGig);
+    setCurrentGig
+  }, [description, pay, location, urgency, tags, expirationDate, workStartDate, workEndDate]); */
 
   const getGigData = async () => {
     try {
       if (!localStorage.getItem('jwt')) {
-        history.push('/gigs')
+        history.push('/gigs');
       }
       // set response from server to res
-
-      const res = await Gig.show( id , localStorage.getItem('jwt'))
-
+      const res = await Gig.show(id, localStorage.getItem('jwt'));
 
       // set state from retrieved response object
       setTitle(res.data.gig.title);
@@ -64,13 +65,15 @@ const GigEdit = ({ gig, props, gigId }) => {
       setLocation(res.data.gig.location);
       setUrgency(res.data.gig.urgency);
       setTags(res.data.gig.tags);
-      setExpirationDate(res.data.gig.expirationDate);
-      setWorkStartDate(res.data.gig.workStartDate);
-      setWorkEndDate(res.data.gig.workEndDate);
+      // setExpirationDate(res.data.gig.expirationDate ? new Date(res.data.gig.expirationDate) : '');
 
-      //Don't forget to refactor curent gig to access state instead of res
+      setWorkStartDate(res.data.gig.workStartDate && new Date(res.data.gig.workStartDate));
+      // console.log('setting start date ', new Date(res.data.gig.workStartDate));
+      setWorkEndDate(res.data.gig.workEndDate && new Date(res.data.gig.workEndDate));
+
+      //Don't forget to refactor current gig to access state instead of res
       // create a current Gig to put into setCurrentGig
-      const currentGig = {
+      /* const gigFromDb = {
         title: res.data.gig.title,
         description: res.data.gig.description,
         pay: res.data.gig.pay,
@@ -81,11 +84,13 @@ const GigEdit = ({ gig, props, gigId }) => {
         expirationDate: res.data.gig.expirationDate,
         workStartDate: res.data.gig.workStartDate,
         workEndDate: res.data.gig.workEndDate,
-      };
+      }; */
 
-      console.log('here is the currentGig', currentGig);
+      /* console.log(pay, 'pay in state', typeof pay);
+      console.log(res.data.gig.pay, 'pay from response', typeof res.data.gig.pay);
+      console.log('here is the currentGig', currentGig); */
       // setting currentGig state
-      setCurrentGig(currentGig);
+      // setCurrentGig(gigFromDb);
 
       console.log('here is the response from getGigData: ', res);
     } catch (error) {
@@ -99,33 +104,36 @@ const GigEdit = ({ gig, props, gigId }) => {
     try {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
 
-      const jwtCheck = localStorage.getItem('jwt')
-      const res = await Gig.update( id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate},  jwtCheck)
+      const jwtCheck = localStorage.getItem('jwt');
+      const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
 
-      console.log('here is the response from update: ', res)
+      console.log('here is the response from update: ', res);
 
-    //   const updatedGig = {
-    //   title: res.data.gig.title,
-    //   description: res.data.gig.description,
-    //   tip: res.data.gig.tip,
-    //   location: res.data.gig.location,
-    //   urgency: res.data.gig.urgency,
-    //   tags: res.data.gig.tags,
-    //   expirationDate: res.data.gig.expirationDate,
-    //   workStartDate: res.data.gig.workStartDate,
-    //   workEndDate: res.data.gig.workEndDate
-    // }
-
-    // console.log('this is the updated gig: ', updatedGig)
-
-      if ( res.data.status === 200 ) {
-        props.history.push(`/gigs/${gigId}`)
-
+      if (res.data.status === 200) {
+        history.push(`/gigs`);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const tagObjectsToStrings = (tagObjects) => {
+    const tagStringArray = [];
+    for (let tag of tagObjects) {
+      tagStringArray.push(tag.id);
+    }
+    console.log('converted objects to strings', tagObjects, tagStringArray);
+    return tagStringArray;
+  };
+
+  // const tagStringsToObjects = (tagStrings) => {
+  //   const tagObjectArray = [];
+  //   for (let tag of tagStrings) {
+  //     tagObjectArray.push({id: tag.id, Industry: tag});
+  //   }
+  //   console.log('converted objects to strings', tagObjects, tagStringArray);
+  //   return tagStringArray;
+  // };
 
   return (
     <>
@@ -141,7 +149,7 @@ const GigEdit = ({ gig, props, gigId }) => {
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the gig pay?</Form.Label>
-          <Form.Control type="textarea" value={pay} onChange={(e) => setPay(e.target.value)} />
+          <Form.Control value={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
@@ -152,41 +160,56 @@ const GigEdit = ({ gig, props, gigId }) => {
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
-          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
+          <Form.Control value={urgency} as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
+
         <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
-          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
-        </Form.Group>
-        <Form.Group controlId="workStartDate">
-          <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker
-            // selected={workStartDate} // causing errors
-            onChange={(date) => {
-              console.log(date, 'event is new date');
-              setWorkStartDate(date);
+          <Multiselect
+            options={tagOptions}
+            displayValue="Industry"
+            onSelect={(tagObjects) => {
+              // extract tag strings from their form-option objects
+              setTags(tagObjectsToStrings(tagObjects));
             }}
           />
         </Form.Group>
-        <Form.Group controlId="workEndDate">
-          <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker
-            // selected={workEndDate} // causing errors
-            onChange={(date) => {
-              console.log(date);
-              setWorkEndDate(date);
-            }}
-          />
-        </Form.Group>
-        // thought about tryingg to use this link.... need to figure out the best option
-        {/* <Link to="/gigs/editgig/${id}"gig={gig}><button className="btn btn-outline-dark" >Save Changes</button></Link> */}
-        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
+
+        {workStartDate && (
+          <Form.Group controlId="workStartDate">
+            <Form.Label className="form-title">What date does this Gig start?</Form.Label>
+            <DatePicker
+              selected={workStartDate}
+              onChange={(formDate) => {
+                setWorkStartDate(formDate);
+              }}
+            />
+          </Form.Group>
+        )}
+        {workEndDate && (
+          <Form.Group controlId="workEndDate">
+            <Form.Label className="form-title">When does this Gig end?</Form.Label>
+            <DatePicker
+              selected={workEndDate}
+              onChange={(formDate) => {
+                setWorkEndDate(formDate);
+              }}
+            />
+          </Form.Group>
+        )}
+
+        {/* onClick={(event) => (window.location.href = `/gigs`)} */}
+
+        <Button variant="primary" type="submit">
           Save Changes
         </Button>
+        <Link to="/gigs" className="btn btn-secondary cncl-btn">
+          Cancel
+        </Link>
       </Form>
     </>
   );
