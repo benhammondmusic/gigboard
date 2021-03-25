@@ -207,6 +207,9 @@ const GigEdit = ({ gig, gigId }) => {
         <Button variant="primary" type="submit">
           Save Changes
         </Button>
+        <Link to="/gigs" className="btn btn-secondary cncl-btn">
+          Cancel
+        </Link>
       </Form>
     </>
   );
