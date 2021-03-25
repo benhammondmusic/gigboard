@@ -14,7 +14,7 @@ const GigDelete = ({ gig }) => {
 
     // redirect ? is there a better method?
     //   history.push(`/gigs`);
-    window.location.href = '/gigs';
+    window.location.reload(true); //= '/gigs';
   };
 
   return (
