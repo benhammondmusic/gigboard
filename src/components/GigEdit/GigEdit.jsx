@@ -57,6 +57,7 @@ const GigEdit = ({ gig, gigId }) => {
       setDescription(res.data.gig.description);
       setPay(res.data.gig.pay);
       setTip(res.data.gig.tip);
+      console.log(res.data.gig.tip, 'tip from db', typeof res.data.gig.tip);
       setLocation(res.data.gig.location);
       setUrgency(res.data.gig.urgency);
       setTags(res.data.gig.tags);
@@ -110,7 +111,8 @@ const GigEdit = ({ gig, gigId }) => {
           <Form.Control value={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          {console.log(tip, 'TIP', typeof tip)}
+          <Form.Check value={tip} type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} />
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">Where's the Gig?</Form.Label>
