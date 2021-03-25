@@ -23,11 +23,11 @@ const GigEdit = ({ gig, props, gigId }) => {
     { id: 'CustomerService', Industry: 'Customer Service' },
   ];
 
-  const [currentGig, setCurrentGig] = useState({});
+  // const [currentGig, setCurrentGig] = useState({});
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [pay, setPay] = useState('');
+  const [pay, setPay] = useState(0);
   const [tip, setTip] = useState('false');
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
@@ -36,15 +36,18 @@ const GigEdit = ({ gig, props, gigId }) => {
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
 
-  // console.log('here is the gig ID:', id)
-  // console.log('here is the Gig:', gig)
   const history = useHistory();
 
+  // fetch all gigs on page load
   useEffect(() => {
     getGigData();
   }, []);
 
-  console.log('here is the currentGig', currentGig);
+  // update the contents of currentGig object anytime any piece of of the gig changes
+  /*   useEffect(() => {
+    console.log('updating currentGig whenever gig data changes', currentGig);
+    setCurrentGig
+  }, [description, pay, location, urgency, tags, expirationDate, workStartDate, workEndDate]); */
 
   const getGigData = async () => {
     try {
@@ -52,7 +55,6 @@ const GigEdit = ({ gig, props, gigId }) => {
         history.push('/gigs');
       }
       // set response from server to res
-
       const res = await Gig.show(id, localStorage.getItem('jwt'));
 
       // set state from retrieved response object
@@ -69,7 +71,7 @@ const GigEdit = ({ gig, props, gigId }) => {
 
       //Don't forget to refactor curent gig to access state instead of res
       // create a current Gig to put into setCurrentGig
-      const currentGig = {
+      /* const gigFromDb = {
         title: res.data.gig.title,
         description: res.data.gig.description,
         pay: res.data.gig.pay,
@@ -80,11 +82,13 @@ const GigEdit = ({ gig, props, gigId }) => {
         expirationDate: res.data.gig.expirationDate,
         workStartDate: res.data.gig.workStartDate,
         workEndDate: res.data.gig.workEndDate,
-      };
+      }; */
 
-      console.log('here is the currentGig', currentGig);
+      /* console.log(pay, 'pay in state', typeof pay);
+      console.log(res.data.gig.pay, 'pay from response', typeof res.data.gig.pay);
+      console.log('here is the currentGig', currentGig); */
       // setting currentGig state
-      setCurrentGig(currentGig);
+      // setCurrentGig(gigFromDb);
 
       console.log('here is the response from getGigData: ', res);
     } catch (error) {
@@ -99,7 +103,7 @@ const GigEdit = ({ gig, props, gigId }) => {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
 
       const jwtCheck = localStorage.getItem('jwt');
-      const res = await Gig.update(id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
+      const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
 
       console.log('here is the response from update: ', res);
 
@@ -125,7 +129,7 @@ const GigEdit = ({ gig, props, gigId }) => {
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the gig pay?</Form.Label>
-          <Form.Control type="textarea" value={pay} onChange={(e) => setPay(e.target.value)} />
+          <Form.Control value={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
@@ -136,7 +140,7 @@ const GigEdit = ({ gig, props, gigId }) => {
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
-          <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
+          <Form.Control value={urgency} as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
             <option value="low">Low</option>
             <option value="moderate">Moderate</option>
             <option value="high">High</option>
