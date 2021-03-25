@@ -4,34 +4,20 @@ import { Link } from 'react-router-dom';
 
 const getDisplayDate = (uglyDate) => {
   const dateObj = new Date(uglyDate);
-  console.log(dateObj, 'DATE', typeof dateObj);
 
   const options = {
-    // weekday: 'short',
     year: '2-digit',
     month: 'short',
     day: '2-digit',
   };
 
   return dateObj.toLocaleString('en-US', options);
-
-  // console.log(localeDate.split(' '), 'LOCALE DATE');
-
-  // displayDateObj = {
-  //   weekday: localeDate[0],
-  //   month: localeDate[1],
-  //   day: localeDate[2],
-  //   year: localeDate[3],
-  // };
-
-  // return uglyDate.toLocaleString('en-US', options)
 };
 
 const GigFull = (props) => (
   <>
     <h4>{props.gig.title}:</h4>
     <ul>
-      {/* <li >User: {props.gig.User}</li> */}
       <em>{props.gig.description}</em>
       {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
       {props.gig.pay ? <li>Pay: ${props.gig.pay}</li> : ''}
@@ -39,7 +25,6 @@ const GigFull = (props) => (
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
       {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
-      {/* {props.gig.expirationDate ? <li>Expiration Date: {props.gig.expirationDate}</li> : ''} */}
       {props.gig.tags.length ? (
         <li>
           {props.gig.tags.map((tag) => (
