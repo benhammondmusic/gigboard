@@ -43,12 +43,7 @@ const GigEdit = ({ gig, gigId }) => {
     getGigData();
   }, []);
 
-  // update the contents of currentGig object anytime any piece of of the gig changes
-  /*   useEffect(() => {
-    console.log('updating currentGig whenever gig data changes', currentGig);
-    setCurrentGig
-  }, [description, pay, location, urgency, tags, expirationDate, workStartDate, workEndDate]); */
-
+  // retrieve all gigs from API
   const getGigData = async () => {
     try {
       if (!localStorage.getItem('jwt')) {
@@ -68,31 +63,7 @@ const GigEdit = ({ gig, gigId }) => {
       // setExpirationDate(res.data.gig.expirationDate ? new Date(res.data.gig.expirationDate) : '');
 
       setWorkStartDate(res.data.gig.workStartDate && new Date(res.data.gig.workStartDate));
-      // console.log('setting start date ', new Date(res.data.gig.workStartDate));
       setWorkEndDate(res.data.gig.workEndDate && new Date(res.data.gig.workEndDate));
-
-      //Don't forget to refactor current gig to access state instead of res
-      // create a current Gig to put into setCurrentGig
-      /* const gigFromDb = {
-        title: res.data.gig.title,
-        description: res.data.gig.description,
-        pay: res.data.gig.pay,
-        tip: res.data.gig.tip,
-        location: res.data.gig.location,
-        urgency: res.data.gig.urgency,
-        tags: res.data.gig.tags,
-        expirationDate: res.data.gig.expirationDate,
-        workStartDate: res.data.gig.workStartDate,
-        workEndDate: res.data.gig.workEndDate,
-      }; */
-
-      /* console.log(pay, 'pay in state', typeof pay);
-      console.log(res.data.gig.pay, 'pay from response', typeof res.data.gig.pay);
-      console.log('here is the currentGig', currentGig); */
-      // setting currentGig state
-      // setCurrentGig(gigFromDb);
-
-      console.log('here is the response from getGigData: ', res);
     } catch (error) {
       console.log(error);
     }
@@ -102,12 +73,8 @@ const GigEdit = ({ gig, gigId }) => {
     e.preventDefault();
 
     try {
-      // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
-
       const jwtCheck = localStorage.getItem('jwt');
       const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
-
-      console.log('here is the response from update: ', res);
 
       if (res.data.status === 200) {
         history.push(`/gigs`);
@@ -117,23 +84,14 @@ const GigEdit = ({ gig, gigId }) => {
     }
   };
 
+  // to deal with DATABASE [tag strings] and TAG SELECTOR [{id: tag, Industry: Tag}]
   const tagObjectsToStrings = (tagObjects) => {
     const tagStringArray = [];
     for (let tag of tagObjects) {
       tagStringArray.push(tag.id);
     }
-    console.log('converted objects to strings', tagObjects, tagStringArray);
     return tagStringArray;
   };
-
-  // const tagStringsToObjects = (tagStrings) => {
-  //   const tagObjectArray = [];
-  //   for (let tag of tagStrings) {
-  //     tagObjectArray.push({id: tag.id, Industry: tag});
-  //   }
-  //   console.log('converted objects to strings', tagObjects, tagStringArray);
-  //   return tagStringArray;
-  // };
 
   return (
     <>
@@ -204,7 +162,7 @@ const GigEdit = ({ gig, gigId }) => {
 
         {/* onClick={(event) => (window.location.href = `/gigs`)} */}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
           Save Changes
         </Button>
         <Link to="/gigs" className="btn btn-secondary cncl-btn">

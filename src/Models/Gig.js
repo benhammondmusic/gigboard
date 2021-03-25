@@ -1,13 +1,10 @@
 import axios from 'axios';
 class Gig {
-
   static all = () => {
     return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`);
   };
 
   static add = (gigPostFormData, token) => {
-    console.log(gigPostFormData, "gig post form data");
-    console.log(token, "token");
     return axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, gigPostFormData, {
       headers: {
         authorization: `Bearer ${token}`,
@@ -24,7 +21,7 @@ class Gig {
   };
 
   static update = (gigId, gigFormData, token) => {
-    // you can send GET, POST, PUT, and DELETE all to the same route and get 4 different functionalities
+    //  GET, POST, PUT, DELETE all to the same route; 4 different actions
     return axios.put(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`, gigFormData, {
       headers: {
         authorization: `Bearer ${token}`,

@@ -36,10 +36,6 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [workEndDate, setWorkEndDate] = useState('');
   const history = useHistory();
 
-  useEffect(() => {
-    console.log(tags, 'tags in state');
-  }, [tags]);
-
   // NOTE checking to see if user is logged in
   useEffect(() => {
     if (!localStorage.getItem('jwt')) {
@@ -55,7 +51,6 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     const tagStringArray = [];
     for (let tag of tags) {
       tagStringArray.push(tag.id);
-      console.log(tagStringArray);
     }
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
@@ -63,11 +58,8 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
     // POST the gig to backend -> create in database
     try {
-      console.log('posting a gig:', gigPostFormData);
       const jwtAdd = localStorage.getItem('jwt');
-      console.log(jwtAdd, 'this is the jwt in the <GigAdder> page');
       const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
-      console.log(createGigResponse, 'response when creating gig in GigAdder');
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -119,7 +111,6 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             options={tagOptions}
             displayValue="Industry"
             onSelect={(e) => {
-              console.log(e, 'select event is actually array of selected tags');
               setTags(e);
             }}
           />
@@ -134,9 +125,6 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <Form.Label className="form-title">When does this Gig end?</Form.Label> &nbsp;
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
-
-        {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
-        {/* onClick={(event) => (window.location.href = '/gigs')} */}
 
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig

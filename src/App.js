@@ -1,7 +1,4 @@
-// import React from 'react'
-
 import './App.scss';
-// import {Button} from 'react-bootstrap/Button'
 import Auth from './Models/Auth';
 import Routes from './config/routes';
 import Navbar from './components/Navbar/Navbar';
@@ -17,25 +14,18 @@ function App() {
   const [formEmail, setFormEmail] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [currentUserId, setCurrentUserId] = useState('');
-  // const [currentJwt, setCurrentJwt] = useState(localStorage.getItem("jwt") || "");
 
   useEffect(() => {
     setCurrentUserEmail(localStorage.getItem('currentUserEmail') || '');
     setCurrentUserId(localStorage.getItem('currentUserId') || '');
   }, []);
 
-  // localStorage.getItem("currentUserId") || ""
-  // localStorage.getItem("currentUserEmail") || ""
   const history = useHistory();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(e);
     try {
-      console.log(formEmail, 'formEmail inside handleReg');
       const res = await Auth.register({ email: formEmail, password: formPassword });
-      console.log(res.data.currentUserId, 'mongoID of registered user');
-      // const token = res.data.signedJwt;
 
       setCurrentUserId(res.data.currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
@@ -47,17 +37,12 @@ function App() {
   };
 
   const handleLogin = async (e) => {
-    console.log('LOGGING IN');
     e.preventDefault();
     try {
-      // console.log(formEmail, 'formEmail inside handleLogin');
       const res = await Auth.login({ email: formEmail, password: formPassword });
-
-      console.log(res, 'res in handleLogin');
 
       setCurrentUserId(res.data.currentUserId);
 
-      console.log('set current user id to:', currentUserId);
       setCurrentUserEmail(JSON.parse(res.config.data).email);
 
       localStorage.setItem('jwt', res.data.token);
