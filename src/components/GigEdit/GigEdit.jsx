@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {Link, useParams} from 'react-router-dom'
+import {Link, useParams, useHistory} from 'react-router-dom'
 import Gig from '../../Models/Gig'
 import StateManager from 'react-select';
 import './GigEdit.css'
@@ -39,6 +39,7 @@ const GigEdit = ({gig, props, gigId}) => {
 
   // console.log('here is the gig ID:', id)
   // console.log('here is the Gig:', gig)
+  const history = useHistory();
 
   useEffect( () => {
     getGigData()
@@ -48,8 +49,11 @@ const GigEdit = ({gig, props, gigId}) => {
 
   const getGigData = async ( ) => {
     try {
+      if (!localStorage.getItem('jwt')) {
+        history.push('/gigs')
+      }
       // set response from server to res
-      const res = await Gig.show( id )
+      const res = await Gig.show( id , localStorage.getItem('jwt'))
 
       // set state from retrieved response object
       setTitle(res.data.gig.title)
@@ -96,7 +100,8 @@ const GigEdit = ({gig, props, gigId}) => {
 
     try {
       // my thought here is to pass updatedGig after Instantiate it, but I'm getting an error
-      const res = await Gig.update( id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate} )
+      const jwtCheck = localStorage.getItem('jwt')
+      const res = await Gig.update( id, { title, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate},  jwtCheck)
 
       console.log('here is the response from update: ', res)
 
