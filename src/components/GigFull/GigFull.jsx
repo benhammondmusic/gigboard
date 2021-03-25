@@ -34,8 +34,8 @@ const GigFull = (props) => (
       {/* <li >User: {props.gig.User}</li> */}
       <em>{props.gig.description}</em>
       {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
-      {props.gig.pay ? <li>Pay: {props.gig.pay}</li> : ''}
-      <li>{props.gig.tip ? '$ tips $' : 'no tips'}</li>
+      {props.gig.pay ? <li>Pay: ${props.gig.pay}</li> : ''}
+      <li>{props.gig.tip ? 'Tips: Yes' : 'Tips: No'}</li>
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
       {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
@@ -54,14 +54,16 @@ const GigFull = (props) => (
       )}
 
       <div className="button-container">
-    
-
         {console.log(props.currentUserId, 'currentUserId')}
         {console.log(props.gig.User, 'gig ')}
         {props.currentUserId === props.gig.User ? <GigDelete history={props.history} gig={props.gig} /> : ''}
-        {props.currentUserId === props.gig.User ? <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
-          <button className="btn btn-dark">Edit</button>
-        </Link> : ''} 
+        {props.currentUserId === props.gig.User ? (
+          <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
+            <button className="btn btn-dark">Edit</button>
+          </Link>
+        ) : (
+          ''
+        )}
       </div>
     </ul>
   </>
