@@ -7,7 +7,7 @@ const Home = () => {
         <div className="floating-text>">
           <h1 id="gigboard">Gigboard</h1>
           <p id="tagline">
-            <span id="tagline1">Full time money</span>
+            Full time money
             <br />
             ... minus the commitment
           </p>
