@@ -9,9 +9,13 @@
 .post-it {
   /* display: flex; */
   margin: 2rem;
-  font-family: 'fira sans';
+  font-family: "fira sans";
   background-color: #e7dfc6;
-  width: 40%;
+  width: 60%;
   padding: 2rem;
   box-shadow: 2px 2px 2px 2px black;
+}
+
+Link {
+  margin: 1rem;
 }
