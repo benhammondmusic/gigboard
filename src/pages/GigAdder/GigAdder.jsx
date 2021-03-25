@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
+import Gig from '../../Models/Gig'
 
 import Auth from '../../Models/Auth';
 
@@ -34,15 +34,23 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
-
+  const history = useHistory();
+  
   useEffect(() => {
     console.log(tags, 'tags in state');
   }, [tags]);
 
+  // NOTE checking to see if user is logged in
+  useEffect(() => {
+    if (!localStorage.getItem('jwt')) {
+      history.push('/gigs')
+    }
+  })
+
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     // extract tag strings from their objects
     const tagStringArray = [];
     for (let tag of tags) {
@@ -55,9 +63,13 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
     // POST the gig to backend -> create in database
     try {
+
       console.log('posting a gig:', gigPostFormData);
-      const createGigResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/gigs`, gigPostFormData);
+      const jwtAdd = localStorage.getItem('jwt')
+      console.log(jwtAdd, "this is the jwt in the gigadder page")
+      const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
       console.log(createGigResponse, 'response when creating gig in GigAdder');
+
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -125,7 +137,9 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
         {/* onClick={(event) => (window.location.href = '/gigs')} */}
 
+
         <Button variant="primary" type="submit">
+
           Post Gig
         </Button>
 

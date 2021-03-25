@@ -25,14 +25,14 @@ body {
 }
 
 #gigboard {
-  font-family: 'Fira Sans';
+  font-family: "Fira Sans";
   font-weight: 800;
   font-size: calc(2rem + 9vw);
   width: 100%;
-
+  margin: -13% 0 0 0;
   /* position: relative; */
   /* padding: 150px 0 0 20%; */
-  transform: rotate(-30deg);
+  /* transform: rotate(-30deg); */
 }
 
 /* .floating-text {
@@ -41,13 +41,10 @@ body {
 } */
 
 #tagline {
-  font-family: 'gudea';
+  font-family: "gudea";
   font-weight: 400;
   font-size: 30px;
   position: relative;
   padding: 10% 0 250px 50%;
-}
-
-#tagline1 {
-  padding-left: 15%;
+  width: 120%;
 }
