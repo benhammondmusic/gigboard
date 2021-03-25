@@ -28,7 +28,7 @@ const GigEdit = ({ gig, gigId }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [pay, setPay] = useState(0);
-  const [tip, setTip] = useState('false');
+  const [tip, setTip] = useState(false);
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState(tagOptions);
@@ -57,7 +57,6 @@ const GigEdit = ({ gig, gigId }) => {
       setDescription(res.data.gig.description);
       setPay(res.data.gig.pay);
       setTip(res.data.gig.tip);
-      console.log(res.data.gig.tip, 'tip from db', typeof res.data.gig.tip);
       setLocation(res.data.gig.location);
       setUrgency(res.data.gig.urgency);
       setTags(res.data.gig.tags);

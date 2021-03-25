@@ -27,7 +27,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [pay, setPay] = useState('');
-  const [tip, setTip] = useState('false');
+  const [tip, setTip] = useState(false);
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState([]);
@@ -95,6 +95,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             label="Check this box if this gig is GigWage + tips"
             onClick={() => {
               // flip the tip boolean
+
               setTip(!tip);
             }}
           />
