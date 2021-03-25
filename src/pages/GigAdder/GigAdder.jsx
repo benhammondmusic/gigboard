@@ -86,12 +86,12 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
 
         <Form.Group controlId="input2">
-          <Form.Control as="textarea" rows={3} placeholder="Describe your available gig" onChange={(e) => setDescription(e.target.value)} />
+          <Form.Control as="textarea" rows={3} placeholder="Describe your available Gig (include how many hours)" onChange={(e) => setDescription(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="input3">
-          <Form.Label className="form-title">What does the gig pay?</Form.Label>
-          <Form.Control type="textarea" placeholder="Pay goes here" onChange={(e) => setPay(e.target.value)} />
+          <Form.Label className="form-title">What does the Gig pay?</Form.Label>
+          <div className="pay-form-container"><span className="dollaSign">$</span><Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} /></div>
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
@@ -106,9 +106,9 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
-            <option value="low">Low</option>
-            <option value="moderate">Moderate</option>
-            <option value="high">High</option>
+            <option value="Low">Low</option>
+            <option value="Moderate">Moderate</option>
+            <option value="High">High</option>
           </Form.Control>
         </Form.Group>
 
@@ -125,12 +125,12 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
 
         <Form.Group controlId="workStartDate">
-          <Form.Label className="form-title">When does this Gig start?</Form.Label>
+          <Form.Label className="form-title">When does this Gig start?</Form.Label> &nbsp;
           <DatePicker selected={workStartDate} onChange={(date) => setWorkStartDate(date)} />
         </Form.Group>
 
         <Form.Group controlId="workEndDate">
-          <Form.Label className="form-title">When does this Gig end?</Form.Label>
+          <Form.Label className="form-title">When does this Gig end?</Form.Label> &nbsp;
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
@@ -143,7 +143,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           Post Gig
         </Button>
 
-        <Link to="/gigs" className="btn btn-secondary">
+        <Link to="/gigs" className="btn btn-secondary cncl-btn">
           Cancel
         </Link>
       </Form>
