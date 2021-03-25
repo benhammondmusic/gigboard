@@ -5,7 +5,7 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useHistory } from 'react-router-dom';
-import Gig from '../../Models/Gig'
+import Gig from '../../Models/Gig';
 
 import Auth from '../../Models/Auth';
 
@@ -35,7 +35,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
   const history = useHistory();
-  
+
   useEffect(() => {
     console.log(tags, 'tags in state');
   }, [tags]);
@@ -43,14 +43,14 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   // NOTE checking to see if user is logged in
   useEffect(() => {
     if (!localStorage.getItem('jwt')) {
-      history.push('/gigs')
+      history.push('/gigs');
     }
-  })
+  });
 
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // extract tag strings from their objects
     const tagStringArray = [];
     for (let tag of tags) {
@@ -63,13 +63,11 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
     // POST the gig to backend -> create in database
     try {
-
       console.log('posting a gig:', gigPostFormData);
-      const jwtAdd = localStorage.getItem('jwt')
-      console.log(jwtAdd, "this is the jwt in the gigadder page")
+      const jwtAdd = localStorage.getItem('jwt');
+      console.log(jwtAdd, 'this is the jwt in the <GigAdder> page');
       const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
       console.log(createGigResponse, 'response when creating gig in GigAdder');
-
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -91,7 +89,10 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the Gig pay?</Form.Label>
-          <div className="pay-form-container"><span className="dollaSign">$</span><Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} /></div>
+          <div className="pay-form-container">
+            <span className="dollaSign">$</span>
+            <Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} />
+          </div>
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
@@ -137,9 +138,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
         {/* onClick={(event) => (window.location.href = '/gigs')} */}
 
-
-        <Button variant="primary" type="submit">
-
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
 

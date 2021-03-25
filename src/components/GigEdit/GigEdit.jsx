@@ -69,7 +69,7 @@ const GigEdit = ({ gig, props, gigId }) => {
       setWorkStartDate(res.data.gig.workStartDate);
       setWorkEndDate(res.data.gig.workEndDate);
 
-      //Don't forget to refactor curent gig to access state instead of res
+      //Don't forget to refactor current gig to access state instead of res
       // create a current Gig to put into setCurrentGig
       /* const gigFromDb = {
         title: res.data.gig.title,
@@ -146,9 +146,23 @@ const GigEdit = ({ gig, props, gigId }) => {
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
+        <div>
+          {tags.map((tag) => (
+            <small className="tag">#{tag}</small>
+          ))}
+        </div>
+
         {/* <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
-          <Multiselect options={tags} displayValue="Industry" onChange={(e) => setTags(e.target.value)} />
+          <Multiselect
+            options={tagOptions}
+            selectedValues={tags}
+            displayValue="Industry"
+            onSelect={(e) => {
+              console.log('new tags', e);
+              setTags(e);
+            }}
+          />
         </Form.Group> */}
         {/* <Form.Group controlId="workStartDate">
           <Form.Label className="form-title">When does this Gig start?</Form.Label>
@@ -168,7 +182,9 @@ const GigEdit = ({ gig, props, gigId }) => {
           />
         </Form.Group> */}
 
-        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
+        {/* onClick={(event) => (window.location.href = `/gigs`)} */}
+
+        <Button variant="primary" type="submit">
           Save Changes
         </Button>
       </Form>
