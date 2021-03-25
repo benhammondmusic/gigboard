@@ -75,6 +75,7 @@ const GigEdit = ({ gig, gigId }) => {
 
     try {
       const jwtCheck = localStorage.getItem('jwt');
+      console.log('tip before update db:', tip);
       const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
 
       if (res.data.status === 200) {
@@ -110,10 +111,18 @@ const GigEdit = ({ gig, gigId }) => {
           <Form.Label className="form-title">What does the gig pay?</Form.Label>
           <Form.Control value={pay} onChange={(e) => setPay(e.target.value)} />
         </Form.Group>
+
         <Form.Group controlId="formBasicCheckbox">
-          {console.log(tip, 'TIP', typeof tip)}
-          <Form.Check value={tip} type="checkbox" label="Check this box if this gig is GigWage + tips" onChange={() => setTip(!tip)} />
+          <Form.Check
+            checked={tip}
+            type="checkbox"
+            label="Check this box if this gig is GigWage + tips"
+            onChange={() => {
+              setTip(!tip);
+            }}
+          />
         </Form.Group>
+
         <Form.Group controlId="input3">
           <Form.Label className="form-title">Where's the Gig?</Form.Label>
           <Form.Control type="location" value={location} onChange={(e) => setLocation(e.target.value)} />
@@ -162,9 +171,7 @@ const GigEdit = ({ gig, gigId }) => {
           </Form.Group>
         )}
 
-        {/* onClick={(event) => (window.location.href = `/gigs`)} */}
-
-        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = `/gigs`)}>
+        <Button variant="primary" type="submit">
           Save Changes
         </Button>
         <Link to="/gigs" className="btn btn-secondary cncl-btn">

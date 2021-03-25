@@ -88,7 +88,16 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onClick={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          <Form.Check
+            type="checkbox"
+            // checkboxes use CHECKED for boolean status, not VALUE
+            checked={tip}
+            label="Check this box if this gig is GigWage + tips"
+            onClick={() => {
+              // flip the tip boolean
+              setTip(!tip);
+            }}
+          />
         </Form.Group>
 
         <Form.Group controlId="input3">
