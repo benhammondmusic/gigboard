@@ -5,8 +5,16 @@ import { useEffect, useState } from 'react';
 import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import './GigList.css';
-import Gig from '../../Models/Gig'
+import Gig from '../../Models/Gig';
 
+// apply random angle for gig cards
+const getRandomTilt = () => {
+  const tilt = Math.floor(Math.random() * 90) - 45;
+  console.log(tilt, 'TILT');
+  return tilt;
+};
+
+// for the search bar function
 const filterGigs = (gigs, query) => {
   if (!query) {
     return gigs;
@@ -37,6 +45,7 @@ const GigList = ({ currentUserId }) => {
 
       const res = await Gig.all();
       console.log('RESPONSE FROM GET  API/GIGS/', res);
+
       const fetchedGigs = res.data.foundGigs;
       console.log('fetched gigs to map over', fetchedGigs);
       setGigs(fetchedGigs);
@@ -51,7 +60,7 @@ const GigList = ({ currentUserId }) => {
 
       <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
-          return <GigPost key={idx} gig={gig} currentUserId={currentUserId} />;
+          return <GigPost key={idx} gig={gig} tilt={getRandomTilt()} currentUserId={currentUserId} />;
         })}
       </ul>
     </div>

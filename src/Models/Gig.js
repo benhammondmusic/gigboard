@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 class Gig {
+
   static all = () => {
     return axios.get(`${process.env.REACT_APP_API_URL}/api/gigs`);
   };
@@ -35,7 +36,7 @@ class Gig {
     try {
       return axios.delete(`${process.env.REACT_APP_API_URL}/api/gigs/${gigId}`);
     } catch (error) {
-      console.log(error, "ERROR DELETING GIG");
+      console.log(error, 'ERROR DELETING GIG');
     }
   };
 }

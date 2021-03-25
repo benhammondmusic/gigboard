@@ -14,11 +14,11 @@ const GigDelete = ({ gig }) => {
 
     // redirect ? is there a better method?
     //   history.push(`/gigs`);
-    window.location.href = '/gigs';
+    window.location.reload(true); //= '/gigs';
   };
 
   return (
-    <button type="submit" className="btn btn-outline-danger" onClick={deletePost}>
+    <button type="submit" className="btn btn-light" onClick={deletePost}>
       Delete
     </button>
   );

@@ -9,8 +9,6 @@ import GigEditor from "../pages/GigEditor/GigEditor";
 
 const Routes = (props) => (
   <Switch>
-    <Route exact path="/" component={Home} />
-
     <Route exact path="/gigs" render={() => <GigList currentUserId={props.currentUserId} />} />
 
     <Route
@@ -48,6 +46,8 @@ const Routes = (props) => (
     {console.log(props.currentUserEmail, props.currentUserId, "CURRENT USER EMAIL AND MONGO_ID")}
 
     <Route exact path="/gigs/editgig/:id" component={GigEditor} props={props} />
+
+    <Route path="/" component={Home} />
   </Switch>
 );
 

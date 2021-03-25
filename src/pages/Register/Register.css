@@ -4,4 +4,9 @@
   background-color: #e7dfc6;
   padding: 8% 4% 20% 4%;
   box-shadow: 2px 2px 2px 2px black;
+  width: 40%;
+}
+
+.reg-cancel {
+  margin: 1rem;
 }
