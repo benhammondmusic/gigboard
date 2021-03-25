@@ -39,7 +39,7 @@ const GigFull = (props) => (
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
       {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
-      {props.gig.expirationDate ? <li>Expiration Date: {props.gig.expirationDate}</li> : ''}
+      {/* {props.gig.expirationDate ? <li>Expiration Date: {props.gig.expirationDate}</li> : ''} */}
       {props.gig.tags.length ? (
         <li>
           {props.gig.tags.map((tag) => (

@@ -10,7 +10,7 @@ import Gig from '../../Models/Gig';
 import StateManager from 'react-select';
 import './GigEdit.css';
 
-const GigEdit = ({ gig, props, gigId }) => {
+const GigEdit = ({ gig, gigId }) => {
   const tagOptions = [
     { id: 'Entertainment', Industry: 'Entertainment' },
     { id: 'Hospitality', Industry: 'Hospitality' },
@@ -32,9 +32,9 @@ const GigEdit = ({ gig, props, gigId }) => {
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState(tagOptions);
-  const [expirationDate, setExpirationDate] = useState('');
-  const [workStartDate, setWorkStartDate] = useState('');
-  const [workEndDate, setWorkEndDate] = useState('');
+  const [expirationDate, setExpirationDate] = useState(new Date());
+  const [workStartDate, setWorkStartDate] = useState(new Date());
+  const [workEndDate, setWorkEndDate] = useState(new Date());
 
   const history = useHistory();
 
@@ -65,9 +65,11 @@ const GigEdit = ({ gig, props, gigId }) => {
       setLocation(res.data.gig.location);
       setUrgency(res.data.gig.urgency);
       setTags(res.data.gig.tags);
-      setExpirationDate(res.data.gig.expirationDate);
-      setWorkStartDate(res.data.gig.workStartDate);
-      setWorkEndDate(res.data.gig.workEndDate);
+      // setExpirationDate(res.data.gig.expirationDate ? new Date(res.data.gig.expirationDate) : '');
+
+      setWorkStartDate(res.data.gig.workStartDate && new Date(res.data.gig.workStartDate));
+      // console.log('setting start date ', new Date(res.data.gig.workStartDate));
+      setWorkEndDate(res.data.gig.workEndDate && new Date(res.data.gig.workEndDate));
 
       //Don't forget to refactor current gig to access state instead of res
       // create a current Gig to put into setCurrentGig
@@ -108,12 +110,30 @@ const GigEdit = ({ gig, props, gigId }) => {
       console.log('here is the response from update: ', res);
 
       if (res.data.status === 200) {
-        props.history.push(`/gigs/${gigId}`);
+        history.push(`/gigs`);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const tagObjectsToStrings = (tagObjects) => {
+    const tagStringArray = [];
+    for (let tag of tagObjects) {
+      tagStringArray.push(tag.id);
+    }
+    console.log('converted objects to strings', tagObjects, tagStringArray);
+    return tagStringArray;
+  };
+
+  // const tagStringsToObjects = (tagStrings) => {
+  //   const tagObjectArray = [];
+  //   for (let tag of tagStrings) {
+  //     tagObjectArray.push({id: tag.id, Industry: tag});
+  //   }
+  //   console.log('converted objects to strings', tagObjects, tagStringArray);
+  //   return tagStringArray;
+  // };
 
   return (
     <>
@@ -146,41 +166,41 @@ const GigEdit = ({ gig, props, gigId }) => {
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
-        <div>
-          {tags.map((tag) => (
-            <small className="tag">#{tag}</small>
-          ))}
-        </div>
 
-        {/* <Form.Group controlId="tags">
+        <Form.Group controlId="tags">
           <Form.Label className="form-title">What category tag(s) does this Gig fit?</Form.Label>
           <Multiselect
             options={tagOptions}
-            selectedValues={tags}
             displayValue="Industry"
-            onSelect={(e) => {
-              console.log('new tags', e);
-              setTags(e);
+            onSelect={(tagObjects) => {
+              // extract tag strings from their form-option objects
+              setTags(tagObjectsToStrings(tagObjects));
             }}
           />
-        </Form.Group> */}
-        {/* <Form.Group controlId="workStartDate">
-          <Form.Label className="form-title">When does this Gig start?</Form.Label>
-          <DatePicker
-            // selected={workStartDate} // causing errors
-            onChange={(date) => {
-              setWorkStartDate(date);
-            }}
-          />
-        </Form.Group> */}
-        {/* <Form.Group controlId="workEndDate">
-          <Form.Label className="form-title">When does this Gig end?</Form.Label>
-          <DatePicker
-            onChange={(date) => {
-              setWorkEndDate(date);
-            }}
-          />
-        </Form.Group> */}
+        </Form.Group>
+
+        {workStartDate && (
+          <Form.Group controlId="workStartDate">
+            <Form.Label className="form-title">What date does this Gig start?</Form.Label>
+            <DatePicker
+              selected={workStartDate}
+              onChange={(formDate) => {
+                setWorkStartDate(formDate);
+              }}
+            />
+          </Form.Group>
+        )}
+        {workEndDate && (
+          <Form.Group controlId="workEndDate">
+            <Form.Label className="form-title">When does this Gig end?</Form.Label>
+            <DatePicker
+              selected={workEndDate}
+              onChange={(formDate) => {
+                setWorkEndDate(formDate);
+              }}
+            />
+          </Form.Group>
+        )}
 
         {/* onClick={(event) => (window.location.href = `/gigs`)} */}
 
