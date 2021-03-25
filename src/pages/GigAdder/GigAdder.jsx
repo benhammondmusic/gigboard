@@ -6,8 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useHistory } from 'react-router-dom';
 import Gig from '../../Models/Gig';
-
-import Auth from '../../Models/Auth';
+// import Auth from '../../Models/Auth';
 
 import './GigAdder.css';
 
@@ -31,7 +30,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState([]);
-  const [expirationDate, setExpirationDate] = useState('');
+  // const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
   const history = useHistory();
@@ -54,12 +53,12 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     }
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
       const jwtAdd = localStorage.getItem('jwt');
-      const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
+      await Gig.add(gigPostFormData, jwtAdd);
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -72,7 +71,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
       <Form onSubmit={handleSubmit} className="post-it">
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
-          <Form.Control type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
+          <Form.Control value={title} type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="input2">
@@ -93,7 +92,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             // checkboxes use CHECKED for boolean status, not VALUE
             checked={tip}
             label="Check this box if this gig is GigWage + tips"
-            onClick={() => {
+            onChange={() => {
               // flip the tip boolean
 
               setTip(!tip);

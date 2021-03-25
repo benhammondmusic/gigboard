@@ -7,10 +7,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Gig from '../../Models/Gig';
 
-import StateManager from 'react-select';
+// import StateManager from 'react-select';
 import './GigEdit.css';
 
-const GigEdit = ({ gig, gigId }) => {
+const GigEdit = () => {
   const tagOptions = [
     { id: 'Entertainment', Industry: 'Entertainment' },
     { id: 'Hospitality', Industry: 'Hospitality' },
@@ -32,7 +32,7 @@ const GigEdit = ({ gig, gigId }) => {
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState(tagOptions);
-  const [expirationDate, setExpirationDate] = useState(new Date());
+  // const [expirationDate, setExpirationDate] = useState(new Date());
   const [workStartDate, setWorkStartDate] = useState(new Date());
   const [workEndDate, setWorkEndDate] = useState(new Date());
 
@@ -75,7 +75,7 @@ const GigEdit = ({ gig, gigId }) => {
     try {
       const jwtCheck = localStorage.getItem('jwt');
       console.log('tip before update db:', tip);
-      const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, expirationDate, workStartDate, workEndDate }, jwtCheck);
+      const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, workStartDate, workEndDate }, jwtCheck);
 
       if (res.data.status === 200) {
         history.push(`/gigs`);
