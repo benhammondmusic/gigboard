@@ -34,15 +34,23 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
-
+  const history = useHistory();
+  
   useEffect(() => {
     console.log(tags, 'tags in state');
   }, [tags]);
 
+  // NOTE checking to see if user is logged in
+  useEffect(() => {
+    if (!localStorage.getItem('jwt')) {
+      history.push('/gigs')
+    }
+  })
+
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     // extract tag strings from their objects
     const tagStringArray = [];
     for (let tag of tags) {
