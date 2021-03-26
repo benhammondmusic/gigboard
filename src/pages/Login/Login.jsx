@@ -16,8 +16,8 @@ const Login = (props) => {
     try {
       const res = await Auth.googleRegister({ email: response.profileObj.email });
       props.setCurrentUserId(res.data.currentUserId);
-      props.setCurrentUserEmail(response.profileObj.email);
-      localStorage.setItem('jwt', response.tokenId);
+      props.setCurrentUserEmail(res.data.email);
+      localStorage.setItem('jwt', res.data.token);
       history.push('/gigs');
     } catch (error) {
       console.log(error, 'Error registering with Google OAuth');
