@@ -34,7 +34,7 @@ function App() {
       history.push('/gigs');
     } catch (error) {
       console.log(error, 'error');
-      console.log(error.message, 'error . message');
+      // console.log(error.message, 'error . message');
       setErrorMessage(error);
     }
   };
@@ -53,6 +53,7 @@ function App() {
       history.push('/gigs');
     } catch (error) {
       console.log(error);
+      setErrorMessage(error);
     }
   };
 
@@ -73,11 +74,20 @@ function App() {
     history.push('/');
   };
 
+  const clearErrors = () => {
+    console.log('clearing any errors messages from App.js state');
+    setErrorMessage('');
+  };
+
+  useEffect(() => {
+    clearErrors();
+  }, [formEmail, formPassword]);
+
   return (
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes errorMessage={errorMessage} currentUserId={currentUserId} setCurrentUserId={setCurrentUserId} currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail} />
+        <Routes clearErrors={clearErrors} errorMessage={errorMessage} currentUserId={currentUserId} setCurrentUserId={setCurrentUserId} currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail} />
       </main>
     </>
   );
