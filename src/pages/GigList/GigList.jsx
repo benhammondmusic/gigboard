@@ -11,7 +11,7 @@ import Gig from '../../Models/Gig';
 const isToday = (gigDateJSON) => {
   const gigDate = new Date(gigDateJSON);
   const today = new Date();
-  return gigDate.getDate() == today.getDate() && gigDate.getMonth() == today.getMonth() && gigDate.getFullYear() == today.getFullYear();
+  return gigDate.getDate() === today.getDate() && gigDate.getMonth() === today.getMonth() && gigDate.getFullYear() === today.getFullYear();
 };
 
 // apply random angle for gig cards
@@ -29,7 +29,7 @@ const filterGigs = (gigs, query, dateRange) => {
   // search every text based field (incl tags) of every gig
   const matchedGigs = gigs.filter((gig) => {
     const info = gig.title + gig.description + JSON.stringify(gig.tags) + gig.location;
-    return info.toLowerCase().includes(query);
+    return info.toLowerCase().includes(query.toLowerCase());
   });
 
   // filter matchedGigs by dateRange and return
@@ -37,9 +37,6 @@ const filterGigs = (gigs, query, dateRange) => {
     // if any date, dont filter the gig
     if (dateRange === 'any') return true;
     else if (dateRange === 'today') {
-      // otherwise confirm gig date is TODAY
-      // console.log(gig.workStartDate, 'gig work state date from gig');
-      // console.log(new Date().toJSON(), 'new Date().toJSON');
       return isToday(gig.workStartDate);
     }
   });
@@ -53,7 +50,6 @@ const GigList = ({ currentUserId }) => {
   // STATE
   const [searchQuery, setSearchQuery] = useState(query || '');
   const [gigs, setGigs] = useState([]);
-
   const [dateRange, setDateRange] = useState('any'); //options 'today' or 'any'
 
   // search bar filter
@@ -68,10 +64,6 @@ const GigList = ({ currentUserId }) => {
     };
     fetchGigs();
   }, []);
-
-  useEffect(() => {
-    console.log(dateRange, 'date range in state of giglist');
-  }, [dateRange]);
 
   return (
     <div className="GigList">
