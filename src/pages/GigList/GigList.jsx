@@ -34,7 +34,7 @@ const filterGigs = (gigs, query, dateRange) => {
 
   // filter matchedGigs by dateRange and return
   return matchedGigs.filter((gig) => {
-    // if any date, dont filter the gig
+    // if any date, don't filter the gig
     if (dateRange === 'any') return true;
     else if (dateRange === 'today') {
       return isToday(gig.workStartDate);
