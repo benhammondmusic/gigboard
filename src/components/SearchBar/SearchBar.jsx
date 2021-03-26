@@ -16,7 +16,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, dateRange, setDateRange }) => 
         {/* <span>Show Gigs Happening:</span> */}
         <ToggleButton
           type="radio"
-          variant="info"
+          variant="light"
           name="radio"
           value="any"
           checked={dateRange === 'any'}
@@ -29,7 +29,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, dateRange, setDateRange }) => 
         </ToggleButton>
         <ToggleButton
           type="radio"
-          variant="dark"
+          variant="light"
           name="radio"
           value="today"
           checked={dateRange === 'today'}
