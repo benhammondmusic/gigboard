@@ -6,3 +6,7 @@
   justify-content: center;
   height: 2rem;
 }
+
+.date-range-controls {
+  padding-left: 10rem;
+}
