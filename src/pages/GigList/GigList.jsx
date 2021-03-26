@@ -7,21 +7,41 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import './GigList.css';
 import Gig from '../../Models/Gig';
 
+// adapted from https://flaviocopes.com/how-to-determine-date-is-today-javascript/
+const isToday = (gigDateJSON) => {
+  const gigDate = new Date(gigDateJSON);
+  const today = new Date();
+  return gigDate.getDate() == today.getDate() && gigDate.getMonth() == today.getMonth() && gigDate.getFullYear() == today.getFullYear();
+};
+
 // apply random angle for gig cards
 const getRandomTilt = () => {
   return Math.floor(Math.random() * 90) - 45;
 };
 
 // for the search bar function
-const filterGigs = (gigs, query) => {
-  if (!query) {
+const filterGigs = (gigs, query, dateRange) => {
+  // if no search query and date selector is on ANY
+  if (!query && dateRange === 'any') {
     return gigs;
   }
 
   // search every text based field (incl tags) of every gig
-  return gigs.filter((gig) => {
+  const matchedGigs = gigs.filter((gig) => {
     const info = gig.title + gig.description + JSON.stringify(gig.tags) + gig.location;
     return info.toLowerCase().includes(query);
+  });
+
+  // filter matchedGigs by dateRange and return
+  return matchedGigs.filter((gig) => {
+    // if any date, dont filter the gig
+    if (dateRange === 'any') return true;
+    else if (dateRange === 'today') {
+      // otherwise confirm gig date is TODAY
+      // console.log(gig.workStartDate, 'gig work state date from gig');
+      // console.log(new Date().toJSON(), 'new Date().toJSON');
+      return isToday(gig.workStartDate);
+    }
   });
 };
 
@@ -37,7 +57,7 @@ const GigList = ({ currentUserId }) => {
   const [dateRange, setDateRange] = useState('any'); //options 'today' or 'any'
 
   // search bar filter
-  const filteredGigs = filterGigs(gigs, searchQuery);
+  const filteredGigs = filterGigs(gigs, searchQuery, dateRange);
 
   // get all gigs from backend/db on PAGE LOAD
   useEffect(() => {
