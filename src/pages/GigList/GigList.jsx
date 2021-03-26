@@ -39,6 +39,8 @@ const filterGigs = (gigs, query, dateRange) => {
     else if (dateRange === 'today') {
       return isToday(gig.workStartDate);
     }
+    // catch all, there aren't any other dateRange options yet
+    return true;
   });
 };
 

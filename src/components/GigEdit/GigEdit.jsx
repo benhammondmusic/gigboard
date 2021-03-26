@@ -41,6 +41,7 @@ const GigEdit = () => {
   // fetch all gigs on page load
   useEffect(() => {
     getGigData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // retrieve all gigs from API
