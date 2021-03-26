@@ -1,6 +1,6 @@
 // guide to implementing SEARCH BAR at: https://www.emgoto.com/react-search-bar/
 
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import GigPost from '../../components/GigPost/GigPost';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -9,9 +9,7 @@ import Gig from '../../Models/Gig';
 
 // apply random angle for gig cards
 const getRandomTilt = () => {
-  const tilt = Math.floor(Math.random() * 90) - 45;
-  console.log(tilt, 'TILT');
-  return tilt;
+  return Math.floor(Math.random() * 90) - 45;
 };
 
 // for the search bar function
@@ -42,14 +40,9 @@ const GigList = ({ currentUserId }) => {
   // get all gigs from backend/db on PAGE LOAD
   useEffect(() => {
     const fetchGigs = async () => {
-
       const res = await Gig.all();
-      console.log('RESPONSE FROM GET  API/GIGS/', res);
-
       const fetchedGigs = res.data.foundGigs;
-      console.log('fetched gigs to map over', fetchedGigs);
       setGigs(fetchedGigs);
-      console.log(gigs);
     };
     fetchGigs();
   }, []);

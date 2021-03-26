@@ -11,21 +11,18 @@ const Login = (props) => {
 
   const responseGoogle = async (response) => {
     try {
-      console.log(response, 'this is the response from login in with google');
-
       const res = await Auth.googleRegister({ email: response.profileObj.email });
-      console.log(res, 'new googleRegistered user');
       props.setCurrentUserId(res.data.currentUserId);
       props.setCurrentUserEmail(response.profileObj.email);
       localStorage.setItem('jwt', response.tokenId);
       history.push('/gigs');
     } catch (error) {
-      console.log(error);
+      console.log(error, 'Error registering with Google OAuth');
     }
   };
 
   const handleGoogleRegisterAndLogin = (e) => {
-    console.log('There has been an error with the Google call');
+    console.log('There has been an error with the Google call. Are your cookies enabled?');
   };
 
   return (
@@ -53,7 +50,6 @@ const Login = (props) => {
       </Form>
       <hr></hr>
       <h4>New Account with Email</h4>
-      {/* <h4>Register to Post a Gig</h4> */}
       <Link to="/register" className="link">
         <button id="reg-btn">Register</button>
       </Link>

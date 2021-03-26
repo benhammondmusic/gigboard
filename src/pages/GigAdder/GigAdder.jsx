@@ -5,9 +5,8 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useHistory } from 'react-router-dom';
-import Gig from '../../Models/Gig'
-
-import Auth from '../../Models/Auth';
+import Gig from '../../Models/Gig';
+// import Auth from '../../Models/Auth';
 
 import './GigAdder.css';
 
@@ -27,49 +26,39 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [pay, setPay] = useState('');
-  const [tip, setTip] = useState('false');
+  const [tip, setTip] = useState(false);
   const [location, setLocation] = useState('');
   const [urgency, setUrgency] = useState('Low');
   const [tags, setTags] = useState([]);
-  const [expirationDate, setExpirationDate] = useState('');
+  // const [expirationDate, setExpirationDate] = useState('');
   const [workStartDate, setWorkStartDate] = useState('');
   const [workEndDate, setWorkEndDate] = useState('');
   const history = useHistory();
-  
-  useEffect(() => {
-    console.log(tags, 'tags in state');
-  }, [tags]);
 
   // NOTE checking to see if user is logged in
   useEffect(() => {
     if (!localStorage.getItem('jwt')) {
-      history.push('/gigs')
+      history.push('/gigs');
     }
-  })
+  });
 
   // GIG POSTER CLICKS "POST GIG" BUTTON
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // extract tag strings from their objects
     const tagStringArray = [];
     for (let tag of tags) {
       tagStringArray.push(tag.id);
-      console.log(tagStringArray);
     }
 
     // Add current logged in user (gig poster) to the gig posts' Form Data User field
-    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, expirationDate, workStartDate, workEndDate };
+    const gigPostFormData = { User: currentUserId, title, description, pay, tip, location, urgency, tags: tagStringArray, workStartDate, workEndDate };
 
     // POST the gig to backend -> create in database
     try {
-
-      console.log('posting a gig:', gigPostFormData);
-      const jwtAdd = localStorage.getItem('jwt')
-      console.log(jwtAdd, "this is the jwt in the gigadder page")
-      const createGigResponse = await Gig.add(gigPostFormData, jwtAdd);
-      console.log(createGigResponse, 'response when creating gig in GigAdder');
-
+      const jwtAdd = localStorage.getItem('jwt');
+      await Gig.add(gigPostFormData, jwtAdd);
     } catch (error) {
       console.log(error, 'Error posting gig:', gigPostFormData);
     }
@@ -82,7 +71,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
       <Form onSubmit={handleSubmit} className="post-it">
         <Form.Group controlId="input1">
           <Form.Label className="form-title">What's the Gig?</Form.Label>
-          <Form.Control type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
+          <Form.Control value={title} type="title" placeholder="Gig goes here" onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="input2">
@@ -91,11 +80,24 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What does the Gig pay?</Form.Label>
-          <div className="pay-form-container"><span className="dollaSign">$</span><Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} /></div>
+          <div className="pay-form-container">
+            <span className="dollaSign">$</span>
+            <Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} />
+          </div>
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check this box if this gig is GigWage + tips" onClick={() => (tip === 'false' ? setTip('true') : setTip('false'))} />
+          <Form.Check
+            type="checkbox"
+            // checkboxes use CHECKED for boolean status, not VALUE
+            checked={tip}
+            label="Check this box if this gig is GigWage + tips"
+            onChange={() => {
+              // flip the tip boolean
+
+              setTip(!tip);
+            }}
+          />
         </Form.Group>
 
         <Form.Group controlId="input3">
@@ -118,7 +120,6 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             options={tagOptions}
             displayValue="Industry"
             onSelect={(e) => {
-              console.log(e, 'select event is actually array of selected tags');
               setTags(e);
             }}
           />
@@ -134,12 +135,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <DatePicker selected={workEndDate} onChange={(date) => setWorkEndDate(date)} />
         </Form.Group>
 
-        {/* PUT THIS BACK IN SUBMIT <BUTTON> */}
-        {/* onClick={(event) => (window.location.href = '/gigs')} */}
-
-
-        <Button variant="primary" type="submit">
-
+        <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
 
