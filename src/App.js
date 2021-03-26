@@ -14,6 +14,7 @@ function App() {
   const [formEmail, setFormEmail] = useState('');
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [currentUserId, setCurrentUserId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     setCurrentUserEmail(localStorage.getItem('currentUserEmail') || '');
@@ -32,7 +33,9 @@ function App() {
 
       history.push('/gigs');
     } catch (error) {
-      console.log(error);
+      console.log(error, 'error');
+      console.log(error.message, 'error . message');
+      setErrorMessage(error);
     }
   };
 
@@ -74,7 +77,7 @@ function App() {
     <>
       <Navbar logOut={logOut} currentUserEmail={currentUserEmail} />
       <main>
-        <Routes currentUserId={currentUserId} setCurrentUserId={setCurrentUserId} currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail} />
+        <Routes errorMessage={errorMessage} currentUserId={currentUserId} setCurrentUserId={setCurrentUserId} currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} handleLogin={handleLogin} handleRegister={handleRegister} formPassword={formPassword} setFormPassword={setFormPassword} setFormEmail={setFormEmail} />
       </main>
     </>
   );

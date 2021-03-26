@@ -29,6 +29,8 @@ const Register = (props) => {
         <Link to="/login" className="btn btn-secondary reg-cancel">
           Cancel
         </Link>
+
+        <div className="error">{props.errorMessage ? "Error registering. Please login instead if you've previously registered this email" : ''}</div>
       </Form>
     </>
   );
