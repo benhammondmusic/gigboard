@@ -34,6 +34,8 @@ const GigList = ({ currentUserId }) => {
   const [searchQuery, setSearchQuery] = useState(query || '');
   const [gigs, setGigs] = useState([]);
 
+  const [dateRange, setDateRange] = useState('any'); //options 'today' or 'any'
+
   // search bar filter
   const filteredGigs = filterGigs(gigs, searchQuery);
 
@@ -47,9 +49,13 @@ const GigList = ({ currentUserId }) => {
     fetchGigs();
   }, []);
 
+  useEffect(() => {
+    console.log(dateRange, 'date range in state of giglist');
+  }, [dateRange]);
+
   return (
     <div className="GigList">
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} dateRange={dateRange} setDateRange={setDateRange} />
 
       <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
