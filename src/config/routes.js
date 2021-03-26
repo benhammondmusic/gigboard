@@ -11,9 +11,9 @@ const Routes = (props) => (
   <Switch>
     <Route exact path="/gigs" render={() => <GigList currentUserId={props.currentUserId} />} />
 
-    <Route exact path="/login" render={() => <Login setFormEmail={props.setFormEmail} setFormPassword={props.setFormPassword} handleLogin={props.handleLogin} setCurrentUserId={props.setCurrentUserId} setCurrentUserEmail={props.setCurrentUserEmail} />} />
+    <Route exact path="/login" render={() => <Login errorMessage={props.errorMessage} setFormEmail={props.setFormEmail} setFormPassword={props.setFormPassword} handleLogin={props.handleLogin} setCurrentUserId={props.setCurrentUserId} setCurrentUserEmail={props.setCurrentUserEmail} />} />
 
-    <Route exact path="/register" render={() => <Register handleRegister={props.handleRegister} setFormPassword={props.setFormPassword} setFormEmail={props.setFormEmail} />} />
+    <Route exact path="/register" render={() => <Register errorMessage={props.errorMessage} handleRegister={props.handleRegister} setFormPassword={props.setFormPassword} setFormEmail={props.setFormEmail} />} />
 
     <Route exact path="/newgig" render={() => <GigAdder currentUserEmail={props.currentUserEmail} currentUserId={props.currentUserId} />} />
 
