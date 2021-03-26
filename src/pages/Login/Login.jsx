@@ -49,7 +49,7 @@ const Login = (props) => {
           Log In
         </Button>
 
-        <span className="error">{props.errorMessage ? 'Error logging in; please check your email and password.' : ''}</span>
+        <span className="error">{props.errorMessage ? 'Incorrect username or password. Please try again or register below.' : ''}</span>
       </Form>
       <hr></hr>
       <h4>New Account with Email</h4>

@@ -46,3 +46,8 @@
   height: 75vh;
   width: 65%;
 }
+
+.error{
+  color: red;
+  font-style: normal;
+}
