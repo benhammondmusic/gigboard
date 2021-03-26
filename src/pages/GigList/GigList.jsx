@@ -53,7 +53,7 @@ const GigList = ({ currentUserId }) => {
 
       <ul className="gigs-box">
         {filteredGigs.map((gig, idx) => {
-          return <GigPost key={idx} gig={gig} tilt={getRandomTilt()} currentUserId={currentUserId} />;
+          return <GigPost key={idx} idx={idx} gig={gig} tilt={getRandomTilt()} currentUserId={currentUserId} />;
         })}
       </ul>
     </div>
