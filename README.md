@@ -76,4 +76,4 @@ If you're interested in contributing to this project - please check out our [sty
 - [Use Kaye's Gigboard](https://kaye-gig-board.herokuapp.com) - Kaye's Heroku deployment
 - [Use Kaye's Gigboard](https://sergio-frontend-gigboard.herokuapp.com) - Sergio's Heroku deployment
 - [Use Kaye's Gigboard](https://jc-gigboard.herokuapp.com) - JC's Heroku deployment
-  _Please ensure cookies are enabled to allow Oauth login_
+  _Please ensure you're using HTTPS and that cookies are enabled to allow Oauth login_
