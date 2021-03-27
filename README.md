@@ -75,10 +75,12 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 
 If you're interested in contributing to this project - please check out our [style guide](./styleguide.md)
 
-### Live Site
+### Live Site(s)
 
-- [Use Ben's Gigboard](https://gig-board.herokuapp.com/gigs) - [Ben's](https://benhammond.tech) Heroku deployment
-- [Use Kaye's Gigboard](https://kaye-gig-board.herokuapp.com) - Kaye's Heroku deployment
-- [Use Kaye's Gigboard](https://sergio-frontend-gigboard.herokuapp.com) - Sergio's Heroku deployment
-- [Use Kaye's Gigboard](https://jc-gigboard.herokuapp.com) - JC's Heroku deployment
+- [Gigboard-B](https://gig-board.herokuapp.com/gigs) - [Ben's](https://benhammond.tech) Heroku deployment
+- [Gigboard-K](https://kaye-gig-board.herokuapp.com) - Kaye's Heroku deployment
+- [Gigboard-S](https://sergio-frontend-gigboard.herokuapp.com) - Sergio's Heroku deployment
+- [Gigboard-JC](https://jc-gigboard.herokuapp.com) - JC's Heroku deployment
+- [Gigboard-J](#) - James' Heroku deployment
+- [Gigboard-H](#) - Haydyn's Heroku deployment
   _Please ensure you're using HTTPS and that cookies are enabled to allow Oauth login_
