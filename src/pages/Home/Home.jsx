@@ -21,9 +21,9 @@ const Home = () => {
 
           <div className="bitmojis">
             <img className="sergio" alt="" src={Sergio} />
-            <a href="https://benhammond.tech">
-              <img className="ben" alt="" src={Ben} />
-            </a>
+
+            <img className="ben" alt="" src={Ben} />
+
             <img className="james" alt="" src={James} />
             <img className="kaye" alt="" src={Kaye} />
             <img className="hayden" alt="" src={Hayden} />

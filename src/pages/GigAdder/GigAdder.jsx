@@ -45,10 +45,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
   // make sure START DATE is always before END DATE
   useEffect(() => {
-    console.log('useEffect() when workstart changes. START:', workStartDate, 'END:', workEndDate);
     // every time dates change, set error to false
-    // setDateError('');
-    // console.log('date error in useeffect:', dateError);
     if (workEndDate && workEndDate < workStartDate) {
       // when the dates are wrong, fix them and set error to true
       setWorkEndDate(workStartDate);
@@ -112,14 +109,14 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What's the city and state?</Form.Label>
-          <Form.Control required type="location" placeholder="Denver, CO" onChange={(e) => setLocation(e.target.value)} />
+          <Form.Control type="location" placeholder="Denver, CO" onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
           <Form.Control as="select" type="urgency" onChange={(e) => setUrgency(e.target.value)}>
-            <option value="Low">Low</option>
-            <option value="Moderate">Moderate</option>
-            <option value="High">High</option>
+            <option value="low">Low</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="tags">
@@ -153,7 +150,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             }}
           />
         </Form.Group>
-      
+
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
