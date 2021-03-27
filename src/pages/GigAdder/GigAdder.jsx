@@ -80,6 +80,25 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
     // add this post reference object ID to the current logged in User's [Posts] array
   };
 
+  const handleCommas = (number) => {
+      //remove any existing commas...
+    number=number.replace(/,/g, "");
+    //start putting in new commas...
+    number = '' + number;
+    if (number.length > 3) {
+      let mod = number.length % 3;
+      let output = (mod > 0 ? (number.substring(0,mod)) : '');
+      for (let i=0 ; i < Math.floor(number.length / 3); i++) {
+        if ((mod == 0) && (i == 0))
+          output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
+        else
+          output+= ',' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+      }
+      return (output);
+    }
+    else return number;
+  }
+
   return (
     <div className="GigAdder">
       <Form onSubmit={handleSubmit} className="post-it">
@@ -94,7 +113,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           <Form.Label className="form-title">What does the Gig pay?</Form.Label>
           <div className="pay-form-container">
             <span className="dollaSign">$</span>
-            <Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} />
+            <Form.Control type="textarea" placeholder="Pay/day goes here" onChange={(e) => setPay(e.target.value)} onKeyUp={(e) => e.target.value = handleCommas(e.target.value)}/>
           </div>
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox">
