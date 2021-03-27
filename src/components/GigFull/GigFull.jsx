@@ -22,9 +22,25 @@ const GigFull = (props) => {
 
   const location = props.gig.location.split(/ (.+)/)[0].replace(/[, ]+/g, " ").trim()
 
-  useEffect( async () => {
-    let currentWeather = await weatherByLocation(location)
-    setCurrentTemp(currentWeather.current.temp_f)
+
+  const handleCurrentTemp = async () => {
+    try {
+      let currentWeather = await weatherByLocation(location);
+
+      if (!currentWeather.current.temp_f) throw 'undefined'
+
+      return setCurrentTemp(currentWeather.current.temp_f)
+
+    } catch (error) {
+      if (error === 'undefined') {
+        console.log('No location available')
+      }
+      console.log(error)
+    }
+  }
+
+  useEffect( () => {
+    handleCurrentTemp();
   }, [])
   
 
@@ -36,7 +52,7 @@ const GigFull = (props) => {
     <ul>
       <em>{props.gig.description}</em>
       <hr></hr>
-      {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
+      {props.gig.location ? <li>Location: {props.gig.location} {currentTemp && <span>{currentTemp}°F</span>} </li> : ''}
 
       <li>{props.gig.tip ? 'Tips: Yes' : 'No Tips'}</li>
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
@@ -54,9 +70,6 @@ const GigFull = (props) => {
       ) : (
         ''
       )}
-      <div style={{color: 'darkblue'}}>
-        This is what the current Temperature is in {location}: {currentTemp}°F
-      </div>
 
       <div className="button-container">
         {props.currentUserId === props.gig.User ? (
