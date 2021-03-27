@@ -2,7 +2,7 @@
 
 ## README
 
-Gig board is an app specific for short-term-gigs.
+[Gigboard](https://gig-board.herokuapp.com/gigs) is an app specific for short-term-gigs.
 
 The gig poster is going to be able to log-in, view gigs posted by others, and view gigs posted by themselves.
 
@@ -74,3 +74,11 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 ### Gig-Style
 
 If you're interested in contributing to this project - please check out our [style guide](./styleguide.md)
+
+### Live Site
+
+- [Use Ben's Gigboard](https://gig-board.herokuapp.com/gigs) - [Ben's](https://benhammond.tech) Heroku deployment
+- [Use Kaye's Gigboard](https://kaye-gig-board.herokuapp.com) - Kaye's Heroku deployment
+- [Use Kaye's Gigboard](https://sergio-frontend-gigboard.herokuapp.com) - Sergio's Heroku deployment
+- [Use Kaye's Gigboard](https://jc-gigboard.herokuapp.com) - JC's Heroku deployment
+  _Please ensure cookies are enabled to allow Oauth login_
