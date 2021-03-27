@@ -131,7 +131,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
         </Form.Group>
         <Form.Group controlId="input3">
           <Form.Label className="form-title">What's the city and state?</Form.Label>
-          <Form.Control required type="location" placeholder="Denver, CO" onChange={(e) => setLocation(e.target.value)} />
+          <Form.Control type="location" placeholder="Denver, CO" onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
