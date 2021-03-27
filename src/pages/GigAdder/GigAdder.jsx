@@ -45,10 +45,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
 
   // make sure START DATE is always before END DATE
   useEffect(() => {
-    console.log('useEffect() when workstart changes. START:', workStartDate, 'END:', workEndDate);
     // every time dates change, set error to false
-    // setDateError('');
-    // console.log('date error in useeffect:', dateError);
     if (workEndDate && workEndDate < workStartDate) {
       // when the dates are wrong, fix them and set error to true
       setWorkEndDate(workStartDate);
@@ -153,7 +150,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             }}
           />
         </Form.Group>
-      
+
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>

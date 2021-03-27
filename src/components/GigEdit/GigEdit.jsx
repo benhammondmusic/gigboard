@@ -75,7 +75,6 @@ const GigEdit = () => {
 
     try {
       const jwtCheck = localStorage.getItem('jwt');
-      console.log('tip before update db:', tip);
       const res = await Gig.update(id, { title, pay, description, tip, location, urgency, tags, workStartDate, workEndDate }, jwtCheck);
 
       if (res.data.status === 200) {
