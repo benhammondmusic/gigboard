@@ -25,7 +25,7 @@ body {
 }
 
 #gigboard {
-  font-family: "Fira Sans";
+  font-family: 'Fira Sans';
   font-weight: 800;
   font-size: calc(2rem + 9vw);
   width: 100%;
@@ -41,7 +41,7 @@ body {
 } */
 
 #tagline {
-  font-family: "gudea";
+  font-family: 'gudea';
   font-weight: 400;
   font-size: 30px;
   position: relative;
@@ -50,8 +50,6 @@ body {
 }
 
 .sergio {
-  background-image: url(../../images/Sergio.png);
-  background-size: cover;
   height: 200px;
   width: 200px;
 
@@ -59,38 +57,39 @@ body {
 }
 
 .ben {
-  background-image: url(../../images/Ben.png);
-  background-size: cover;
   height: 200px;
   width: 220px;
 }
 
 .james {
-  background-image: url(../../images/James.png);
-  background-size: cover;
   height: 200px;
   width: 200px;
 }
 
 .kaye {
-  background-image: url(../../images/Kaye.png);
-  background-size: cover;
   height: 200px;
   width: 200px;
 }
 
 .hayden {
-  background-image: url(../../images/Hayden.png);
-  background-size: cover;
   height: 200px;
   width: 200px;
 }
 
 .jc {
-  background-image: url(../../images/JC.png);
-  background-size: cover;
   height: 200px;
   width: 230px;
+}
+
+.bitmojis {
+  position: absolute;
+  bottom: 30px;
+  left: -50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: center;
+  /* margin-top: -20%; */
+  width: 100%;
 }
 
 .container {
