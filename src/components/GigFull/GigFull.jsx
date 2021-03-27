@@ -1,6 +1,8 @@
 import './GigFull.css';
 import GigDelete from '../GigDelete/GigDelete';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { weatherByLocation } from '../../services/weather-api'
 
 const getDisplayDate = (uglyDate) => {
   const dateObj = new Date(uglyDate);
@@ -14,7 +16,19 @@ const getDisplayDate = (uglyDate) => {
   return dateObj.toLocaleString('en-US', options);
 };
 
-const GigFull = (props) => (
+const GigFull = (props) => {
+  
+  const [currentTemp, setCurrentTemp] = useState('');
+
+  const location = props.gig.location.split(/ (.+)/)[0].replace(/[, ]+/g, " ").trim()
+
+  useEffect( async () => {
+    let currentWeather = await weatherByLocation(location)
+    setCurrentTemp(currentWeather.current.temp_f)
+  }, [])
+  
+
+  return (
   <>
     <h4 className="full-heading">
       {props.gig.title}: ${props.gig.pay}
@@ -40,6 +54,9 @@ const GigFull = (props) => (
       ) : (
         ''
       )}
+      <div style={{color: 'darkblue'}}>
+        This is what the current Temperature is in {location}: {currentTemp}°F
+      </div>
 
       <div className="button-container">
         {props.currentUserId === props.gig.User ? (
@@ -56,5 +73,6 @@ const GigFull = (props) => (
       </div>
     </ul>
   </>
-);
+)};
+
 export default GigFull;
