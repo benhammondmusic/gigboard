@@ -1,21 +1,18 @@
-import { useState } from 'react';
-
+// import { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
+// import Auth from '../../Models/Auth'
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import './Register.css'
-
-// import Auth from '../../Models/Auth'
+import './Register.css';
 
 const Register = (props) => {
   return (
     <>
-     
       <Form onSubmit={props.handleRegister} className="registerForm">
-      <h4>Register A New Gig Poster</h4>
-      <hr />
+        <h4>Register A New Gig Poster</h4>
+        <hr />
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-title">Email address</Form.Label>
           <Form.Control required type="email" placeholder="Enter email" onChange={(e) => props.setFormEmail(e.target.value)} />
@@ -32,6 +29,8 @@ const Register = (props) => {
         <Link to="/login" className="btn btn-secondary reg-cancel">
           Cancel
         </Link>
+
+        <div className="error">{props.errorMessage ? "Error registering. Please login instead if you've previously registered this email" : ''}</div>
       </Form>
     </>
   );

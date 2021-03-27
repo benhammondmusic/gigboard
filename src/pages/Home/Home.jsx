@@ -1,4 +1,10 @@
 import './Home.css';
+import Sergio from '../../images/Sergio.png';
+import Ben from '../../images/Ben.png';
+import James from '../../images/James.png';
+import Kaye from '../../images/Kaye.png';
+import Hayden from '../../images/Hayden.png';
+import JC from '../../images/JC.png';
 
 const Home = () => {
   return (
@@ -11,6 +17,18 @@ const Home = () => {
             <br />
             ... minus the commitment
           </p>
+          <br />
+
+          <div className="bitmojis">
+            <img className="sergio" alt="" src={Sergio} />
+            <a href="https://benhammond.tech">
+              <img className="ben" alt="" src={Ben} />
+            </a>
+            <img className="james" alt="" src={James} />
+            <img className="kaye" alt="" src={Kaye} />
+            <img className="hayden" alt="" src={Hayden} />
+            <img className="jc" alt="" src={JC} />
+          </div>
         </div>
       </div>
     </div>
