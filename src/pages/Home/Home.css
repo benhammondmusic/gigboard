@@ -53,31 +53,37 @@ body {
 .sergio {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .ben {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .james {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .kaye {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .hayden {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .jc {
   height: auto;
   width: 16vw;
+  object-fit: scale-down;
 }
 
 .bitmojis {
@@ -90,6 +96,7 @@ body {
   /* margin-top: -20%; */
   width: 100%;
   z-index: 99;
+  height: 25vh;
 }
 
 .bitmojis img {
