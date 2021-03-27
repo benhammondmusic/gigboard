@@ -82,5 +82,9 @@ If you're interested in contributing to this project - please check out our [sty
 - [Gigboard-S](https://sergio-frontend-gigboard.herokuapp.com) - Sergio's Heroku deployment
 - [Gigboard-JC](https://jc-gigboard.herokuapp.com) - JC's Heroku deployment
 - [Gigboard-J](#) - James' Heroku deployment
-- [Gigboard-H](#) - Haydyn's Heroku deployment
+- [Gigboard-H](#) - Hayden's Heroku deployment
   _Please ensure you're using HTTPS and that cookies are enabled to allow Oauth login_
+
+### Kaye and the Boyzz
+
+![Kaye and the Boyzz](./images/KayeAndTheBoyzz.png)
