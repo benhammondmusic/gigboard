@@ -111,8 +111,8 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
           />
         </Form.Group>
         <Form.Group controlId="input3">
-          <Form.Label className="form-title">Where's the Gig?</Form.Label>
-          <Form.Control type="location" placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
+          <Form.Label className="form-title">What's the city and state?</Form.Label>
+          <Form.Control required type="location" placeholder="Denver, CO" onChange={(e) => setLocation(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="urgencySelect">
           <Form.Label className="form-title">Urgency?</Form.Label>
@@ -153,7 +153,7 @@ const GigAdder = ({ currentUserEmail, currentUserId }) => {
             }}
           />
         </Form.Group>
-
+      
         <Button variant="primary" type="submit" onClick={(event) => (window.location.href = '/gigs')}>
           Post Gig
         </Button>
