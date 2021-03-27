@@ -36,10 +36,11 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
       - Categories it fits in to (Service, Entertainment, Sports, Health/Wellness, General, Automotive)
   - Delete a gig
   - Edit a gig
-  - Number of positions available for that gig
   - Add location
-    - Map API, Weather API
+    - Weather API
       - Map API will require a package
+
+  - Filter search results
   - Urgency of the specific position
 
 ### Tech Stack
