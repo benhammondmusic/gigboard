@@ -16,12 +16,15 @@ const getDisplayDate = (uglyDate) => {
 
 const GigFull = (props) => (
   <>
-    <h4>{props.gig.title}:</h4>
+    <h4 className="full-heading">
+      {props.gig.title}: ${props.gig.pay}
+    </h4>
     <ul>
       <em>{props.gig.description}</em>
+      <hr></hr>
       {props.gig.location ? <li>Location: {props.gig.location}</li> : ''}
-      {props.gig.pay ? <li>Pay: ${props.gig.pay}</li> : ''}
-      <li>{props.gig.tip ? 'Tips: Yes' : 'Tips: No'}</li>
+
+      <li>{props.gig.tip ? 'Tips: Yes' : 'No Tips'}</li>
       {props.gig.urgency ? <li>Urgency: {props.gig.urgency}</li> : ''}
       {props.gig.workStartDate ? <li>Gig Date: {getDisplayDate(props.gig.workStartDate)}</li> : ''}
       {props.gig.workEndDate ? <li>End Date: {getDisplayDate(props.gig.workEndDate)}</li> : ''}
@@ -40,9 +43,12 @@ const GigFull = (props) => (
 
       <div className="button-container">
         {props.currentUserId === props.gig.User ? (
-          <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
-            <button className="btn btn-dark">Edit</button>
-          </Link>
+          <>
+            <hr></hr>
+            <Link to={`gigs/editgig/${props.gig._id}`} gig={props.gig}>
+              <button className="btn btn-dark">Edit</button>
+            </Link>
+          </>
         ) : (
           ''
         )}
