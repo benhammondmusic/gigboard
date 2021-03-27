@@ -49,7 +49,7 @@ As the gig seeker “claims” a gig, the available gigs positions will decrease
 - MongoDB
 - Node
 - Heroku (deploy)
-- Bootstrap & Sass
+- Bootstrap
 
 ### Resources
 
