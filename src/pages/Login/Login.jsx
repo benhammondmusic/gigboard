@@ -32,7 +32,7 @@ const Login = (props) => {
     <div className="LoginForm">
       <h1>Login to Post a Gig</h1>
       <hr></hr>
-      <GoogleLogin clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={handleGoogleRegisterAndLogin} />
+      <GoogleLogin clientId="372780436632-gk66eu7ttd58g878n81ocf76fe0kva66.apps.googleusercontent.com" buttonText="Login with Google" onSuccess={responseGoogle} onFailure={handleGoogleRegisterAndLogin} />
       <hr></hr>
       <Form onSubmit={props.handleLogin}>
         <Form.Group controlId="formBasicEmail">
